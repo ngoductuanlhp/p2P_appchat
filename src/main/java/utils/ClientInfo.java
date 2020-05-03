@@ -2,12 +2,12 @@ package utils;
 
 // This class use for Server to maintain a list of clients connected
 
-public class Client {
+public class ClientInfo {
     private String clientName;
     private String clientStatus;
     private String clientID;
 
-    public Client(String clientName, String clientStatus, String clientID) {
+    public ClientInfo(String clientName, String clientStatus, String clientID) {
         this.clientName     = clientName;
         this.clientStatus   = clientStatus;
         this.clientID       = clientID;

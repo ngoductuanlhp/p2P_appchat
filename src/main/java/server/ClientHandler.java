@@ -1,19 +1,22 @@
-package backend;
+package server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import org.apache.commons.lang3.StringUtils;
+import utils.ClientInfo;
 
-public class ClientConnection implements Runnable{
+public class ClientHandler implements Runnable{
     private final ChatServer server;
     private final Socket client;
 
     private DataInputStream reader;
     private DataOutputStream writer;
 
-    public ClientConnection(ChatServer server, Socket client) {
+    private ClientInfo clientInfo;
+
+    public ClientHandler(ChatServer server, Socket client) {
         this.server = server;
         this.client = client;
     }
@@ -28,12 +31,13 @@ public class ClientConnection implements Runnable{
             String[] segments   = null;
             while(true) {
                 message = reader.readUTF();
+                System.out.print(String.format("[SERVER] Received request: %s\n", message));
                 segments = StringUtils.split(message,'-');
                 if (segments != null && segments.length > 0) {
                     String type = segments[0];
                     switch (type) {
                         case "signup":
-                            this.handleSignup();
+                            this.handleSignup(segments);
                             break;
                         case "login":
                             this.handleLogin();
@@ -53,12 +57,13 @@ public class ClientConnection implements Runnable{
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.out.println("[SERVER] Client disconnected");
         }
     }
 
-    private void handleSignup() {
-
+    private void handleSignup(String[] segments) {
+        System.out.println(String.format("[SERVER] Sign-up with username %s, password %s", segments[1], segments[2]));
     }
 
     private void handleLogin() {

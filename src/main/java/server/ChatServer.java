@@ -1,12 +1,14 @@
-package backend;
+package server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class ChatServer {
+    private ArrayList<ClientHandler> clientHandlerList = new ArrayList<ClientHandler>();
     private int serverPort;
     private ServerSocket serverSocket;
     private int numThreads = 10;
@@ -29,7 +31,7 @@ public class ChatServer {
             serverSocket = new ServerSocket(this.serverPort);
             while (true) {
                 Socket client = serverSocket.accept();
-                executor.execute(new ClientConnection(this, client));
+                executor.execute(new ClientHandler(this, client));
             }
         } catch (IOException e) {
             e.printStackTrace();
