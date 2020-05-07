@@ -8,7 +8,7 @@ import java.util.Queue;
 public class RequestSender implements Runnable{
     private ChatClient chatClient;
     private DataOutputStream sender;
-    private Queue<String> requestQueue = new LinkedList<String>();;
+    private Queue<String> requestQueue = new LinkedList<String>();
 
     public RequestSender(ChatClient chatClient, DataOutputStream sender) {
         this.chatClient = chatClient;

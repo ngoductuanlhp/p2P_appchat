@@ -28,14 +28,22 @@ public class RequestReceiver implements Runnable {
                     String type = segments[0];
                     switch (type) {
                         case "signup":
+                            this.chatClient.checkSignUp(segments);
                             break;
                         case "login":
+                            this.chatClient.checkLogIn(segments);
                             break;
                         case "logout":
+                            this.chatClient.checkLogOut(segments[1]);
                             break;
                         case "addfriend":
+                            this.chatClient.checkAddFriend(segments[1], segments[2], segments[3]);
                             break;
-                        case "connectfriend":
+                        case "connectfriendTo":
+                            this.chatClient.peerConnectListener(segments[1]);;
+                            break;
+                        case "connectfriendFrom":
+                            this.chatClient.peerConnectActivator(segments[1], Integer.parseInt(segments[2]), segments[3]);
                             break;
                         default:
                             System.out.println("Unknown " + type);

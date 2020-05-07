@@ -1,5 +1,7 @@
 package utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.sql.Timestamp;
 
 public class Message {
@@ -23,6 +25,15 @@ public class Message {
         this.time_send = time_s;
         this.time_receive = time_r;
     }
+    public Message(String mess, String clientName) {
+        String[] segments = StringUtils.split(mess, '-');
+        this.content = segments[0];
+        this.name_from = segments[1];
+        this.time_send = Timestamp.valueOf(segments[3]);
+        this.name_to = clientName;
+        this.time_receive = new Timestamp(System.currentTimeMillis());
+    }
+
 
     public void setContent(String cnt) {
         this.content = cnt;
