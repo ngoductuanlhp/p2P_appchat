@@ -10,19 +10,21 @@ import java.io.IOException;
 public class MessageReceiver implements Runnable {
     private ClientInfo targetClient;
     private DataInputStream reader;
+    private PeerHandler peerHandler;
+    private volatile boolean isChatting = true;
 
-    public MessageReceiver(DataInputStream reader, ClientInfo targetClient) {
+    public MessageReceiver(DataInputStream reader, ClientInfo targetClient, PeerHandler peerHandler) {
         this.reader = reader;
         this.targetClient = targetClient;
+        this.peerHandler = peerHandler;
     }
-
 
     @Override
     public void run() {
         try {
             String message      = null;
             String[] segments   = null;
-            while (true) {
+            while (isChatting) {
                 message = this.reader.readUTF();
                 segments = StringUtils.split(message, '-');
                 if (segments != null && segments.length > 0) {
@@ -33,15 +35,20 @@ public class MessageReceiver implements Runnable {
                             break;
                         case "file":
                             break;
+                        case "disconnect":
+                            this.peerHandler.disconnect();
                         default:
                             System.out.println("[CLIENT] Received unknown message.");
                             break;
                     }
-
                 }
             }
         } catch (IOException e) {
         e.printStackTrace();
+        }
     }
+
+    public void stop() {
+        this.isChatting = false;
     }
 }

@@ -40,6 +40,8 @@ public class ChatClient {
         return this.clientInfo;
     }
 
+    public RequestSender getRequestSender() { return requestSender; }
+
     public void start() {
         System.out.println("[CLIENT] Start client.");
         boolean checkConnected = this.connectToServer();
@@ -92,6 +94,7 @@ public class ChatClient {
         } while(countConnect < 5);
         return false;
     }
+
 
     public void checkSignUp(String[] segments) {
         if (segments[1].equals("success")) {
@@ -183,5 +186,8 @@ public class ChatClient {
         }
     }
 
+    public void removePeerHandle(PeerHandler peerHandler) {
+        this.peerList.remove(peerHandler);
+    }
 
 }

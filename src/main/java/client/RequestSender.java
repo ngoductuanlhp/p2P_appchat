@@ -38,4 +38,20 @@ public class RequestSender implements Runnable{
             return this.requestQueue.add(request);
         }
     }
+
+    public boolean signUp(String username, String password) {
+        return this.sendRequest("signup-" + username + "-" + password);
+    }
+
+    public boolean logIn(String username, String password) {
+        return this.sendRequest("signup-" + username + "-" + password);
+    }
+
+    public boolean addFriend(String friendName) {
+        return this.sendRequest("addfriend-" + friendName);
+    }
+
+    public boolean connectFriend(String friendName) {
+        return this.sendRequest("connectfriend-" + friendName);
+    }
 }

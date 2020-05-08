@@ -41,7 +41,7 @@ public class PeerHandler implements Runnable{
             this.os = this.socket.getOutputStream();
             this.messageSender = new MessageSender(new DataOutputStream(this.os), this.getClient().getClientInfo());
             this.messageReceiverThread = new Thread(this.messageSender);
-            this.messageReceiver = new MessageReceiver(new DataInputStream(this.is), this.getClient().getClientInfo());
+            this.messageReceiver = new MessageReceiver(new DataInputStream(this.is), this.getClient().getClientInfo(), this);
             this.messageReceiverThread = new Thread(this.messageReceiver);
 
             this.messageSenderThread.start();
@@ -50,4 +50,20 @@ public class PeerHandler implements Runnable{
             e.printStackTrace();
         }
     }
+
+    public void sendMessage(String mess) {
+        String formattedMess = "message-" + mess;
+        this.messageSender.sendMessage(formattedMess);
+    }
+
+    public void sendDisconnect() {
+        this.messageSender.sendMessage("disconnect");
+    }
+
+    public void disconnect() {
+        this.messageSender.stop();
+        this.messageReceiver.stop();
+        this.client.removePeerHandle(this);
+    }
+
 }

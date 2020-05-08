@@ -12,6 +12,7 @@ public class MessageSender implements Runnable{
     private ClientInfo hostClient;
     private DataOutputStream sender;
     private Queue<String> messageQueue = new LinkedList<String>();
+    private volatile boolean isChatting = true;
     public MessageSender(DataOutputStream sender, ClientInfo hostClient) {
         this.sender = sender;
         this.hostClient = hostClient;
@@ -21,17 +22,17 @@ public class MessageSender implements Runnable{
     @Override
     public void run() {
         try{
-            while (true) {
+            while (isChatting) {
                 synchronized (this) {
                     while(!this.messageQueue.isEmpty()) {
                         String request = messageQueue.remove();
                         System.out.print(String.format("[CLIENT] Send message: %s", request));
                         sender.writeUTF(request);
                         sender.flush();
-
                     }
                 }
             }
+            System.out.print("[CLIENT] Disconnect to peer\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -42,5 +43,9 @@ public class MessageSender implements Runnable{
         synchronized (this) {
             this.messageQueue.add(mess);
         }
+    }
+
+    public void stop() {
+        this.isChatting = false;
     }
 }
