@@ -96,10 +96,10 @@ public class ChatClient {
     }
 
 
-    public void checkSignUp(String[] segments) {
-        if (segments[1].equals("success")) {
+    public void checkSignUp(String check, String name) {
+        if (check.equals("success")) {
             System.out.println("[CLIENT] Sign-up successful");
-            this.clientInfo = new ClientInfo(segments[2]);
+            this.clientInfo = new ClientInfo(name);
         }
         else {
             System.out.println("[CLIENT] Sign-up failed");

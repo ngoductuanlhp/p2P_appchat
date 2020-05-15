@@ -28,7 +28,7 @@ public class RequestReceiver implements Runnable {
                     String type = segments[0];
                     switch (type) {
                         case "signup":
-                            this.chatClient.checkSignUp(segments);
+                            this.chatClient.checkSignUp(segments[1], segments[2]);
                             break;
                         case "login":
                             this.chatClient.checkLogIn(segments);
@@ -42,7 +42,7 @@ public class RequestReceiver implements Runnable {
                         case "connectfriendTo":
                             this.chatClient.peerConnectListener(segments[1]);;
                             break;
-                        case "connectfriendFrom":
+                        case "acceptconnectfriend":
                             this.chatClient.peerConnectActivator(segments[1], Integer.parseInt(segments[2]), segments[3]);
                             break;
                         default:
