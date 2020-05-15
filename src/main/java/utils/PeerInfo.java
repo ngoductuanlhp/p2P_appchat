@@ -6,7 +6,7 @@ public class PeerInfo {
 
     public  PeerInfo(String name) {
         this.name = name;
-        this.status = "offline";
+        this.status = "off";
     }
     public  PeerInfo(String name, String status) {
         this.name = name;
@@ -15,6 +15,6 @@ public class PeerInfo {
 
     public String getName() {return this.name;}
     public String getStatus(){return this.status;}
-    public void setOffline() {this.status = "offline";}
-    public void setOnline() {this.status = "online";}
+    public void setOffline() {this.status = "off";}
+    public void setOnline() {this.status = "on";}
 }

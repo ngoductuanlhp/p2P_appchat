@@ -10,6 +10,7 @@ package com.application.chatboxp2p.staticdata;
  * @author Khoa
  */
 public class Friend {
+    static int no = 0;
     private int status;
     private String name;
     private String user_name;
@@ -19,6 +20,17 @@ public class Friend {
         this.status = status;
         this.user_name = user_name;
         
+    }
+
+    public Friend(String username, String stt) {
+        this.name = "noname" + String.valueOf(Friend.no);
+        Friend.no++;
+        this.user_name = username;
+        if (stt.equals("on")) {
+            this.status = 1;
+        } else {
+            this.status = 0;
+        }
     }
 
     

@@ -1,4 +1,4 @@
-package client;
+package backend.client;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class RequestSender implements Runnable{
                 synchronized (this) {
                     while(!this.requestQueue.isEmpty()) {
                         String request = requestQueue.remove();
-                        System.out.print(String.format("[CLIENT] Send request: %s", request));
+                        System.out.println(String.format("[CLIENT] Send request: %s", request));
                         sender.writeUTF(request);
                         sender.flush();
 

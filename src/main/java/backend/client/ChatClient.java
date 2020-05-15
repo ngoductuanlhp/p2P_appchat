@@ -1,8 +1,13 @@
-package client;
+package backend.client;
 
+import ui.MainUI;
 import utils.ClientInfo;
 import utils.PeerInfo;
 
+import backend.client.*;
+
+import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -10,6 +15,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
+
 
 public class ChatClient {
     private final String serverAddress;
@@ -29,11 +35,18 @@ public class ChatClient {
 
     private LinkedList<PeerHandler> peerList;
 
+    private String responseMessage = null;
+
+    public String getResponseMessage() {return this.responseMessage;}
+    public void setResponseMessage(String mess) {this.responseMessage = mess;}
+
     private int peerPort = 20000;
+//    private MainUI mainUI;
 
     public ChatClient(String serverAddress, int serverPort) {
         this.serverAddress  = serverAddress;
         this.serverPort     = serverPort;
+//        this.mainUI         = mainUI;
     }
 
     public ClientInfo getClientInfo() {
@@ -41,6 +54,7 @@ public class ChatClient {
     }
 
     public RequestSender getRequestSender() { return requestSender; }
+    public LinkedList<PeerHandler> getPeerList() {return this.peerList;}
 
     public void start() {
         System.out.println("[CLIENT] Start client.");
@@ -59,15 +73,19 @@ public class ChatClient {
         this.clientSenderThread.start();
 
         // DEBUG
-        try{
-            BufferedReader keyboardReader = new BufferedReader(new InputStreamReader(System.in));
-            while (true) {
-                String req = keyboardReader.readLine();
-                this.requestSender.sendRequest(req);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try{
+//            BufferedReader keyboardReader = new BufferedReader(new InputStreamReader(System.in));
+//            while (true) {
+//                String req = keyboardReader.readLine();
+//                this.requestSender.sendRequest(req);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    public boolean sendReq(String request) {
+        return this.requestSender.sendRequest(request);
     }
 
     public boolean connectToServer(){
@@ -111,9 +129,16 @@ public class ChatClient {
             System.out.println("[CLIENT] Log-in successful");
             this.clientInfo = new ClientInfo(segments[2]);
             int numFriend = Integer.parseInt(segments[3]);
-            for(int i = 0; i < numFriend; i++) {
-                this.clientInfo.friendList.add(new PeerInfo(segments[4 + 2*i], segments[4 + 2*i + 1]));
+//            System.out.println(segments);
+            if (numFriend > 0) {
+                for(int i = 0; i < numFriend; i++) {
+                    this.clientInfo.friendList.add(new PeerInfo(segments[4 + 2*i], segments[4 + 2*i + 1]));
+                }
             }
+            synchronized (this) {
+                this.responseMessage = segments[1];
+            }
+
         }
         else {
             System.out.println("[CLIENT] Log-in failed");
@@ -133,10 +158,10 @@ public class ChatClient {
         }
     }
 
-    public void peerConnectListener(String targetName) {
+    public void peerConnectListener(String nameFrom, String nameTo) {
         boolean isExist = false;
         for(PeerHandler peer:this.peerList) {
-            if(targetName.equals(peer.getTargetClientName())) {
+            if(nameFrom.equals(peer.getTargetClientName())) {
                 isExist = true;
                 break;
             }
@@ -147,42 +172,45 @@ public class ChatClient {
 
         try {
             ServerSocket serverSocket = new ServerSocket(peerPort);
-            String mess = "acceptconnectfriend" + "-" + String.valueOf(peerPort) + "-" + this.clientInfo.getClientName() + "-" + targetName;
+            String mess = "acceptconnectfriend-" + nameFrom + "-" + nameTo + "-" + String.valueOf(peerPort);
             this.requestSender.sendRequest(mess);
             peerPort++;
             Socket socket = serverSocket.accept();
-            PeerHandler peerHandler = new PeerHandler(socket, targetName);
+            PeerHandler peerHandler = new PeerHandler(socket, nameFrom);
             this.peerList.add(peerHandler);
             Thread peerThread = new Thread(peerHandler);
             peerThread.start();
         } catch (IOException e) {
             e.printStackTrace();
             peerPort++;
-            this.peerConnectListener(targetName);
+            this.peerConnectListener(nameFrom, nameTo);
         }
     }
 
-    public void peerConnectActivator(String targetName, int port, String IP) {
-        boolean isExist = false;
-        for(PeerHandler peer:this.peerList) {
-            if(targetName.equals(peer.getTargetClientName())) {
-                isExist = true;
-                break;
-            }
-        }
-        if (isExist) {
-            return;
-        }
+    public void peerConnectActivator(String nameFrom, String nameTo, String IP, int port) {
+//        boolean isExist = false;
+//        for(PeerHandler peer:this.peerList) {
+//            if(targetName.equals(peer.getTargetClientName())) {
+//                isExist = true;
+//                break;
+//            }
+//        }
+//        if (isExist) {
+//            return;
+//        }
 
         try {
             Socket socket = new Socket(IP, port);
-            PeerHandler peerHandler = new PeerHandler(socket, targetName);
+            PeerHandler peerHandler = new PeerHandler(socket, nameTo);
             this.peerList.add(peerHandler);
             Thread peerThread = new Thread(peerHandler);
             peerThread.start();
+            synchronized (this) {
+                this.responseMessage = "success";
+            }
         } catch (IOException e) {
             e.printStackTrace();
-            this.peerConnectActivator(targetName, port, IP);
+            this.peerConnectActivator(nameFrom, nameTo, IP, port);
         }
     }
 

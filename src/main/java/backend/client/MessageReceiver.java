@@ -1,9 +1,11 @@
-package client;
+package backend.client;
 
 import org.apache.commons.lang3.StringUtils;
 import utils.ClientInfo;
 import utils.Message;
 
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
 import java.io.DataInputStream;
 import java.io.IOException;
 
@@ -19,6 +21,7 @@ public class MessageReceiver implements Runnable {
         this.peerHandler = peerHandler;
     }
 
+
     @Override
     public void run() {
         try {
@@ -31,7 +34,9 @@ public class MessageReceiver implements Runnable {
                     String type = segments[0];
                     switch (type) {
                         case "message":
-                            Message mess = new Message(segments[1], this.targetClient.getClientName());
+//                            Message mess = new Message(segments[1], this.targetClient.getClientName());
+                            String mess = segments[1];
+                            this.peerHandler.addText(mess);
                             break;
                         case "file":
                             break;
@@ -43,10 +48,12 @@ public class MessageReceiver implements Runnable {
                     }
                 }
             }
-        } catch (IOException e) {
+        } catch (IOException | BadLocationException e) {
         e.printStackTrace();
         }
     }
+
+
 
     public void stop() {
         this.isChatting = false;

@@ -1,4 +1,4 @@
-package client;
+package backend.client;
 
 import utils.ClientInfo;
 

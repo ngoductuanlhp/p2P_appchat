@@ -1,4 +1,4 @@
-package client;
+package backend.client;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -31,7 +31,9 @@ public class RequestReceiver implements Runnable {
                             this.chatClient.checkSignUp(segments[1], segments[2]);
                             break;
                         case "login":
+                            System.out.println(message);
                             this.chatClient.checkLogIn(segments);
+
                             break;
                         case "logout":
                             this.chatClient.checkLogOut(segments[1]);
@@ -39,11 +41,11 @@ public class RequestReceiver implements Runnable {
                         case "addfriend":
                             this.chatClient.checkAddFriend(segments[1], segments[2], segments[3]);
                             break;
-                        case "connectfriendTo":
-                            this.chatClient.peerConnectListener(segments[1]);;
+                        case "connectfriendto":
+                            this.chatClient.peerConnectListener(segments[1], segments[2]);;
                             break;
                         case "acceptconnectfriend":
-                            this.chatClient.peerConnectActivator(segments[1], Integer.parseInt(segments[2]), segments[3]);
+                            this.chatClient.peerConnectActivator(segments[1], segments[2], segments[3], Integer.parseInt(segments[4]));
                             break;
                         default:
                             System.out.println("Unknown " + type);

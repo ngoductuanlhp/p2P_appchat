@@ -14,23 +14,24 @@ import org.w3c.dom.ls.LSInput;
  * @author Khoa
  */
 public class ListFriends {
-    private static DefaultListModel<Friend> list_friends = new DefaultListModel<>();
+    private DefaultListModel<Friend> list_friends = new DefaultListModel<>();
     
-    public static void addUser(Friend user){
+    public void addUser(Friend user){
         list_friends.addElement(user);
     }
-    public static DefaultListModel getListModel()
+
+    public DefaultListModel getListModel()
     {
         return list_friends;
     }
-    public static void clear()
+    public void clear()
     {
         list_friends.clear();
     }
     public Friend getUserByIndex(int index){
         return list_friends.get(index);
     }
-    public static void updateStatus(String user_name , int status){
+    public void updateStatus(String user_name , int status){
         for (int i = 0; i<list_friends.getSize() ; i++){
             if (list_friends.get(i).getUser_name().equals(user_name))
             {
@@ -39,7 +40,8 @@ public class ListFriends {
             }
         }
     }
-    public static void updateStatus(int index , int status){
+    public void updateStatus(int index , int status){
         list_friends.get(index).setStatus(status);
     }
+    public DefaultListModel<Friend> getList_friends(){ return this.list_friends;}
 }
