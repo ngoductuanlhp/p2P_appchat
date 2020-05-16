@@ -45,7 +45,7 @@ public class RequestReceiver implements Runnable {
                             this.chatClient.peerConnectListener(segments[1], segments[2]);;
                             break;
                         case "acceptconnectfriend":
-                            this.chatClient.peerConnectActivator(segments[1], segments[2], segments[3], Integer.parseInt(segments[4]));
+                            this.chatClient.peerConnectActivator(segments[1], segments[2], segments[3], Integer.parseInt(segments[4]), 0);
                             break;
                         default:
                             System.out.println("Unknown " + type);

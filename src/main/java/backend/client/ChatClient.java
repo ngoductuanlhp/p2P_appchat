@@ -187,7 +187,7 @@ public class ChatClient {
         }
     }
 
-    public void peerConnectActivator(String nameFrom, String nameTo, String IP, int port) {
+    public void peerConnectActivator(String nameFrom, String nameTo, String IP, int port, int timeTry) {
 //        boolean isExist = false;
 //        for(PeerHandler peer:this.peerList) {
 //            if(targetName.equals(peer.getTargetClientName())) {
@@ -200,7 +200,9 @@ public class ChatClient {
 //        }
 
         try {
-            Socket socket = new Socket(IP, port);
+            System.out.println("IP:" + IP);
+            Socket socket = new Socket();
+            socket.connect(new InetSocketAddress(IP, port), 5000);
             PeerHandler peerHandler = new PeerHandler(socket, nameTo);
             this.peerList.add(peerHandler);
             Thread peerThread = new Thread(peerHandler);
@@ -210,7 +212,10 @@ public class ChatClient {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            this.peerConnectActivator(nameFrom, nameTo, IP, port);
+            if (timeTry < 5) {
+                timeTry++;
+                this.peerConnectActivator(nameFrom, nameTo, IP, port, timeTry);
+            }
         }
     }
 

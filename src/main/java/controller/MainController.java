@@ -59,7 +59,7 @@ public class MainController {
                     }
                 } while( resMess == null);
                 if (resMess.equals("success")) {
-                    System.out.println("Success connect friend " + namejavva);
+                    System.out.println("Success connect friend " + name);
                 }
 
 
