@@ -1,6 +1,7 @@
 package ui;
 
 import com.application.chatboxp2p.staticdata.Friend;
+
 import java.awt.Component;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.Icon;
@@ -14,10 +15,9 @@ import javax.swing.ListCellRenderer;
  */
 
 /**
- *
  * @author Khoa
  */
-public class UserRenderer extends DefaultListCellRenderer implements ListCellRenderer<Object>{
+public class UserRenderer extends DefaultListCellRenderer implements ListCellRenderer<Object> {
     final String path_ubuntu = "/src/main/java/images/";
     final String path_win = "\\src\\main\\java\\images\\";
     String os = System.getProperty("os.name").toLowerCase();
@@ -31,19 +31,18 @@ public class UserRenderer extends DefaultListCellRenderer implements ListCellRen
         }
     }
 
-    public Component getListCellRendererComponent(JList<?> list , Object friend , int index , boolean isSelected ,boolean hasFocus){
+    public Component getListCellRendererComponent(JList<?> list, Object friend, int index, boolean isSelected, boolean hasFocus) {
         Friend f = (Friend) friend;
         setText(f.getName());
         if (f.getStatus() == 1)
-            setIcon(new javax.swing.ImageIcon(dir +"online_icon.png"));
-        else if (f.getStatus() == 0)setIcon(new javax.swing.ImageIcon(dir +"offline_icon.png"));
-        else setIcon(new javax.swing.ImageIcon(dir +"notification_icon.png"));
+            setIcon(new javax.swing.ImageIcon(dir + "online_icon.png"));
+        else if (f.getStatus() == 0) setIcon(new javax.swing.ImageIcon(dir + "offline_icon.png"));
+        else setIcon(new javax.swing.ImageIcon(dir + "notification_icon.png"));
         setIconTextGap(10);
-        if (isSelected){
+        if (isSelected) {
             setBackground(list.getSelectionBackground());
             setForeground(list.getSelectionForeground());
-        }
-        else{
+        } else {
             setBackground(list.getBackground());
             setForeground(list.getForeground());
         }
@@ -51,5 +50,5 @@ public class UserRenderer extends DefaultListCellRenderer implements ListCellRen
         setFont(list.getFont());
         return this;
     }
-    
+
 }

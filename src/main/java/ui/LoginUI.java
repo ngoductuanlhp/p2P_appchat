@@ -10,7 +10,6 @@ import javax.swing.*;
  */
 
 /**
- *
  * @author Khoa
  */
 public class LoginUI extends javax.swing.JFrame {
@@ -20,6 +19,7 @@ public class LoginUI extends javax.swing.JFrame {
     final private String dir;
     private static String public_ip;
     private static int port;
+
     /**
      * Creates new form ui.LoginUI
      */
@@ -79,7 +79,7 @@ public class LoginUI extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
-        jPanel1.setBackground(new Color(0,0,0,60));
+        jPanel1.setBackground(new Color(0, 0, 0, 60));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         signup_choice.setBackground(new java.awt.Color(0, 51, 51));
@@ -263,19 +263,19 @@ public class LoginUI extends javax.swing.JFrame {
 
         jPanel1.add(signin_pane, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 360, 510));
 
-        backgeound_label.setBackground(new Color(0,0,0,125));
+        backgeound_label.setBackground(new Color(0, 0, 0, 125));
         backgeound_label.setIcon(new javax.swing.ImageIcon(dir + "background.jpg")); // NOI18N
         jPanel1.add(backgeound_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(-290, 0, 800, 510));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 865, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 865, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -315,7 +315,7 @@ public class LoginUI extends javax.swing.JFrame {
     }//GEN-LAST:event_pass_signup_labelMouseClicked
 
     private void login_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_butActionPerformed
-        int login = JOptionPane.showConfirmDialog(this, "Are you sure", "Sign In",JOptionPane.YES_NO_OPTION);
+        int login = JOptionPane.showConfirmDialog(this, "Are you sure", "Sign In", JOptionPane.YES_NO_OPTION);
         if (login == 0) logIn();
         this.setVisible(false);
     }//GEN-LAST:event_login_butActionPerformed
@@ -327,20 +327,18 @@ public class LoginUI extends javax.swing.JFrame {
 
     private void signup_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signup_butActionPerformed
         int option = JOptionPane.showConfirmDialog(this, "Are you sure?", "Sign Up", JOptionPane.YES_NO_OPTION);
-        if (option == 0)
-        {
+        if (option == 0) {
             String name_user = name_signup_input.getText();
             String user = user_signup_input.getText();
-            String pass = new String (pass_signup_input.getPassword());
+            String pass = new String(pass_signup_input.getPassword());
             System.out.println(name_user + " " + user + " " + pass);
         }
     }//GEN-LAST:event_signup_butActionPerformed
-    
-    private void logIn(){
+
+    private void logIn() {
         String user_name = user_input.getText();
         String pass = new String(pass_input.getPassword());
-        if (user_name.isEmpty() || pass.isEmpty())
-        {
+        if (user_name.isEmpty() || pass.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Inavlid input!");
         }
 //        else{
@@ -348,6 +346,7 @@ public class LoginUI extends javax.swing.JFrame {
 //        }
         System.out.println(user_name + pass);
     }
+
     /**
      * @param args the command line arguments
      */
@@ -355,7 +354,7 @@ public class LoginUI extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -383,9 +382,17 @@ public class LoginUI extends javax.swing.JFrame {
         });
     }
 
-    public JButton getLogin_but() {return this.login_but;}
-    public String getUser_input() {return this.user_input.getText();}
-    public String getPass_input() {return new String(this.pass_input.getPassword());}
+    public JButton getLogin_but() {
+        return this.login_but;
+    }
+
+    public String getUser_input() {
+        return this.user_input.getText();
+    }
+
+    public String getPass_input() {
+        return new String(this.pass_input.getPassword());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator Separator_name_signup;

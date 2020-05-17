@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
  */
 
 /**
- *
  * @author Khoa
  */
 public class AddFriendUI extends javax.swing.JFrame {
@@ -21,6 +20,7 @@ public class AddFriendUI extends javax.swing.JFrame {
     final String path_win = "\\src\\main\\java\\images\\";
     String os = System.getProperty("os.name").toLowerCase();
     final private String dir;
+
     public AddFriendUI() {
         if (os.equals("linux")) {
             dir = System.getProperty("user.dir") + path_ubuntu;
@@ -80,13 +80,13 @@ public class AddFriendUI extends javax.swing.JFrame {
         });
         jPanel1.add(user_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 200, 30));
 
-        user_logo.setIcon(new javax.swing.ImageIcon(dir +"user_icon_40.png")); // NOI18N
+        user_logo.setIcon(new javax.swing.ImageIcon(dir + "user_icon_40.png")); // NOI18N
         jPanel1.add(user_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, 50));
 
         add_but.setBackground(new java.awt.Color(0, 51, 51));
         add_but.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         add_but.setForeground(new java.awt.Color(255, 255, 255));
-        add_but.setIcon(new javax.swing.ImageIcon(dir +"add_user_icon_40.png")); // NOI18N
+        add_but.setIcon(new javax.swing.ImageIcon(dir + "add_user_icon_40.png")); // NOI18N
         add_but.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         add_but.setBorderPainted(false);
         add_but.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -99,7 +99,7 @@ public class AddFriendUI extends javax.swing.JFrame {
         find_but.setBackground(new java.awt.Color(153, 204, 255));
         find_but.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         find_but.setForeground(new java.awt.Color(255, 255, 255));
-        find_but.setIcon(new javax.swing.ImageIcon(dir +"find_user_icon_40px.png")); // NOI18N
+        find_but.setIcon(new javax.swing.ImageIcon(dir + "find_user_icon_40px.png")); // NOI18N
         find_but.setBorderPainted(false);
         find_but.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,18 +131,18 @@ public class AddFriendUI extends javax.swing.JFrame {
         jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 280, 420));
 
         bg.setBackground(new java.awt.Color(0, 51, 51));
-        bg.setIcon(new javax.swing.ImageIcon(dir +"addfriend_bg.jpg")); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon(dir + "addfriend_bg.jpg")); // NOI18N
         jPanel3.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -157,12 +157,11 @@ public class AddFriendUI extends javax.swing.JFrame {
     }//GEN-LAST:event_name_signup_labelMouseClicked
 
     private void add_butMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_butMouseClicked
-        int check = JOptionPane.showConfirmDialog(this ,"Are you sure?", "Add friend", JOptionPane.YES_NO_OPTION);
-        if (check == 0)
-        {
+        int check = JOptionPane.showConfirmDialog(this, "Are you sure?", "Add friend", JOptionPane.YES_NO_OPTION);
+        if (check == 0) {
             System.out.println("Add friend");
         }
-        
+
     }//GEN-LAST:event_add_butMouseClicked
 
     private void find_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find_butActionPerformed
@@ -176,7 +175,7 @@ public class AddFriendUI extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

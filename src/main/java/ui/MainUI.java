@@ -5,7 +5,6 @@ package ui;/*
  */
 
 /**
- *
  * @author Khoa
  */
 
@@ -16,18 +15,14 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
 
 public class MainUI extends javax.swing.JFrame {
     final String path_ubuntu = "/src/main/java/images/";
     final String path_win = "\\src\\main\\java\\images\\";
     String os = System.getProperty("os.name").toLowerCase();
     final private String dir;
-    
-    private HashMap<Integer , JTextPane> list_chat_section = new HashMap<>(); // TEST
+
+    private HashMap<Integer, JTextPane> list_chat_section = new HashMap<>(); // TEST
     private ListFriends lf = new ListFriends();
     private static boolean first_time = true;
 //    private JTextPane current_text_pane;
@@ -39,18 +34,11 @@ public class MainUI extends javax.swing.JFrame {
         return this.client;
     }
 
-    public ListFriends getLf() {return this.lf;}
-    /**
-     * Creates new form ui.MainUI
-     */
-//    public MainUI() {
-//        this.client = new ChatClient("localhost", 11110, this);
-//        this.client.start();
-//        this.loginUI = new LoginUI(this);
-//        this.loginUI.setVisible(true);
-//        initComponents();
-//    }
-    public MainUI(){
+    public ListFriends getLf() {
+        return this.lf;
+    }
+
+    public MainUI() {
         if (os.equals("linux")) {
             dir = System.getProperty("user.dir") + path_ubuntu;
         } else {
@@ -119,7 +107,7 @@ public class MainUI extends javax.swing.JFrame {
         user_status_pane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         profile_icon.setBackground(new java.awt.Color(0, 102, 102));
-        profile_icon.setIcon(new javax.swing.ImageIcon(dir +"profile_icon.png")); // NOI18N
+        profile_icon.setIcon(new javax.swing.ImageIcon(dir + "profile_icon.png")); // NOI18N
         user_status_pane.add(profile_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 80));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -129,7 +117,7 @@ public class MainUI extends javax.swing.JFrame {
         user_status_pane.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 70, 80));
 
         add_user_but.setBackground(new java.awt.Color(0, 102, 102));
-        add_user_but.setIcon(new javax.swing.ImageIcon(dir +"icons8_add_user_male_48px_1.png")); // NOI18N
+        add_user_but.setIcon(new javax.swing.ImageIcon(dir + "icons8_add_user_male_48px_1.png")); // NOI18N
         add_user_but.setBorder(null);
         add_user_but.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,50 +137,46 @@ public class MainUI extends javax.swing.JFrame {
         find_user_field.setOpaque(false);
 
         find_user_but.setBackground(new java.awt.Color(0, 102, 102));
-        find_user_but.setIcon(new javax.swing.ImageIcon(dir +"find_user_icon_30.png")); // NOI18N
+        find_user_but.setIcon(new javax.swing.ImageIcon(dir + "find_user_icon_30.png")); // NOI18N
         find_user_but.setBorderPainted(false);
 
         list_user.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         list_user.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            String[] strings = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
+
+            public int getSize() {
+                return strings.length;
+            }
+
+            public String getElementAt(int i) {
+                return strings[i];
+            }
         });
-//        list_user.addMouseListener(new java.awt.event.MouseAdapter() {
-//            public void mouseClicked(java.awt.event.MouseEvent evt) {
-//                list_userMouseClicked(evt);
-//            }
-//        });
-//        list_user.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-//            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-//                list_userValueChanged(evt);
-//            }
-//        });
         jScrollPane4.setViewportView(list_user);
 
         javax.swing.GroupLayout list_user_paneLayout = new javax.swing.GroupLayout(list_user_pane);
         list_user_pane.setLayout(list_user_paneLayout);
         list_user_paneLayout.setHorizontalGroup(
-            list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(list_user_paneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4)
-                    .addGroup(list_user_paneLayout.createSequentialGroup()
-                        .addComponent(find_user_field, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(find_user_but, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(list_user_paneLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane4)
+                                        .addGroup(list_user_paneLayout.createSequentialGroup()
+                                                .addComponent(find_user_field, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(find_user_but, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap())
         );
         list_user_paneLayout.setVerticalGroup(
-            list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(list_user_paneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(find_user_field, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(find_user_but, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))
+                list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(list_user_paneLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(find_user_field, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                                        .addComponent(find_user_but, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))
         );
 
         main_UI_pane.add(list_user_pane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 230, 370));
@@ -215,13 +199,13 @@ public class MainUI extends javax.swing.JFrame {
         chat_pane.add(user_name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 39));
 
         video_but.setBackground(new java.awt.Color(0, 102, 102));
-        video_but.setIcon(new javax.swing.ImageIcon(dir +"video_icon.png")); // NOI18N
+        video_but.setIcon(new javax.swing.ImageIcon(dir + "video_icon.png")); // NOI18N
         video_but.setContentAreaFilled(false);
         video_but.setOpaque(true);
         chat_pane.add(video_but, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 50, -1));
 
         close_conversation.setBackground(new java.awt.Color(0, 102, 102));
-        close_conversation.setIcon(new javax.swing.ImageIcon(dir +"close_conservation_icon.png")); // NOI18N
+        close_conversation.setIcon(new javax.swing.ImageIcon(dir + "close_conservation_icon.png")); // NOI18N
         close_conversation.setContentAreaFilled(false);
         close_conversation.setOpaque(true);
         close_conversation.addActionListener(new java.awt.event.ActionListener() {
@@ -234,12 +218,12 @@ public class MainUI extends javax.swing.JFrame {
         javax.swing.GroupLayout chat_sectionLayout = new javax.swing.GroupLayout(chat_section);
         chat_section.setLayout(chat_sectionLayout);
         chat_sectionLayout.setHorizontalGroup(
-            chat_sectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
+                chat_sectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 610, Short.MAX_VALUE)
         );
         chat_sectionLayout.setVerticalGroup(
-            chat_sectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 370, Short.MAX_VALUE)
+                chat_sectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 370, Short.MAX_VALUE)
         );
 
         chat_pane.add(chat_section, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 610, 370));
@@ -259,12 +243,12 @@ public class MainUI extends javax.swing.JFrame {
 //        });
         jScrollPane5.setViewportView(input_text);
 
-        attach_file_but.setIcon(new javax.swing.ImageIcon(dir +"attach_icon.png")); // NOI18N
+        attach_file_but.setIcon(new javax.swing.ImageIcon(dir + "attach_icon.png")); // NOI18N
         attach_file_but.setBorderPainted(false);
         attach_file_but.setContentAreaFilled(false);
         attach_file_but.setOpaque(false);
 
-        send_mess_but.setIcon(new javax.swing.ImageIcon(dir +"send_mess_icon.png")); // NOI18N
+        send_mess_but.setIcon(new javax.swing.ImageIcon(dir + "send_mess_icon.png")); // NOI18N
         send_mess_but.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         send_mess_but.setBorderPainted(false);
         send_mess_but.setContentAreaFilled(false);
@@ -278,40 +262,40 @@ public class MainUI extends javax.swing.JFrame {
         javax.swing.GroupLayout text_paneLayout = new javax.swing.GroupLayout(text_pane);
         text_pane.setLayout(text_paneLayout);
         text_paneLayout.setHorizontalGroup(
-            text_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, text_paneLayout.createSequentialGroup()
-                .addComponent(attach_file_but, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 540, Short.MAX_VALUE)
-                .addComponent(send_mess_but))
-            .addGroup(text_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, text_paneLayout.createSequentialGroup()
-                    .addContainerGap(33, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(45, Short.MAX_VALUE)))
+                text_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, text_paneLayout.createSequentialGroup()
+                                .addComponent(attach_file_but, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 540, Short.MAX_VALUE)
+                                .addComponent(send_mess_but))
+                        .addGroup(text_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, text_paneLayout.createSequentialGroup()
+                                        .addContainerGap(33, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap(45, Short.MAX_VALUE)))
         );
         text_paneLayout.setVerticalGroup(
-            text_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(text_paneLayout.createSequentialGroup()
-                .addGroup(text_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(send_mess_but, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(attach_file_but, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(text_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(text_paneLayout.createSequentialGroup()
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                    .addContainerGap()))
+                text_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(text_paneLayout.createSequentialGroup()
+                                .addGroup(text_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(send_mess_but, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(attach_file_but, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(text_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(text_paneLayout.createSequentialGroup()
+                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                                        .addContainerGap()))
         );
 
         chat_box.add(text_pane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 610, 30));
 
         getContentPane().add(chat_box, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 610, 460));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(dir +"bg_mainUI.jpg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(dir + "bg_mainUI.jpg")); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 460));
 
         file_but.setText("File");
 
-        logout_but.setIcon(new javax.swing.ImageIcon(dir +"logout_icon.png")); // NOI18N
+        logout_but.setIcon(new javax.swing.ImageIcon(dir + "logout_icon.png")); // NOI18N
         logout_but.setText("Log Out");
         logout_but.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -328,8 +312,7 @@ public class MainUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logout_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_butActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "Are you sure?", "Log out", JOptionPane.YES_NO_OPTION) ==0)
-        {
+        if (JOptionPane.showConfirmDialog(this, "Are you sure?", "Log out", JOptionPane.YES_NO_OPTION) == 0) {
 //            loginUI.setVisible(true);
             this.dispose();
         }
@@ -344,56 +327,9 @@ public class MainUI extends javax.swing.JFrame {
     //GEN-LAST:event_list_userMouseClicked
 
     private void close_conversationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_close_conversationActionPerformed
-        
+
     }//GEN-LAST:event_close_conversationActionPerformed
 
-//    private void send_mess_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_send_mess_butActionPerformed
-//        sendText();
-//    }//GEN-LAST:event_send_mess_butActionPerformed
-
-//    private void input_textKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_textKeyPressed
-//        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
-//        {
-//            sendText();
-//            evt.consume();
-//        }
-//    }//GEN-LAST:event_input_textKeyPressed
-
-//    private void list_userValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_userValueChanged
-//        // TODO add your handling code here:
-//    }//GEN-LAST:event_list_userValueChanged
-//    private void sendText(){
-//        String text = input_text.getText();
-//        if (!text.equals(""))
-//        {
-//            String[] indexString = text.split(" ");
-//            if (indexString[0].equals("update") && indexString.length==3){
-//                lf.updateStatus(indexString[1] , Integer.parseInt(indexString[2]));
-//                list_user.updateUI();
-//            }
-//            try {
-//                StyledDocument doc = current_text_pane.getStyledDocument();
-//                Style style = current_text_pane.addStyle("myStyle", null);
-//                JLabel label_me = new JLabel("Me:  ");
-//                label_me.setFont(new java.awt.Font("Times New Roman", 1, 16));
-//                label_me.setForeground(new java.awt.Color(160, 28, 28));
-//                StyleConstants.setComponent(style, label_me);
-//                doc.insertString(doc.getLength(), " ", style);
-//
-//                JTextArea textArea = new JTextArea(text);
-//                textArea.setLineWrap(true);
-//                textArea.setFont(new java.awt.Font("Times New Roman", 1, 14));
-//
-//                StyleConstants.setComponent(style, textArea);
-//                doc.insertString(doc.getLength(), "\n", style);
-//
-//            } catch (BadLocationException ex) {
-//                Logger.getLogger(MainUI.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            input_text.setText("");
-//            System.out.println(text);
-//        }
-//    }
     /**
      * @param args the command line arguments
      */
@@ -401,7 +337,7 @@ public class MainUI extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -429,22 +365,42 @@ public class MainUI extends javax.swing.JFrame {
         });
     }
 
-    public JList<String> getList_user() {return list_user;}
-    public JPanel getChat_box() {return this.chat_box;}
-    public HashMap<Integer , JTextPane> getList_chat_section() {return this.list_chat_section;}
-    public JPanel getChat_section() {return this.chat_section;}
-//    public JTextPane getCurrent_text_pane() {return this.current_text_pane;}
-//    public void setCurrent_text_pane(JTextPane j) { this.current_text_pane = j;}
-    public JLabel getUser_name_label() {return this.user_name_label;}
-    public JButton getSend_mess_but() {return this.send_mess_but;}
+    public JList<String> getList_user() {
+        return list_user;
+    }
 
-    public JTextArea getInput_text() {return this.input_text;}
-    public void setInput_text(String t) {this.input_text.setText(t);}
+    public JPanel getChat_box() {
+        return this.chat_box;
+    }
+
+    public HashMap<Integer, JTextPane> getList_chat_section() {
+        return this.list_chat_section;
+    }
+
+    public JPanel getChat_section() {
+        return this.chat_section;
+    }
+
+    //    public JTextPane getCurrent_text_pane() {return this.current_text_pane;}
+//    public void setCurrent_text_pane(JTextPane j) { this.current_text_pane = j;}
+    public JLabel getUser_name_label() {
+        return this.user_name_label;
+    }
+
+    public JButton getSend_mess_but() {
+        return this.send_mess_but;
+    }
+
+    public JTextArea getInput_text() {
+        return this.input_text;
+    }
+
+    public void setInput_text(String t) {
+        this.input_text.setText(t);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_user_but;
-    private javax.swing.JButton attach_but;
-    private javax.swing.JButton attach_but1;
     private javax.swing.JButton attach_file_but;
     private javax.swing.JPanel chat_box;
     private javax.swing.JPanel chat_pane;

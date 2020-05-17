@@ -155,6 +155,9 @@ public class MainController {
                     this.mainUI.getLf().updateStatus(index, 1);
                     this.mainUI.getList_user().updateUI();
                 }
+                else {
+                    System.out.println("[CLIENT] failed to connect to " + username);
+                }
 //                do {
 //                    synchronized (this) {
 //                        resMess = this.chatClient.getResponseMessage();
