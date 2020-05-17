@@ -436,7 +436,7 @@ public class MainUI extends javax.swing.JFrame {
 //    public JTextPane getCurrent_text_pane() {return this.current_text_pane;}
 //    public void setCurrent_text_pane(JTextPane j) { this.current_text_pane = j;}
     public JLabel getUser_name_label() {return this.user_name_label;}
-    public JButton getSend_but() {return this.send_but;}
+    public JButton getSend_mess_but() {return this.send_mess_but;}
 
     public JTextArea getInput_text() {return this.input_text;}
     public void setInput_text(String t) {this.input_text.setText(t);}
@@ -457,24 +457,16 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JList<String> list_user;
     private javax.swing.JPanel list_user_pane;
     private javax.swing.JMenuItem logout_but;
     private javax.swing.JPanel main_UI_pane;
     private javax.swing.JLabel profile_icon;
-    private javax.swing.JButton send_but;
-    private javax.swing.JButton send_but1;
     private javax.swing.JButton send_mess_but;
     private javax.swing.JPanel text_pane;
-    private javax.swing.JPanel type_section;
-    private javax.swing.JPanel type_section1;
     private javax.swing.JLabel user_name_label;
     private javax.swing.JPanel user_status_pane;
     private javax.swing.JButton video_but;

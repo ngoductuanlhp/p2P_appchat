@@ -37,7 +37,7 @@ public class MainController {
             }
         });
 
-        this.mainUI.getSend_but().addActionListener(new java.awt.event.ActionListener() {
+        this.mainUI.getSend_mess_but().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sendText();
             }
