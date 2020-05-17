@@ -11,6 +11,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -126,14 +127,18 @@ public class MainController {
             }
             else {
                 String req = "connectfriendto-" + this.chatClient.getClientInfo().getClientName() + "-" + username;
+                long startTime = System.currentTimeMillis();
                 this.chatClient.sendReq(req);
                 String resMess = null;
                 do {
                     synchronized (this) {
                         resMess = this.chatClient.getResponseMessage();
                     }
-                } while( resMess == null);
-                if (resMess.equals("success")) {
+                } while( resMess == null && (new Date()).getTime() - startTime < 1000*3);
+                if (resMess == null) {
+                    System.out.println("Cannot connect.");
+                }
+                else if (resMess.equals("success")) {
                     System.out.println("Success connect friend " + username);
                     System.out.println("Create new Chat box");
 //                    JTextPane temp = new JTextPane();

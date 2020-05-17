@@ -1,5 +1,6 @@
 package backend.client;
 
+import backend.server.ChatServer;
 import utils.ClientInfo;
 
 import javax.swing.*;
@@ -28,9 +29,10 @@ public class PeerHandler implements Runnable{
 
     private JTextPane textPane;
 
-    public PeerHandler(Socket socket, String targetClientName) {
+    public PeerHandler(Socket socket, String targetClientName, ChatClient client) {
         this.socket = socket;
         this.targetClientName = targetClientName;
+        this.client = client;
         this.textPane = new JTextPane();
         textPane.setSize(610, 370);
     }

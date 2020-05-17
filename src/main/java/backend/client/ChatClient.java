@@ -180,7 +180,7 @@ public class ChatClient {
             this.requestSender.sendRequest(mess);
             peerPort++;
             Socket socket = serverSocket.accept();
-            PeerHandler peerHandler = new PeerHandler(socket, nameFrom);
+            PeerHandler peerHandler = new PeerHandler(socket, nameFrom, this);
 //            this.peerList.add(peerHandler);
             this.peerList.put(nameFrom, peerHandler);
             Thread peerThread = new Thread(peerHandler);
@@ -210,7 +210,7 @@ public class ChatClient {
             Socket socket = new Socket();
             socket.connect(new InetSocketAddress(IP, port), 5000);
 
-            PeerHandler peerHandler = new PeerHandler(socket, nameTo);
+            PeerHandler peerHandler = new PeerHandler(socket, nameTo, this);
 
             // JTextPane
 

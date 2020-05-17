@@ -163,11 +163,11 @@ public class MainUI extends javax.swing.JFrame {
 //                list_userMouseClicked(evt);
 //            }
 //        });
-        list_user.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                list_userValueChanged(evt);
-            }
-        });
+//        list_user.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+//            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+//                list_userValueChanged(evt);
+//            }
+//        });
         jScrollPane4.setViewportView(list_user);
 
         javax.swing.GroupLayout list_user_paneLayout = new javax.swing.GroupLayout(list_user_pane);
@@ -359,9 +359,9 @@ public class MainUI extends javax.swing.JFrame {
 //        }
 //    }//GEN-LAST:event_input_textKeyPressed
 
-    private void list_userValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_userValueChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_list_userValueChanged
+//    private void list_userValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_userValueChanged
+//        // TODO add your handling code here:
+//    }//GEN-LAST:event_list_userValueChanged
 //    private void sendText(){
 //        String text = input_text.getText();
 //        if (!text.equals(""))
