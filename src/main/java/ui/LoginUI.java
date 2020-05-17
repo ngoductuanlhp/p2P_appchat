@@ -79,7 +79,7 @@ public class LoginUI extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
-        jPanel1.setBackground(new Color(0, 0, 0, 60));
+        jPanel1.setBackground(new Color(0,0,0,60));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         signup_choice.setBackground(new java.awt.Color(0, 51, 51));
@@ -97,7 +97,7 @@ public class LoginUI extends javax.swing.JFrame {
         login_choice.setBackground(new java.awt.Color(0, 51, 51));
         login_choice.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         login_choice.setForeground(new java.awt.Color(255, 255, 255));
-        login_choice.setText("Login");
+        login_choice.setText("Sign In");
         login_choice.setBorderPainted(false);
         login_choice.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -170,13 +170,13 @@ public class LoginUI extends javax.swing.JFrame {
         pass_signup_input.setBorder(null);
         signup_pane.add(pass_signup_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 260, 30));
 
-        name_logo.setIcon(new javax.swing.ImageIcon(dir + "icons8_name_48px_1.png")); // NOI18N
+        name_logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\icons8_name_48px_1.png")); // NOI18N
         signup_pane.add(name_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, -1, -1));
 
-        user_signup_logo.setIcon(new javax.swing.ImageIcon(dir + "icons8_user_48px_1.png")); // NOI18N
+        user_signup_logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\icons8_user_48px_1.png")); // NOI18N
         signup_pane.add(user_signup_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
 
-        pass_signup_logo.setIcon(new javax.swing.ImageIcon(dir + "icons8_password_48px_1.png")); // NOI18N
+        pass_signup_logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\icons8_password_48px_1.png")); // NOI18N
         signup_pane.add(pass_signup_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
 
         signup_but.setBackground(new java.awt.Color(0, 102, 102));
@@ -184,11 +184,11 @@ public class LoginUI extends javax.swing.JFrame {
         signup_but.setForeground(new java.awt.Color(255, 255, 255));
         signup_but.setText("Sign Up");
         signup_but.setBorderPainted(false);
-//        signup_but.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                signup_butActionPerformed(evt);
-//            }
-//        });
+        signup_but.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signup_butActionPerformed(evt);
+            }
+        });
         signup_pane.add(signup_but, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 130, 40));
 
         jPanel1.add(signup_pane, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 360, 510));
@@ -199,29 +199,29 @@ public class LoginUI extends javax.swing.JFrame {
         login_label.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         login_label.setForeground(new java.awt.Color(255, 255, 255));
         login_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        login_label.setText("Login");
+        login_label.setText("Sign In");
         signin_pane.add(login_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 360, 72));
 
         user_label.setBackground(new java.awt.Color(0, 51, 51));
         user_label.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         user_label.setForeground(new java.awt.Color(0, 153, 153));
         user_label.setText("Username");
-//        user_label.addMouseListener(new java.awt.event.MouseAdapter() {
-//            public void mouseClicked(java.awt.event.MouseEvent evt) {
-//                user_labelMouseClicked(evt);
-//            }
-//        });
+        user_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                user_labelMouseClicked(evt);
+            }
+        });
         signin_pane.add(user_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 260, 30));
 
         pass_label.setBackground(new java.awt.Color(0, 51, 51));
         pass_label.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         pass_label.setForeground(new java.awt.Color(0, 153, 153));
         pass_label.setText("Password");
-//        pass_label.addMouseListener(new java.awt.event.MouseAdapter() {
-//            public void mouseClicked(java.awt.event.MouseEvent evt) {
-//                pass_labelMouseClicked(evt);
-//            }
-//        });
+        pass_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pass_labelMouseClicked(evt);
+            }
+        });
         signin_pane.add(pass_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 260, 30));
         signin_pane.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 260, -1));
         signin_pane.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 260, 10));
@@ -230,11 +230,6 @@ public class LoginUI extends javax.swing.JFrame {
         pass_input.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         pass_input.setForeground(new java.awt.Color(255, 255, 255));
         pass_input.setBorder(null);
-        pass_input.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                pass_inputKeyPressed(evt);
-            }
-        });
         signin_pane.add(pass_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 260, 30));
 
         user_input.setBackground(new java.awt.Color(0, 51, 51));
@@ -243,10 +238,10 @@ public class LoginUI extends javax.swing.JFrame {
         user_input.setBorder(null);
         signin_pane.add(user_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 260, 30));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(dir + "icons8_user_48px_1.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\icons8_user_48px_1.png")); // NOI18N
         signin_pane.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(dir + "icons8_password_48px_1.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\icons8_password_48px_1.png")); // NOI18N
         signin_pane.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, -1, -1));
 
         login_but.setBackground(new java.awt.Color(0, 102, 102));
@@ -254,28 +249,23 @@ public class LoginUI extends javax.swing.JFrame {
         login_but.setForeground(new java.awt.Color(255, 255, 255));
         login_but.setText("Sign In");
         login_but.setBorderPainted(false);
-//        login_but.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                login_butActionPerformed(evt);
-//            }
-//        });
         signin_pane.add(login_but, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 130, 40));
 
         jPanel1.add(signin_pane, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 360, 510));
 
-        backgeound_label.setBackground(new Color(0, 0, 0, 125));
-        backgeound_label.setIcon(new javax.swing.ImageIcon(dir + "background.jpg")); // NOI18N
+        backgeound_label.setBackground(new Color(0,0,0,125));
+        backgeound_label.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\background.jpg")); // NOI18N
         jPanel1.add(backgeound_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(-290, 0, 800, 510));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 865, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 865, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -314,17 +304,6 @@ public class LoginUI extends javax.swing.JFrame {
         pass_label.setVisible(false);
     }//GEN-LAST:event_pass_signup_labelMouseClicked
 
-    private void login_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_butActionPerformed
-        int login = JOptionPane.showConfirmDialog(this, "Are you sure", "Sign In", JOptionPane.YES_NO_OPTION);
-        if (login == 0) logIn();
-        this.setVisible(false);
-    }//GEN-LAST:event_login_butActionPerformed
-
-    private void pass_inputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pass_inputKeyPressed
-        if (evt.getKeyCode() == 10)
-            logIn();
-    }//GEN-LAST:event_pass_inputKeyPressed
-
     private void signup_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signup_butActionPerformed
         int option = JOptionPane.showConfirmDialog(this, "Are you sure?", "Sign Up", JOptionPane.YES_NO_OPTION);
         if (option == 0) {
@@ -335,17 +314,7 @@ public class LoginUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_signup_butActionPerformed
 
-    private void logIn() {
-        String user_name = user_input.getText();
-        String pass = new String(pass_input.getPassword());
-        if (user_name.isEmpty() || pass.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Inavlid input!");
-        }
-//        else{
-//            this.mainUI.getClient().sendReq("login-" + user_name + pass);
-//        }
-        System.out.println(user_name + pass);
-    }
+    
 
     /**
      * @param args the command line arguments
@@ -384,6 +353,11 @@ public class LoginUI extends javax.swing.JFrame {
 
     public JButton getLogin_but() {
         return this.login_but;
+    }
+    
+    public JPasswordField getPasswordField()
+    {
+        return this.pass_input;
     }
 
     public String getUser_input() {

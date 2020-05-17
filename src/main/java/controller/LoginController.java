@@ -18,8 +18,19 @@ public class LoginController {
     public void initController() {
         this.chatClient.start();
         this.loginUI.getLogin_but().addActionListener(e->login());
+        this.loginUI.getPasswordField().addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pass_inputKeyPressed(evt);
+            }
+        });
+        
         this.loginUI.setVisible(true);
     }
+    
+    private void pass_inputKeyPressed(java.awt.event.KeyEvent evt) {                                      
+        if (evt.getKeyCode() == 10)
+            login();
+    }  
 
     private void login() {
         String username = this.loginUI.getUser_input();
