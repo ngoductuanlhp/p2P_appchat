@@ -360,6 +360,7 @@ public class MainUI extends javax.swing.JFrame {
         else {
             this.lf.updateStatus(username, 2);
         }
+        System.out.println("Feature");
         this.list_user.updateUI();
     }
 
@@ -395,6 +396,10 @@ public class MainUI extends javax.swing.JFrame {
 
     public void setInput_text(String t) {
         this.input_text.setText(t);
+    }
+
+    public JMenuItem getLogout_but() {
+        return this.logout_but;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -233,7 +233,7 @@ public class ChatClient extends Observable {
     }
 
     public void removePeerHandle(PeerHandler peerHandler) {
-        this.peerList.remove(peerHandler);
+        this.peerList.remove(peerHandler.getTargetClientName());
     }
 
     public void changeFriendStatus(String username, String status) {

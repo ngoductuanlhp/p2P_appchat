@@ -55,7 +55,21 @@ public class MainController implements Observer {
                 }
             }
         });
+
+        this.mainUI.getLogout_but().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                if (JOptionPane.showConfirmDialog(null, "Are you sure?", "Log out", JOptionPane.YES_NO_OPTION) == 0) {
+//            loginUI.setVisible(true);
+                    uiDispose();
+                }
+            }
+        });
         this.mainUI.setVisible(true);
+    }
+
+    private void uiDispose() {
+        this.chatClient.sendReq("disconnect");
+        this.mainUI.dispose();
     }
 
     private void sendText() {
@@ -216,7 +230,9 @@ public class MainController implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         if (o == this.chatClient) {
+
             String[] s = (String[])arg;
+            System.out.println("Feature");
             this.mainUI.updateFriendList(s[0], s[1]);
         }
     }
