@@ -365,6 +365,19 @@ public class MainUI extends javax.swing.JFrame {
         });
     }
 
+    public void updateFriendList(String username, String status) {
+        if (status.equals("on")) {
+            this.lf.updateStatus(username, 1);
+        }
+        else if (status.equals("off")){
+            this.lf.updateStatus(username, 0);
+        }
+        else {
+            this.lf.updateStatus(username, 2);
+        }
+
+    }
+
     public JList<String> getList_user() {
         return list_user;
     }

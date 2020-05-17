@@ -12,10 +12,12 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MainController {
+public class MainController implements Observer {
     private MainUI mainUI;
     private ChatClient chatClient;
 
@@ -65,9 +67,10 @@ public class MainController {
 //                lf.updateStatus(indexString[1] , Integer.parseInt(indexString[2]));
 //                list_user.updateUI();
 //            }
+            //Backend
+            this.currentPeer.sendMessage(mess);
 
             //UI
-
             try {
                 StyledDocument doc = this.currentPeer.getTextPane().getStyledDocument();
                 Style style = this.currentPeer.getTextPane().addStyle("myStyle", null);
@@ -83,15 +86,13 @@ public class MainController {
 
                 StyleConstants.setComponent(style, textArea);
                 doc.insertString(doc.getLength(), "\n", style);
-
             } catch (BadLocationException ex) {
                 Logger.getLogger(MainUI.class.getName()).log(Level.SEVERE, null, ex);
             }
             this.mainUI.setInput_text("");
             System.out.println("[CLIENT] enter mess:" +mess);
 
-            //Backend
-            this.currentPeer.sendMessage(mess);
+
         }
     }
 
@@ -209,6 +210,14 @@ public class MainController {
 //            } else{
 //
 //            }
+        }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (o == this.chatClient) {
+            String[] s = (String[])arg;
+            this.mainUI.updateFriendList(s[0], s[1]);
         }
     }
 }

@@ -41,6 +41,7 @@ public class LoginController {
             this.loginUI.setVisible(false);
             MainUI mainUI = new MainUI();
             MainController mainController = new MainController(mainUI, this.chatClient);
+            this.chatClient.addObserver(mainController);
             mainController.initController();
         }
         this.chatClient.setResponseMessage(null);

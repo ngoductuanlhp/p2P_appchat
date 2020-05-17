@@ -98,4 +98,8 @@ public class PeerHandler implements Runnable{
             doc.insertString(doc.getLength(), "\n", style2);
         }
     }
+
+    public void sendFile(String path, String filename) {
+
+    }
 }

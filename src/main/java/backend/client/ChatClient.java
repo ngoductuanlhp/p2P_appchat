@@ -8,6 +8,7 @@ import backend.client.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.ImageObserver;
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -15,10 +16,11 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Observable;
 import java.util.concurrent.TimeUnit;
 
 
-public class ChatClient {
+public class ChatClient extends Observable {
     private final String serverAddress;
     private final int serverPort;
     private Socket socket;
@@ -232,6 +234,12 @@ public class ChatClient {
 
     public void removePeerHandle(PeerHandler peerHandler) {
         this.peerList.remove(peerHandler);
+    }
+
+    public void changeFriendStatus(String username, String status) {
+        String[] s = {username, status};
+        setChanged();
+        notifyObservers(s);
     }
 
 }
