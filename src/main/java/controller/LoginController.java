@@ -37,7 +37,7 @@ public class LoginController {
                 resMess = this.chatClient.getResponseMessage();
             }
         } while (resMess == null);
-        if (resMess.equals("success")) {
+        if (resMess.equals("success-login")) {
             this.loginUI.setVisible(false);
             MainUI mainUI = new MainUI();
             MainController mainController = new MainController(mainUI, this.chatClient);

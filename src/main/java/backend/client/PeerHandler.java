@@ -53,7 +53,7 @@ public class PeerHandler implements Runnable{
             this.is = this.socket.getInputStream();
             this.os = this.socket.getOutputStream();
             this.messageSender = new MessageSender(new DataOutputStream(this.os), this.getClient().getClientInfo());
-            this.messageReceiverThread = new Thread(this.messageSender);
+            this.messageSenderThread = new Thread(this.messageSender);
             this.messageReceiver = new MessageReceiver(new DataInputStream(this.is), this.getClient().getClientInfo(), this);
             this.messageReceiverThread = new Thread(this.messageReceiver);
 
@@ -97,7 +97,5 @@ public class PeerHandler implements Runnable{
             doc.insertString(doc.getLength(), " ", style1);
             doc.insertString(doc.getLength(), "\n", style2);
         }
-
     }
-
 }

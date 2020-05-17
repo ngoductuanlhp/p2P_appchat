@@ -21,7 +21,6 @@ public class MessageReceiver implements Runnable {
         this.peerHandler = peerHandler;
     }
 
-
     @Override
     public void run() {
         try {

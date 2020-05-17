@@ -130,15 +130,17 @@ public class MainController {
                 long startTime = System.currentTimeMillis();
                 this.chatClient.sendReq(req);
                 String resMess = null;
-                do {
+                boolean connectSuccess = false;
+                while((new Date()).getTime() - startTime < 1000*3) {
                     synchronized (this) {
                         resMess = this.chatClient.getResponseMessage();
                     }
-                } while( resMess == null && (new Date()).getTime() - startTime < 1000*3);
-                if (resMess == null) {
-                    System.out.println("Cannot connect.");
+                    if (resMess != null && resMess.equals("success-" + username)) {
+                        connectSuccess = true;
+                        break;
+                    }
                 }
-                else if (resMess.equals("success")) {
+                if (connectSuccess) {
                     System.out.println("Success connect friend " + username);
                     System.out.println("Create new Chat box");
 //                    JTextPane temp = new JTextPane();
@@ -153,6 +155,29 @@ public class MainController {
                     this.mainUI.getLf().updateStatus(index, 1);
                     this.mainUI.getList_user().updateUI();
                 }
+//                do {
+//                    synchronized (this) {
+//                        resMess = this.chatClient.getResponseMessage();
+//                    }
+//                } while( resMess == null && (new Date()).getTime() - startTime < 1000*3);
+//                if (resMess != null && resMess.equals("success-" + username)) {
+//                    System.out.println("Success connect friend " + username);
+//                    System.out.println("Create new Chat box");
+////                    JTextPane temp = new JTextPane();
+////                    temp.setSize(this.mainUI.getChat_section().getSize());
+//                    this.mainUI.getChat_section().removeAll();
+//                    this.currentPeer = this.chatClient.getPeerList().get(username);
+//                    this.mainUI.getChat_section().add(this.currentPeer.getTextPane());
+////                    this.mainUI.setCurrent_text_pane(textPane);
+//                    this.mainUI.getUser_name_label().setText(username);
+//                    this.mainUI.getChat_section().repaint();
+////                    this.mainUI.getList_chat_section().put(index , temp);
+//                    this.mainUI.getLf().updateStatus(index, 1);
+//                    this.mainUI.getList_user().updateUI();
+//                }
+//                else{
+//
+//                }
             }
 //            if (!isExist) {
 //                String req = "connectfriendto-" + this.chatClient.getClientInfo().getClientName() + "-" + username;

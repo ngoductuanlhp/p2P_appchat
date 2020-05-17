@@ -137,7 +137,7 @@ public class ChatClient {
                 }
             }
             synchronized (this) {
-                this.responseMessage = segments[1];
+                this.responseMessage = segments[1] + "-" + "login";
             }
 
         }
@@ -219,7 +219,7 @@ public class ChatClient {
             Thread peerThread = new Thread(peerHandler);
             peerThread.start();
             synchronized (this) {
-                this.responseMessage = "success";
+                this.responseMessage = "success-" + nameTo;
             }
         } catch (IOException e) {
             e.printStackTrace();
