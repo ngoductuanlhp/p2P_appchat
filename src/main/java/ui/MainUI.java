@@ -30,7 +30,7 @@ public class MainUI extends javax.swing.JFrame {
     private HashMap<Integer , JTextPane> list_chat_section = new HashMap<>(); // TEST
     private ListFriends lf = new ListFriends();
     private static boolean first_time = true;
-    private JTextPane current_text_pane;
+//    private JTextPane current_text_pane;
 
     // Backend
     private ChatClient client;
@@ -252,11 +252,11 @@ public class MainUI extends javax.swing.JFrame {
         input_text.setColumns(20);
         input_text.setLineWrap(true);
         input_text.setRows(5);
-        input_text.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                input_textKeyPressed(evt);
-            }
-        });
+//        input_text.addKeyListener(new java.awt.event.KeyAdapter() {
+//            public void keyPressed(java.awt.event.KeyEvent evt) {
+//                input_textKeyPressed(evt);
+//            }
+//        });
         jScrollPane5.setViewportView(input_text);
 
         attach_file_but.setIcon(new javax.swing.ImageIcon(dir +"attach_icon.png")); // NOI18N
@@ -269,11 +269,11 @@ public class MainUI extends javax.swing.JFrame {
         send_mess_but.setBorderPainted(false);
         send_mess_but.setContentAreaFilled(false);
         send_mess_but.setOpaque(false);
-        send_mess_but.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                send_mess_butActionPerformed(evt);
-            }
-        });
+//        send_mess_but.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                send_mess_butActionPerformed(evt);
+//            }
+//        });
 
         javax.swing.GroupLayout text_paneLayout = new javax.swing.GroupLayout(text_pane);
         text_pane.setLayout(text_paneLayout);
@@ -347,53 +347,53 @@ public class MainUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_close_conversationActionPerformed
 
-    private void send_mess_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_send_mess_butActionPerformed
-        sendText();
-    }//GEN-LAST:event_send_mess_butActionPerformed
+//    private void send_mess_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_send_mess_butActionPerformed
+//        sendText();
+//    }//GEN-LAST:event_send_mess_butActionPerformed
 
-    private void input_textKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_textKeyPressed
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
-        {
-            sendText();
-            evt.consume();
-        }
-    }//GEN-LAST:event_input_textKeyPressed
+//    private void input_textKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_textKeyPressed
+//        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+//        {
+//            sendText();
+//            evt.consume();
+//        }
+//    }//GEN-LAST:event_input_textKeyPressed
 
     private void list_userValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_userValueChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_list_userValueChanged
-    private void sendText(){
-        String text = input_text.getText();
-        if (!text.equals(""))
-        {
-            String[] indexString = text.split(" ");
-            if (indexString[0].equals("update") && indexString.length==3){
-                lf.updateStatus(indexString[1] , Integer.parseInt(indexString[2]));
-                list_user.updateUI();
-            }
-            try {
-                StyledDocument doc = current_text_pane.getStyledDocument();
-                Style style = current_text_pane.addStyle("myStyle", null);
-                JLabel label_me = new JLabel("Me:  ");
-                label_me.setFont(new java.awt.Font("Times New Roman", 1, 16));
-                label_me.setForeground(new java.awt.Color(160, 28, 28));
-                StyleConstants.setComponent(style, label_me);
-                doc.insertString(doc.getLength(), " ", style);
-                
-                JTextArea textArea = new JTextArea(text);
-                textArea.setLineWrap(true);
-                textArea.setFont(new java.awt.Font("Times New Roman", 1, 14));
-                
-                StyleConstants.setComponent(style, textArea);
-                doc.insertString(doc.getLength(), "\n", style);
-                
-            } catch (BadLocationException ex) {
-                Logger.getLogger(MainUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            input_text.setText("");
-            System.out.println(text);
-        }
-    }
+//    private void sendText(){
+//        String text = input_text.getText();
+//        if (!text.equals(""))
+//        {
+//            String[] indexString = text.split(" ");
+//            if (indexString[0].equals("update") && indexString.length==3){
+//                lf.updateStatus(indexString[1] , Integer.parseInt(indexString[2]));
+//                list_user.updateUI();
+//            }
+//            try {
+//                StyledDocument doc = current_text_pane.getStyledDocument();
+//                Style style = current_text_pane.addStyle("myStyle", null);
+//                JLabel label_me = new JLabel("Me:  ");
+//                label_me.setFont(new java.awt.Font("Times New Roman", 1, 16));
+//                label_me.setForeground(new java.awt.Color(160, 28, 28));
+//                StyleConstants.setComponent(style, label_me);
+//                doc.insertString(doc.getLength(), " ", style);
+//
+//                JTextArea textArea = new JTextArea(text);
+//                textArea.setLineWrap(true);
+//                textArea.setFont(new java.awt.Font("Times New Roman", 1, 14));
+//
+//                StyleConstants.setComponent(style, textArea);
+//                doc.insertString(doc.getLength(), "\n", style);
+//
+//            } catch (BadLocationException ex) {
+//                Logger.getLogger(MainUI.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            input_text.setText("");
+//            System.out.println(text);
+//        }
+//    }
     /**
      * @param args the command line arguments
      */
@@ -433,9 +433,13 @@ public class MainUI extends javax.swing.JFrame {
     public JPanel getChat_box() {return this.chat_box;}
     public HashMap<Integer , JTextPane> getList_chat_section() {return this.list_chat_section;}
     public JPanel getChat_section() {return this.chat_section;}
-    public JTextPane getCurrent_text_pane() {return this.current_text_pane;}
-    public void setCurrent_text_pane(JTextPane j) { this.current_text_pane = j;}
+//    public JTextPane getCurrent_text_pane() {return this.current_text_pane;}
+//    public void setCurrent_text_pane(JTextPane j) { this.current_text_pane = j;}
     public JLabel getUser_name_label() {return this.user_name_label;}
+    public JButton getSend_but() {return this.send_but;}
+
+    public JTextArea getInput_text() {return this.input_text;}
+    public void setInput_text(String t) {this.input_text.setText(t);}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_user_but;

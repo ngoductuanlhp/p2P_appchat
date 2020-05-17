@@ -23,8 +23,7 @@ public class Friend {
     }
 
     public Friend(String username, String stt) {
-        this.name = "noname" + String.valueOf(Friend.no);
-        Friend.no++;
+        this.name = username;
         this.user_name = username;
         if (stt.equals("on")) {
             this.status = 1;

@@ -33,7 +33,6 @@ public class RequestReceiver implements Runnable {
                         case "login":
                             System.out.println(message);
                             this.chatClient.checkLogIn(segments);
-
                             break;
                         case "logout":
                             this.chatClient.checkLogOut(segments[1]);

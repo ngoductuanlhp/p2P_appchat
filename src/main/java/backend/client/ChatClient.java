@@ -13,6 +13,7 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
@@ -33,7 +34,7 @@ public class ChatClient {
 
     private ClientInfo clientInfo;
 
-    private LinkedList<PeerHandler> peerList;
+    private HashMap<String, PeerHandler> peerList;
 
     private String responseMessage = null;
 
@@ -54,7 +55,7 @@ public class ChatClient {
     }
 
     public RequestSender getRequestSender() { return requestSender; }
-    public LinkedList<PeerHandler> getPeerList() {return this.peerList;}
+    public HashMap<String, PeerHandler>  getPeerList() {return this.peerList;}
 
     public void start() {
         System.out.println("[CLIENT] Start client.");
@@ -63,7 +64,7 @@ public class ChatClient {
             System.out.println("[CLIENT] Cannot connect to server. Quit.");
             return;
         }
-        this.peerList = new LinkedList<>();
+        this.peerList = new HashMap<>();
         this.requestSender = new RequestSender(this, new DataOutputStream((this.os)));
         this.clientSenderThread = new Thread(this.requestSender);
         this.requestReceiver = new RequestReceiver(this, new DataInputStream(this.is));
@@ -160,12 +161,15 @@ public class ChatClient {
 
     public void peerConnectListener(String nameFrom, String nameTo) {
         boolean isExist = false;
-        for(PeerHandler peer:this.peerList) {
-            if(nameFrom.equals(peer.getTargetClientName())) {
-                isExist = true;
-                break;
-            }
+        if (peerList.containsKey(nameFrom)) {
+            isExist = true;
         }
+//        for(PeerHandler peer:this.peerList) {
+//            if(nameFrom.equals(peer.getTargetClientName())) {
+//                isExist = true;
+//                break;
+//            }
+//        }
         if (isExist) {
             return;
         }
@@ -177,7 +181,8 @@ public class ChatClient {
             peerPort++;
             Socket socket = serverSocket.accept();
             PeerHandler peerHandler = new PeerHandler(socket, nameFrom);
-            this.peerList.add(peerHandler);
+//            this.peerList.add(peerHandler);
+            this.peerList.put(nameFrom, peerHandler);
             Thread peerThread = new Thread(peerHandler);
             peerThread.start();
         } catch (IOException e) {
@@ -201,10 +206,16 @@ public class ChatClient {
 
         try {
             System.out.println("IP:" + IP);
+            // backend
             Socket socket = new Socket();
             socket.connect(new InetSocketAddress(IP, port), 5000);
+
             PeerHandler peerHandler = new PeerHandler(socket, nameTo);
-            this.peerList.add(peerHandler);
+
+            // JTextPane
+
+//            this.peerList.add(peerHandler);
+            this.peerList.put(nameTo, peerHandler);
             Thread peerThread = new Thread(peerHandler);
             peerThread.start();
             synchronized (this) {

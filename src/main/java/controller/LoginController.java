@@ -43,6 +43,6 @@ public class LoginController {
             MainController mainController = new MainController(mainUI, this.chatClient);
             mainController.initController();
         }
-
+        this.chatClient.setResponseMessage(null);
     }
 }
