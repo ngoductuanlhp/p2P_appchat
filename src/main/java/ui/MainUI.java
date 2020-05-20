@@ -282,11 +282,11 @@ public class MainUI extends javax.swing.JFrame {
 
         logout_but.setIcon(new javax.swing.ImageIcon(dir + "logout_icon.png")); // NOI18N
         logout_but.setText("Log Out");
-        logout_but.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logout_butActionPerformed(evt);
-            }
-        });
+//        logout_but.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                logout_butActionPerformed(evt);
+//            }
+//        });
         file_but.add(logout_but);
 
         jMenuBar1.add(file_but);
@@ -296,12 +296,12 @@ public class MainUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void logout_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_butActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "Are you sure?", "Log out", JOptionPane.YES_NO_OPTION) == 0) {
-//            loginUI.setVisible(true);
-            this.dispose();
-        }
-    }//GEN-LAST:event_logout_butActionPerformed
+//    private void logout_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_butActionPerformed
+//        if (JOptionPane.showConfirmDialog(this, "Are you sure?", "Log out", JOptionPane.YES_NO_OPTION) == 0) {
+////            loginUI.setVisible(true);
+//            this.dispose();
+//        }
+//    }//GEN-LAST:event_logout_butActionPerformed
 
     private void add_user_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_user_butActionPerformed
         AddFriendUI addFriendUI = new AddFriendUI();

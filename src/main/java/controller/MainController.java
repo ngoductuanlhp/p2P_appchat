@@ -69,6 +69,7 @@ public class MainController implements Observer {
 
     private void uiDispose() {
         this.chatClient.sendReq("disconnect");
+        System.out.println("Feature");
         this.mainUI.dispose();
     }
 
@@ -156,6 +157,7 @@ public class MainController implements Observer {
                     }
                 }
                 if (connectSuccess) {
+                    this.chatClient.setResponseMessage(null);
                     System.out.println("Success connect friend " + username);
                     System.out.println("Create new Chat box");
 //                    JTextPane temp = new JTextPane();
@@ -233,7 +235,15 @@ public class MainController implements Observer {
 
             String[] s = (String[])arg;
             System.out.println("Feature");
-            this.mainUI.updateFriendList(s[0], s[1]);
+            if (s[0].equals("friendstatus")) {
+                this.mainUI.updateFriendList(s[1], s[2]);
+            } else if (s[0].equals("disconnect")) {
+                if (s[1].equals(this.currentPeer.getTargetClientName())) {
+                    this.mainUI.getChat_section().removeAll();
+                    this.currentPeer = null;
+                }
+            }
+
         }
     }
 }

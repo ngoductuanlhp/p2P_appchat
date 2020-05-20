@@ -236,8 +236,15 @@ public class ChatClient extends Observable {
         this.peerList.remove(peerHandler.getTargetClientName());
     }
 
-    public void changeFriendStatus(String username, String status) {
-        String[] s = {username, status};
+    public void changeFriendStatus(String type, String username, String status) {
+        String[] s = {type, username, status};
+        System.out.println(type);
+        setChanged();
+        notifyObservers(s);
+    }
+
+    public void disconnectPane(String type, String username) {
+        String[] s = {type, username};
         setChanged();
         notifyObservers(s);
     }

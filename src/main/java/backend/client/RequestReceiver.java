@@ -44,14 +44,17 @@ public class RequestReceiver implements Runnable {
                             this.chatClient.peerConnectListener(segments[1], segments[2]);;
                             break;
                         case "acceptconnectfriend":
+                            System.out.println("Accept");
                             this.chatClient.peerConnectActivator(segments[1], segments[2], segments[3], Integer.parseInt(segments[4]), 0);
                             break;
                         case "notifyonline":
-//                            System.out.println("Client: " + segments[1]);
-                            this.chatClient.changeFriendStatus(segments[1], "on");
+                            System.out.println("Client: " + segments[1]);
+                            this.chatClient.changeFriendStatus("friendstatus", segments[1], "on");
                             break;
                         case "notifyoffline":
-                            this.chatClient.changeFriendStatus(segments[1], "off");
+                            this.chatClient.changeFriendStatus("friendstatus", segments[1], "off");
+                            this.chatClient.getPeerList().get(segments[1]).disconnect();
+                            this.chatClient.disconnectPane("disconnect", segments[1]);
                             break;
                         default:
                             System.out.println("Unknown " + type);
