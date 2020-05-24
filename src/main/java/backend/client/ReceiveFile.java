@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -45,8 +46,8 @@ public class ReceiveFile extends Thread{
     
     private void receiving() throws IOException{
         ServerSocket serverSocket = new ServerSocket(portReceiveFile);
-        System.out.println(InetAddress.getLocalHost().getHostAddress() +" " + Integer.toString(serverSocket.getLocalPort()));
-        this.sender.sendMessage("AcceptSendFile" +"-"+ InetAddress.getLocalHost().getHostAddress() +"-" + Integer.toString(portReceiveFile));
+        System.out.println(Inet4Address.getLocalHost().getHostAddress().trim() +" " + Integer.toString(serverSocket.getLocalPort()));
+        this.sender.sendMessage("AcceptSendFile" +"-"+ Inet4Address.getLocalHost().getHostAddress().trim()+"-" + Integer.toString(portReceiveFile));
         
         Socket client = serverSocket.accept();
         
