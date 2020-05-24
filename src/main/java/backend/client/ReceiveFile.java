@@ -5,49 +5,113 @@
  */
 package backend.client;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import utils.FileInfo;
 
 /**
  *
  * @author Khoa
  */
 public class ReceiveFile extends Thread{
-    private int state;
     private MessageSender sender;
     private int portReceiveFile = 5678;
+    private ObjectInputStream ois = null;
+    private ObjectOutputStream oos = null;
+    
     public ReceiveFile(MessageSender send_mess){
-        this.state = 0;
+        this.sender = send_mess;
     }
     
     @Override
     public void run(){
-        while (true){
-            switch(state){
-                case 0: 
-                    break;
-                case 1:
-                    break;
-            }
+        try {
+            receiving();
+        } catch (IOException ex) {
+            Logger.getLogger(ReceiveFile.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    private void waiting(){
-        
-    }
     private void receiving() throws IOException{
-        ServerSocket socket = new ServerSocket(portReceiveFile);
-        this.sender.sendMessage("AcceptSendFile");
-        Socket client = socket.accept();
+        ServerSocket serverSocket = new ServerSocket(portReceiveFile);
+        System.out.println(InetAddress.getLocalHost().getHostAddress() +" " + Integer.toString(serverSocket.getLocalPort()));
+        this.sender.sendMessage("AcceptSendFile" +"-"+ InetAddress.getLocalHost().getHostAddress() +"-" + Integer.toString(portReceiveFile));
         
+        Socket client = serverSocket.accept();
         
-        System.out.println("Receiving file from friend");
+        receivingFile(client);
+        
+        client.close();
+        serverSocket.close();
         System.out.println("Done receiving file from friend");
-        this.state = 0;
     }
     
-    public void setState(int state){
-        this.state = state;
+    private void receivingFile(Socket client) throws IOException{
+        try {
+                // receive file info
+                ois = new ObjectInputStream(client.getInputStream());
+                FileInfo fileInfo = (FileInfo) ois.readObject();
+                if (fileInfo != null) {
+                    createFile(fileInfo);
+                }
+                  // confirm that file is received
+//                oos = new ObjectOutputStream(client.getOutputStream());
+//                fileInfo.setStatus("success");
+//                fileInfo.setDataBytes(null);
+//                oos.writeObject(fileInfo);
+                  
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } finally {
+                closeStream(ois);
+                closeStream(oos);
+            }                                       
     }
+    
+    private boolean createFile(FileInfo fileInfo) throws IOException {
+        BufferedOutputStream bos = null;
+         
+        try {
+            if (fileInfo != null) {
+                File fileReceive = new File(fileInfo.getDestinationDirectory() + fileInfo.getFilename());
+                bos = new BufferedOutputStream(
+                        new FileOutputStream(fileReceive));
+                // write file content
+                bos.write(fileInfo.getDataBytes());
+                bos.flush();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            closeStream(bos);
+        }
+        return true;
+    }
+ 
+    public void closeStream(InputStream inputStream) throws IOException {
+        if (inputStream != null) {
+            inputStream.close();
+        }
+    }
+ 
+    public void closeStream(OutputStream outputStream) throws IOException {
+        if (outputStream != null) {
+                outputStream.close();
+        }
+    }
+    
 }

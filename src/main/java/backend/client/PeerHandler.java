@@ -60,10 +60,6 @@ public class PeerHandler implements Runnable{
             this.messageSenderThread = new Thread(this.messageSender);
             this.messageReceiver = new MessageReceiver(new DataInputStream(this.is), this.getClient().getClientInfo(), this);
             this.messageReceiverThread = new Thread(this.messageReceiver);
-            this.sendFileThread = new SendFile(messageSender);
-            this.sendFileThread.start();
-            this.receiveFile = new ReceiveFile(messageSender);
-            this.receiveFile.start();
             this.messageSenderThread.start();
             this.messageReceiverThread.start();
         } catch (IOException e) {
@@ -107,19 +103,18 @@ public class PeerHandler implements Runnable{
     }
 
     public void sendFile(String path, String filename) {
-        this.sendFileThread.setFileName(filename);
-        this.sendFileThread.setFilePath(path);
-        this.sendFileThread.setState(1);
-        System.out.println(filename + " " + path);
+        this.sendFileThread = new SendFile(messageSender , filename , path);
+        this.sendFileThread.start();
     }
     
     public void receiveFile(){
-        receiveFile.setState(1);
+        this.receiveFile = new ReceiveFile(messageSender);
+        this.receiveFile.start();
     }
     
-    public void allowSending()
+    public void allowSending(String address , int port)
     {
-        sendFileThread.allowSending();
+        sendFileThread.allowSending(address , port);
     }
     
 }

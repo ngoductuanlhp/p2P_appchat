@@ -40,10 +40,11 @@ public class MessageReceiver implements Runnable {
                             this.peerHandler.addText(mess);
                             break;
                         case "SendFile":
-                            sendFile();
+                            System.out.println("[Friend] request send file");
+                            this.peerHandler.receiveFile();
                             break;
                         case "AcceptSendFile":
-                            this.peerHandler.allowSending();
+                            this.peerHandler.allowSending(segments[1] , Integer.parseInt(segments[2]));
                             break;
                         case "disconnect":
                             this.peerHandler.disconnect();
@@ -64,7 +65,4 @@ public class MessageReceiver implements Runnable {
         this.isChatting = false;
     }
     
-    public void sendFile() throws IOException{
-        this.peerHandler.receiveFile();
-    }
 }
