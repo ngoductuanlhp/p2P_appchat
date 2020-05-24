@@ -26,6 +26,7 @@ public class PeerHandler implements Runnable{
     private MessageReceiver messageReceiver;
     private Thread messageSenderThread;
     private Thread messageReceiverThread;
+    private SendFile sendFileThread;
 
     private JTextPane textPane;
 
@@ -56,7 +57,8 @@ public class PeerHandler implements Runnable{
             this.messageSenderThread = new Thread(this.messageSender);
             this.messageReceiver = new MessageReceiver(new DataInputStream(this.is), this.getClient().getClientInfo(), this);
             this.messageReceiverThread = new Thread(this.messageReceiver);
-
+            this.sendFileThread = new SendFile();
+            this.sendFileThread.start();
             this.messageSenderThread.start();
             this.messageReceiverThread.start();
         } catch (IOException e) {
@@ -100,6 +102,9 @@ public class PeerHandler implements Runnable{
     }
 
     public void sendFile(String path, String filename) {
-
+        this.sendFileThread.setFileName(filename);
+        this.sendFileThread.setFilePath(path);
+        this.sendFileThread.startSendFile();
+        System.out.println(filename + " " + path);
     }
 }

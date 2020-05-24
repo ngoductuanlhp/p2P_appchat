@@ -3,6 +3,7 @@ package controller;
 import backend.client.ChatClient;
 import backend.client.PeerHandler;
 import com.application.chatboxp2p.staticdata.Friend;
+import java.io.File;
 import ui.MainUI;
 import utils.PeerInfo;
 
@@ -62,6 +63,15 @@ public class MainController implements Observer {
 //            loginUI.setVisible(true);
                     uiDispose();
                 }
+            }
+        });
+        
+        this.mainUI.getAttacButton().addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.showOpenDialog(null);
+                File file = fileChooser.getSelectedFile();
+                currentPeer.sendFile(file.getPath(), file.getName());
             }
         });
         this.mainUI.setVisible(true);

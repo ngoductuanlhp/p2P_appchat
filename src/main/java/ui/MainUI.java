@@ -108,7 +108,7 @@ public class MainUI extends javax.swing.JFrame {
         user_status_pane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         profile_icon.setBackground(new java.awt.Color(0, 102, 102));
-        profile_icon.setIcon(new javax.swing.ImageIcon(dir + "images\\profile_icon.png")); // NOI18N
+        profile_icon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\profile_icon.png")); // NOI18N
         user_status_pane.add(profile_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 80));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -118,7 +118,7 @@ public class MainUI extends javax.swing.JFrame {
         user_status_pane.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 70, 80));
 
         add_user_but.setBackground(new java.awt.Color(0, 102, 102));
-        add_user_but.setIcon(new javax.swing.ImageIcon(dir + "icons8_add_user_male_48px_1.png")); // NOI18N
+        add_user_but.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\icons8_add_user_male_48px_1.png")); // NOI18N
         add_user_but.setBorder(null);
         add_user_but.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +138,7 @@ public class MainUI extends javax.swing.JFrame {
         find_user_field.setOpaque(false);
 
         find_user_but.setBackground(new java.awt.Color(0, 102, 102));
-        find_user_but.setIcon(new javax.swing.ImageIcon(dir + "find_user_icon_30.png")); // NOI18N
+        find_user_but.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\find_user_icon_30.png")); // NOI18N
         find_user_but.setBorderPainted(false);
 
         list_user.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -194,13 +194,13 @@ public class MainUI extends javax.swing.JFrame {
         chat_pane.add(user_name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 39));
 
         video_but.setBackground(new java.awt.Color(0, 102, 102));
-        video_but.setIcon(new javax.swing.ImageIcon(dir + "video_icon.png")); // NOI18N
+        video_but.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\video_icon.png")); // NOI18N
         video_but.setContentAreaFilled(false);
         video_but.setOpaque(true);
         chat_pane.add(video_but, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 50, -1));
 
         close_conversation.setBackground(new java.awt.Color(0, 102, 102));
-        close_conversation.setIcon(new javax.swing.ImageIcon(dir + "close_conservation_icon.png")); // NOI18N
+        close_conversation.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\close_conservation_icon.png")); // NOI18N
         close_conversation.setContentAreaFilled(false);
         close_conversation.setOpaque(true);
         close_conversation.addActionListener(new java.awt.event.ActionListener() {
@@ -235,12 +235,12 @@ public class MainUI extends javax.swing.JFrame {
         input_text.setRows(5);
         jScrollPane5.setViewportView(input_text);
 
-        send_mess_but.setIcon(new javax.swing.ImageIcon(dir + "send_mess_icon.png")); // NOI18N
+        send_mess_but.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\send_mess_icon.png")); // NOI18N
         send_mess_but.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         send_mess_but.setBorderPainted(false);
         send_mess_but.setContentAreaFilled(false);
 
-        attach_file_but.setIcon(new javax.swing.ImageIcon(dir + "attach_icon.png")); // NOI18N
+        attach_file_but.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\attach_icon.png")); // NOI18N
         attach_file_but.setBorderPainted(false);
         attach_file_but.setContentAreaFilled(false);
 
@@ -275,18 +275,13 @@ public class MainUI extends javax.swing.JFrame {
 
         getContentPane().add(chat_box, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 610, 460));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(dir + "bg_mainUI.jpg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\bg_mainUI.jpg")); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 460));
 
         file_but.setText("File");
 
-        logout_but.setIcon(new javax.swing.ImageIcon(dir + "logout_icon.png")); // NOI18N
+        logout_but.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\logout_icon.png")); // NOI18N
         logout_but.setText("Log Out");
-//        logout_but.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                logout_butActionPerformed(evt);
-//            }
-//        });
         file_but.add(logout_but);
 
         jMenuBar1.add(file_but);
@@ -295,13 +290,6 @@ public class MainUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-//    private void logout_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_butActionPerformed
-//        if (JOptionPane.showConfirmDialog(this, "Are you sure?", "Log out", JOptionPane.YES_NO_OPTION) == 0) {
-////            loginUI.setVisible(true);
-//            this.dispose();
-//        }
-//    }//GEN-LAST:event_logout_butActionPerformed
 
     private void add_user_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_user_butActionPerformed
         AddFriendUI addFriendUI = new AddFriendUI();
@@ -401,6 +389,8 @@ public class MainUI extends javax.swing.JFrame {
     public JMenuItem getLogout_but() {
         return this.logout_but;
     }
+    
+    public JButton getAttacButton() {return this.attach_file_but;}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_user_but;
