@@ -5,17 +5,26 @@
  */
 package backend.client;
 
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Khoa
  */
 public class SendFile extends Thread{
-    private int state; // 0 waiting , 1 send file
+    private int state; // 0 waiting , 1 send file , 2 receive file
+    private boolean allowSending = false;
     private String filepath;
     private String filename;
+    private MessageSender sender;
     
-    public SendFile(){
+    public SendFile(MessageSender send_mess){
         state = 0;
+        this.sender = send_mess;
     }
 
     
@@ -28,24 +37,28 @@ public class SendFile extends Thread{
                     waiting();
                     break;
                 case 1:
-                    sendFile();
+                    sending();
                     break;
             }
         }
     }
     
-    private void sendFile(){
+    private void sending(){
+        sender.sendMessage("SendFile");
+        while (allowSending == false){
+            
+        }
+        System.out.println("Sending File to friend...");
+        
+        
+        System.out.println("Finish sending file to friend...");
+        this.allowSending  = false;
         this.state = 0;
     }
     
     private void waiting(){
         
     }
-    
-    public void startSendFile(){
-        this.state = 1;
-    }
-
     public void setFilePath(String path) {
         this.filepath = path;
     }
@@ -53,6 +66,14 @@ public class SendFile extends Thread{
     public void setFileName(String name)
     {
         this.filename = name;
+    }
+    
+    public void allowSending(){
+        allowSending = true;
+    }
+    
+    public void setState(int state){
+        this.state = state;
     }
     
     

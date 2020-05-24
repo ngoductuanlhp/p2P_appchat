@@ -8,9 +8,11 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.net.ServerSocket;
 
 public class MessageReceiver implements Runnable {
     private ClientInfo targetClient;
+    private int portReceiveFile = 5678;
     private DataInputStream reader;
     private PeerHandler peerHandler;
     private volatile boolean isChatting = true;
@@ -37,7 +39,11 @@ public class MessageReceiver implements Runnable {
                             String mess = segments[1];
                             this.peerHandler.addText(mess);
                             break;
-                        case "file":
+                        case "SendFile":
+                            sendFile();
+                            break;
+                        case "AcceptSendFile":
+                            this.peerHandler.allowSending();
                             break;
                         case "disconnect":
                             this.peerHandler.disconnect();
@@ -56,5 +62,9 @@ public class MessageReceiver implements Runnable {
 
     public void stop() {
         this.isChatting = false;
+    }
+    
+    public void sendFile() throws IOException{
+        this.peerHandler.receiveFile();
     }
 }

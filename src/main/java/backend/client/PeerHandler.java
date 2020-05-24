@@ -10,6 +10,8 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.io.*;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PeerHandler implements Runnable{
 //    ClientInfo hostClient;
@@ -27,6 +29,7 @@ public class PeerHandler implements Runnable{
     private Thread messageSenderThread;
     private Thread messageReceiverThread;
     private SendFile sendFileThread;
+    private ReceiveFile receiveFile;
 
     private JTextPane textPane;
 
@@ -57,8 +60,10 @@ public class PeerHandler implements Runnable{
             this.messageSenderThread = new Thread(this.messageSender);
             this.messageReceiver = new MessageReceiver(new DataInputStream(this.is), this.getClient().getClientInfo(), this);
             this.messageReceiverThread = new Thread(this.messageReceiver);
-            this.sendFileThread = new SendFile();
+            this.sendFileThread = new SendFile(messageSender);
             this.sendFileThread.start();
+            this.receiveFile = new ReceiveFile(messageSender);
+            this.receiveFile.start();
             this.messageSenderThread.start();
             this.messageReceiverThread.start();
         } catch (IOException e) {
@@ -104,7 +109,17 @@ public class PeerHandler implements Runnable{
     public void sendFile(String path, String filename) {
         this.sendFileThread.setFileName(filename);
         this.sendFileThread.setFilePath(path);
-        this.sendFileThread.startSendFile();
+        this.sendFileThread.setState(1);
         System.out.println(filename + " " + path);
     }
+    
+    public void receiveFile(){
+        receiveFile.setState(1);
+    }
+    
+    public void allowSending()
+    {
+        sendFileThread.allowSending();
+    }
+    
 }
