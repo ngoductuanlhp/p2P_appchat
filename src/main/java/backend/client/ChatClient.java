@@ -24,6 +24,7 @@ public class ChatClient extends Observable {
     private final String serverAddress;
     private final int serverPort;
     private Socket socket;
+    
 
     private InputStream is;
     private OutputStream os;
@@ -211,7 +212,6 @@ public class ChatClient extends Observable {
             // backend
             Socket socket = new Socket();
             socket.connect(new InetSocketAddress(IP, port), 5000);
-
             PeerHandler peerHandler = new PeerHandler(socket, nameTo, this);
 
             // JTextPane
@@ -248,5 +248,5 @@ public class ChatClient extends Observable {
         setChanged();
         notifyObservers(s);
     }
-
+    
 }

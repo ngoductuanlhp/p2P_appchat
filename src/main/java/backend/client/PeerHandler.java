@@ -18,7 +18,7 @@ public class PeerHandler implements Runnable{
 //    ClientInfo targetClient;
     private String targetClientName;
     ChatClient client;
-
+    
     private Socket socket;
 
     private InputStream is;
@@ -112,9 +112,9 @@ public class PeerHandler implements Runnable{
         this.receiveFile.start();
     }
     
-    public void allowSending(String address , int port)
+    public void allowSending()
     {
-        sendFileThread.allowSending(address , port);
+        sendFileThread.allowSending(this.socket.getInetAddress().getHostAddress());
     }
     
 }

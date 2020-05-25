@@ -44,7 +44,7 @@ public class MessageReceiver implements Runnable {
                             this.peerHandler.receiveFile();
                             break;
                         case "AcceptSendFile":
-                            this.peerHandler.allowSending(segments[1] , Integer.parseInt(segments[2]));
+                            this.peerHandler.allowSending();
                             break;
                         case "disconnect":
                             this.peerHandler.disconnect();

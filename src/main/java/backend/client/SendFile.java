@@ -30,10 +30,10 @@ public class SendFile extends Thread{
     private String filepath;
     private String filename;
     private MessageSender sender;
-    private int send_port;
-    private String send_address;
     private ObjectOutputStream oos = null;
     private ObjectInputStream ois = null;
+    private int portReceiveFile = 56789;
+    private String send_address;
     
     public SendFile(MessageSender send_mess , String filename , String path){
         this.sender = send_mess;
@@ -56,16 +56,16 @@ public class SendFile extends Thread{
         sender.sendMessage("SendFile");
         System.out.println("Send request send file");
         while (allowSending == false){
-            System.out.println(this.send_port);
+            System.out.println("TEST");
             try {
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException ex) {
                 Logger.getLogger(SendFile.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        System.out.println("Conect to client "+send_address + " " + send_port);
+        System.out.println("Conect to client "+ send_address +" "+ portReceiveFile);
         Socket server = new Socket();
-        server.connect(new InetSocketAddress(send_address, send_port));
+        server.connect(new InetSocketAddress(send_address, portReceiveFile));
         System.out.println("Sending File to friend...");
         
         sendingFile(server);
@@ -75,10 +75,9 @@ public class SendFile extends Thread{
     }
      
     
-    public void allowSending(String address ,int port){
+    public void allowSending(String add){
         allowSending = true;
-        this.send_port = port;
-        this.send_address = address;
+        send_address = add;
     }
     
     private void sendingFile(Socket server){
