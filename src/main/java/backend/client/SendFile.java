@@ -65,7 +65,7 @@ public class SendFile extends Thread{
         }
         System.out.println("Conect to client "+send_address + " " + send_port);
         Socket server = new Socket();
-        server.connect(new InetSocketAddress(send_address, send_port), 5000);
+        server.connect(new InetSocketAddress(send_address, send_port));
         System.out.println("Sending File to friend...");
         
         sendingFile(server);
