@@ -83,7 +83,7 @@ public class SendFile extends Thread{
     
     private void sendingFile(Socket server){
         try {
-            FileInfo fileInfo = getFileInfo(filepath, "C:\\Users\\Khoa\\Downloads\\");
+            FileInfo fileInfo = getFileInfo(filepath);
             oos = new ObjectOutputStream(server.getOutputStream());
             oos.writeObject(fileInfo);
  
@@ -95,7 +95,7 @@ public class SendFile extends Thread{
         }
     }
     
-    private FileInfo getFileInfo(String sourceFilePath, String destinationDir) {
+    private FileInfo getFileInfo(String sourceFilePath) {
         FileInfo fileInfo = null;
         BufferedInputStream bis = null;
         try {
@@ -107,7 +107,6 @@ public class SendFile extends Thread{
             bis.read(fileBytes, 0, fileBytes.length);
             fileInfo.setFilename(sourceFile.getName());
             fileInfo.setDataBytes(fileBytes);
-            fileInfo.setDestinationDirectory(destinationDir);
         } catch (IOException ex) {
             ex.printStackTrace();
         } finally {

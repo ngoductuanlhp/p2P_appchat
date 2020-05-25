@@ -87,7 +87,17 @@ public class ReceiveFile extends Thread{
          
         try {
             if (fileInfo != null) {
-                File fileReceive = new File(fileInfo.getDestinationDirectory() + fileInfo.getFilename());
+                String home = System.getProperty("user.home");
+                String name_os = System.getProperty("os.name").toLowerCase();
+                String dir = home;
+                if (name_os.equals("mac os x")){
+                    dir = dir + "Downloads/";
+                }
+                else if (name_os.equals("windows 10"))
+                {
+                    dir += "Downloads\\";
+                }
+                File fileReceive = new File(dir + fileInfo.getFilename());
                 bos = new BufferedOutputStream(
                         new FileOutputStream(fileReceive));
                 // write file content
