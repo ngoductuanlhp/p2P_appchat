@@ -49,7 +49,9 @@ public class ReceiveFile extends Thread{
         System.out.println(Inet4Address.getLocalHost().getHostAddress().trim() +" " + Integer.toString(serverSocket.getLocalPort()));
         this.sender.sendMessage("AcceptSendFile" +"-"+ Inet4Address.getLocalHost().getHostAddress().trim()+"-" + Integer.toString(portReceiveFile));
         
+        System.out.println("Waiting for connect");
         Socket client = serverSocket.accept();
+        System.out.println("Accepted connection");
         
         receivingFile(client);
         

@@ -40,7 +40,6 @@ public class SendFile extends Thread{
         this.filename = filename;
         this.filepath = path;
         allowSending = false;
-        System.out.println(this.filename + " " + this.filepath);
     }
 
     
@@ -55,6 +54,7 @@ public class SendFile extends Thread{
     
     private void sending() throws IOException{
         sender.sendMessage("SendFile");
+        System.out.println("Send request send file");
         while (allowSending == false){
             System.out.println(this.send_port);
             try {
