@@ -46,8 +46,8 @@ public class ReceiveFile extends Thread{
     
     private void receiving() throws IOException{
         ServerSocket serverSocket = new ServerSocket(portReceiveFile);
-        System.out.println(Inet4Address.getLocalHost().getHostAddress().trim() +" " + Integer.toString(serverSocket.getLocalPort()));
-        this.sender.sendMessage("AcceptSendFile" +"-"+ Inet4Address.getLocalHost().getHostAddress().trim()+"-" + Integer.toString(portReceiveFile));
+        System.out.println(InetAddress.getLocalHost().getHostAddress().trim() +" " + Integer.toString(serverSocket.getLocalPort()));
+        this.sender.sendMessage("AcceptSendFile" +"-"+ InetAddress.getLocalHost().getHostAddress().trim()+"-" + Integer.toString(portReceiveFile));
         
         System.out.println("Waiting for connect");
         Socket client = serverSocket.accept();
