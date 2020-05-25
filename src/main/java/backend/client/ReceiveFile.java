@@ -46,6 +46,7 @@ public class ReceiveFile extends Thread{
     
     private void receiving() throws IOException{
         ServerSocket serverSocket = new ServerSocket(portReceiveFile);
+        System.out.println(Inet4Address.getLocalHost().getHostAddress().trim());
         this.sender.sendMessage("AcceptSendFile" +"-"+ Inet4Address.getLocalHost().getHostAddress().trim()+"-" + Integer.toString(portReceiveFile));
         
         System.out.println("Waiting for connect");
@@ -92,11 +93,11 @@ public class ReceiveFile extends Thread{
                 String name_os = System.getProperty("os.name").toLowerCase();
                 String dir = home;
                 if (name_os.equals("mac os x")){
-                    dir = dir + "Downloads/";
+                    dir = dir + "/Downloads/";
                 }
                 else if (name_os.equals("windows 10"))
                 {
-                    dir += "Downloads\\";
+                    dir += "\\Downloads\\";
                 }
                 File fileReceive = new File(dir + fileInfo.getFilename());
                 bos = new BufferedOutputStream(
