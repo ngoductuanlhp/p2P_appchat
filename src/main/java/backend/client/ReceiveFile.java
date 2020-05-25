@@ -27,7 +27,7 @@ import utils.FileInfo;
  */
 public class ReceiveFile extends Thread{
     private MessageSender sender;
-    private int portReceiveFile = 5678;
+    private int portReceiveFile = 56789;
     private ObjectInputStream ois = null;
     private ObjectOutputStream oos = null;
     

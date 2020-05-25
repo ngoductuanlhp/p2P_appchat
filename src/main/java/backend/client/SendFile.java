@@ -63,7 +63,7 @@ public class SendFile extends Thread{
                 Logger.getLogger(SendFile.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+        System.out.println("Conect to client "+send_address + " " + send_port);
         Socket server = new Socket();
         server.connect(new InetSocketAddress(send_address, send_port), 5000);
         System.out.println("Sending File to friend...");
