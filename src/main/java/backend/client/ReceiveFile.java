@@ -48,7 +48,7 @@ public class ReceiveFile extends Thread{
     
     private void receiving() throws IOException{
         int accept = JOptionPane.showConfirmDialog(null, "Accept file?", "Send file", JOptionPane.YES_NO_OPTION);
-        if (accept == 0 || time_out){
+        if (accept == 0 && time_out){
             ServerSocket serverSocket = new ServerSocket(portReceiveFile);
             this.sender.sendMessage("AcceptSendFile");
 
