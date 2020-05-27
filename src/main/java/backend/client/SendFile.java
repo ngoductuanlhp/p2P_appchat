@@ -19,6 +19,7 @@ import java.net.Socket;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import utils.FileInfo;
 
 /**
@@ -26,7 +27,7 @@ import utils.FileInfo;
  * @author Khoa
  */
 public class SendFile extends Thread{
-    private static boolean allowSending;
+    private static int allowSending;  // 0: waiting, 1: accept, 0: reject
     private String filepath;
     private String filename;
     private MessageSender sender;
@@ -55,7 +56,7 @@ public class SendFile extends Thread{
     private void sending() throws IOException{
         sender.sendMessage("SendFile");
         System.out.println("Send request send file");
-        while (allowSending == false){
+        while (allowSending == 0){
             System.out.println("TEST");
             try {
                 TimeUnit.SECONDS.sleep(1);
@@ -63,7 +64,8 @@ public class SendFile extends Thread{
                 Logger.getLogger(SendFile.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        System.out.println("Conect to client "+ send_address +" "+ portReceiveFile);
+        if (allowSending == 1){
+            System.out.println("Conect to client "+ send_address +" "+ portReceiveFile);
         Socket server = new Socket();
         server.connect(new InetSocketAddress(send_address, portReceiveFile));
         System.out.println("Sending File to friend...");
@@ -72,12 +74,18 @@ public class SendFile extends Thread{
         
         server.close();
         System.out.println("Finish sending file to friend...");
+        }
+        else JOptionPane.showMessageDialog(null, "Freind reject send file." , "Send file", JOptionPane.OK_OPTION);
     }
      
     
     public void allowSending(String add){
-        allowSending = true;
+        allowSending = 1;
         send_address = add;
+    }
+    
+    public void rejectSending(){
+        allowSending = 2;
     }
     
     private void sendingFile(Socket server){

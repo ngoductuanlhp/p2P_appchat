@@ -19,6 +19,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import utils.FileInfo;
 
 /**
@@ -30,7 +31,6 @@ public class ReceiveFile extends Thread{
     private int portReceiveFile = 56789;
     private ObjectInputStream ois = null;
     private ObjectOutputStream oos = null;
-    
     public ReceiveFile(MessageSender send_mess){
         this.sender = send_mess;
     }
@@ -45,18 +45,22 @@ public class ReceiveFile extends Thread{
     }
     
     private void receiving() throws IOException{
-        ServerSocket serverSocket = new ServerSocket(portReceiveFile);
-        this.sender.sendMessage("AcceptSendFile");
-        
-        System.out.println("Waiting for connect");
-        Socket client = serverSocket.accept();
-        System.out.println("Accepted connection");
-        
-        receivingFile(client);
-        
-        client.close();
-        serverSocket.close();
-        System.out.println("Done receiving file from friend");
+        int accept = JOptionPane.showConfirmDialog(null, "Accept file?", "Send file", JOptionPane.YES_NO_OPTION);
+        if (accept == 0){
+            ServerSocket serverSocket = new ServerSocket(portReceiveFile);
+            this.sender.sendMessage("AcceptSendFile");
+
+            System.out.println("Waiting for connect");
+            Socket client = serverSocket.accept();
+            System.out.println("Accepted connection");
+
+            receivingFile(client);
+
+            client.close();
+            serverSocket.close();
+            System.out.println("Done receiving file from friend");
+        }
+        else this.sender.sendMessage("RejectSendFile");
     }
     
     private void receivingFile(Socket client) throws IOException{
@@ -91,16 +95,15 @@ public class ReceiveFile extends Thread{
                 String home = System.getProperty("user.home");
                 String name_os = System.getProperty("os.name").toLowerCase();
                 String dir = home;
-                if (name_os.equals("mac os x")){
-                    dir = dir + "/Downloads/";
-                }
-                else if (name_os.equals("windows 10"))
+                if (name_os.equals("windows 10"))
                 {
                     dir += "\\Downloads\\";
                 }
+                else{
+                    dir = dir + "/Downloads/";
+                }
                 File fileReceive = new File(dir + fileInfo.getFilename());
-                bos = new BufferedOutputStream(
-                        new FileOutputStream(fileReceive));
+                bos = new BufferedOutputStream(new FileOutputStream(fileReceive));
                 // write file content
                 bos.write(fileInfo.getDataBytes());
                 bos.flush();
