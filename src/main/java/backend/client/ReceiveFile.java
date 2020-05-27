@@ -71,11 +71,6 @@ public class ReceiveFile extends Thread{
                 if (fileInfo != null) {
                     createFile(fileInfo);
                 }
-                  // confirm that file is received
-//                oos = new ObjectOutputStream(client.getOutputStream());
-//                fileInfo.setStatus("success");
-//                fileInfo.setDataBytes(null);
-//                oos.writeObject(fileInfo);
                   
             } catch (IOException e) {
                 e.printStackTrace();

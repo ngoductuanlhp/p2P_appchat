@@ -35,12 +35,14 @@ public class SendFile extends Thread{
     private ObjectInputStream ois = null;
     private int portReceiveFile = 56789;
     private String send_address;
+    private int time_out;
     
     public SendFile(MessageSender send_mess , String filename , String path){
         this.sender = send_mess;
         this.filename = filename;
         this.filepath = path;
-        allowSending = false;
+        this.time_out = 10;
+        allowSending = 0;
     }
 
     
@@ -56,26 +58,28 @@ public class SendFile extends Thread{
     private void sending() throws IOException{
         sender.sendMessage("SendFile");
         System.out.println("Send request send file");
-        while (allowSending == 0){
-            System.out.println("TEST");
+        while (allowSending == 0 && time_out != 0){
+            System.out.println("Waiting for response");
             try {
                 TimeUnit.SECONDS.sleep(1);
+                time_out --;
             } catch (InterruptedException ex) {
                 Logger.getLogger(SendFile.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (allowSending == 1){
+        if (allowSending == 2 || time_out == 0)
+            JOptionPane.showMessageDialog(null, "Freind reject send file." , "Send file", JOptionPane.OK_OPTION);
+        else {
             System.out.println("Conect to client "+ send_address +" "+ portReceiveFile);
-        Socket server = new Socket();
-        server.connect(new InetSocketAddress(send_address, portReceiveFile));
-        System.out.println("Sending File to friend...");
-        
-        sendingFile(server);
-        
-        server.close();
-        System.out.println("Finish sending file to friend...");
+            Socket server = new Socket();
+            server.connect(new InetSocketAddress(send_address, portReceiveFile));
+            System.out.println("Sending File to friend...");
+
+            sendingFile(server);
+
+            server.close();
+            System.out.println("Finish sending file to friend...");
         }
-        else JOptionPane.showMessageDialog(null, "Freind reject send file." , "Send file", JOptionPane.OK_OPTION);
     }
      
     

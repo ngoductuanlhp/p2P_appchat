@@ -118,6 +118,7 @@ public class PeerHandler implements Runnable{
     }
     public void rejectSending()
     {
-        sendFileThread.allowSending(this.socket.getInetAddress().getHostAddress());
+        if (!sendFileThread.equals(null))
+            sendFileThread.rejectSending();
     }
 }
