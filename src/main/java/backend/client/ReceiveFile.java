@@ -31,7 +31,7 @@ public class ReceiveFile extends Thread{
     private int portReceiveFile = 56789;
     private ObjectInputStream ois = null;
     private ObjectOutputStream oos = null;
-    private boolean time_out;
+    private static boolean time_out;
     public ReceiveFile(MessageSender send_mess){
         this.sender = send_mess;
         time_out = true;
