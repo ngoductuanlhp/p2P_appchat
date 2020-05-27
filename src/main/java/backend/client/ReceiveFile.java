@@ -129,6 +129,7 @@ public class ReceiveFile extends Thread{
     }
     
     public void timeOut(){
+        System.out.println("[Send File]: Time out receive File");
         this.time_out = false;
     }
     
