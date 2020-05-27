@@ -48,7 +48,11 @@ public class ReceiveFile extends Thread{
     
     private void receiving() throws IOException{
         int accept = JOptionPane.showConfirmDialog(null, "Accept file?", "Send file", JOptionPane.YES_NO_OPTION);
-        if (accept == 0 && time_out){
+        if (!time_out)
+            JOptionPane.showMessageDialog(null, "Time out receive file." , "Receive file", JOptionPane.OK_OPTION);
+        else if (accept == 1)
+            this.sender.sendMessage("RejectSendFile");
+        else if (accept == 0 && time_out){
             ServerSocket serverSocket = new ServerSocket(portReceiveFile);
             this.sender.sendMessage("AcceptSendFile");
 
@@ -62,9 +66,7 @@ public class ReceiveFile extends Thread{
             serverSocket.close();
             System.out.println("Done receiving file from friend");
         }
-        if (!time_out)
-            JOptionPane.showMessageDialog(null, "Time out receive file." , "Receive file", JOptionPane.OK_OPTION);
-        else this.sender.sendMessage("RejectSendFile");
+        
     }
     
     private void receivingFile(Socket client) throws IOException{
