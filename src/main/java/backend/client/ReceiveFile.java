@@ -62,6 +62,8 @@ public class ReceiveFile extends Thread{
             serverSocket.close();
             System.out.println("Done receiving file from friend");
         }
+        if (!time_out)
+            JOptionPane.showMessageDialog(null, "Time out receive file." , "Receive file", JOptionPane.OK_OPTION);
         else this.sender.sendMessage("RejectSendFile");
     }
     

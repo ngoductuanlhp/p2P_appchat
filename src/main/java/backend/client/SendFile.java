@@ -68,7 +68,10 @@ public class SendFile extends Thread{
             }
         }
         if (allowSending == 2 || time_out == 0)
+        {
+            this.sender.sendMessage("TimeOutReceiveFile");
             JOptionPane.showMessageDialog(null, "Freind reject send file." , "Send file", JOptionPane.OK_OPTION);
+        }
         else {
             System.out.println("Conect to client "+ send_address +" "+ portReceiveFile);
             Socket server = new Socket();

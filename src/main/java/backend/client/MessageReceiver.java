@@ -49,7 +49,7 @@ public class MessageReceiver implements Runnable {
                         case "RejectSendFile":
                             this.peerHandler.rejectSending();
                             break;
-                        case "TimeOutSendFile":
+                        case "TimeOutReceiveFile":
                             this.peerHandler.timeOutReceiveFile();
                             break;
                         case "disconnect":
