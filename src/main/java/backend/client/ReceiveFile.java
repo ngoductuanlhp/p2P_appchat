@@ -49,7 +49,10 @@ public class ReceiveFile extends Thread{
     private void receiving() throws IOException{
         int accept = JOptionPane.showConfirmDialog(null, "Accept file?", "Send file", JOptionPane.YES_NO_OPTION);
         if (!time_out)
+        {
+            time_out = true;
             JOptionPane.showMessageDialog(null, "Time out receive file." , "Receive file", JOptionPane.OK_OPTION);
+        }
         else if (accept == 1)
             this.sender.sendMessage("RejectSendFile");
         else if (accept == 0 && time_out){
