@@ -121,4 +121,8 @@ public class PeerHandler implements Runnable{
         if (!sendFileThread.equals(null))
             sendFileThread.rejectSending();
     }
+    
+    public void timeOutReceiveFile(){
+        this.receiveFile.timeOut();
+    }
 }

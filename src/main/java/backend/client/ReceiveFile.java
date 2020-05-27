@@ -31,8 +31,10 @@ public class ReceiveFile extends Thread{
     private int portReceiveFile = 56789;
     private ObjectInputStream ois = null;
     private ObjectOutputStream oos = null;
+    private boolean time_out;
     public ReceiveFile(MessageSender send_mess){
         this.sender = send_mess;
+        time_out = true;
     }
     
     @Override
@@ -46,7 +48,7 @@ public class ReceiveFile extends Thread{
     
     private void receiving() throws IOException{
         int accept = JOptionPane.showConfirmDialog(null, "Accept file?", "Send file", JOptionPane.YES_NO_OPTION);
-        if (accept == 0){
+        if (accept == 0 || time_out){
             ServerSocket serverSocket = new ServerSocket(portReceiveFile);
             this.sender.sendMessage("AcceptSendFile");
 
@@ -122,6 +124,10 @@ public class ReceiveFile extends Thread{
         if (outputStream != null) {
                 outputStream.close();
         }
+    }
+    
+    public void timeOut(){
+        this.time_out = false;
     }
     
 }

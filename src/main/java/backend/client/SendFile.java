@@ -84,11 +84,13 @@ public class SendFile extends Thread{
      
     
     public void allowSending(String add){
+        System.out.println("[Send file]: Accept seding");
         allowSending = 1;
         send_address = add;
     }
     
     public void rejectSending(){
+        System.out.println("[Send file]: Reject sending");
         allowSending = 2;
     }
     
