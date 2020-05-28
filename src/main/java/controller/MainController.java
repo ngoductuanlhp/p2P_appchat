@@ -23,7 +23,7 @@ public class MainController implements Observer {
     private MainUI mainUI;
     private ChatClient chatClient;
 
-    private PeerHandler currentPeer;
+    private PeerHandler currentPeer = null;
 
     private boolean first_time = true;
 
@@ -94,7 +94,7 @@ public class MainController implements Observer {
 
     private void sendText() {
         String mess = this.mainUI.getInput_text().getText();
-        if (!mess.equals(""))
+        if (!mess.equals("") && this.currentPeer != null)
         {
 //            String[] indexString = text.split(" ");
 //            if (indexString[0].equals("update") && indexString.length==3){
@@ -211,11 +211,17 @@ public class MainController implements Observer {
             if (s[0].equals("friendstatus")) {
                 this.mainUI.updateFriendList(s[1], s[2]);
             } else if (s[0].equals("disconnect")) {
-                if (s[1].equals(this.currentPeer.getTargetClientName())) {
-                    this.mainUI.getChat_section().removeAll();
-                    this.currentPeer = null;
+                if (this.currentPeer != null) {
+                    if (s[1].equals(this.currentPeer.getTargetClientName())) {
+                        System.out.println("Remove pane");
+                        this.mainUI.getChat_section().removeAll();
+                        this.mainUI.getChat_box().setVisible(false);
+                        this.first_time = true;
+                        this.currentPeer = null;
+                    }
                 }
-                this.mainUI.updateFriendList(s[1], "off");
+
+//                this.mainUI.updateFriendList(s[1], "off");
             }
             else if (s[0].equals("newfriend")) {
                 this.mainUI.addFriendList(s[1], s[2]);

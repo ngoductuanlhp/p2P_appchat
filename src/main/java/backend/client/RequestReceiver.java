@@ -56,8 +56,13 @@ public class RequestReceiver implements Runnable {
                             break;
                         case "notifyoffline":
                             this.chatClient.changeFriendStatus("friendstatus", segments[1], "off");
-                            this.chatClient.getPeerList().get(segments[1]).disconnect();
-                            this.chatClient.disconnectPane("disconnect", segments[1]);
+//                            this.chatClient.getPeerList().get(segments[1]).disconnect();
+                            PeerHandler p = this.chatClient.getPeerList().get(segments[1]);
+                            if (p != null) {
+                                this.chatClient.disconnectPane("disconnect", segments[1]);
+                                p.disconnect();
+                            }
+
                             break;
                         default:
                             System.out.println("Unknown " + type);
