@@ -3,6 +3,7 @@ package controller;
 import backend.client.ChatClient;
 import backend.client.PeerHandler;
 import com.application.chatboxp2p.staticdata.Friend;
+import ui.AddFriendUI;
 import ui.MainUI;
 import utils.PeerInfo;
 
@@ -63,6 +64,14 @@ public class MainController implements Observer {
                     uiDispose();
                 }
             }
+        });
+
+        this.mainUI.getAdd_user_but().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_user_butActionPerformed
+                AddFriendUI addFriendUI = new AddFriendUI();
+                addFriendUI.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+                addFriendUI.setVisible(true);
+            }//GEN-LAST:event_add_user_butActionPerformed
         });
         this.mainUI.setVisible(true);
     }

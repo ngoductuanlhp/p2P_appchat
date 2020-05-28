@@ -33,6 +33,7 @@ public class ChatServer {
     }
 
     public void initServer() throws IOException {
+
         File folder = new File("dtb");
         File[] listOfFiles = folder.listFiles();
         for (File file : listOfFiles) {

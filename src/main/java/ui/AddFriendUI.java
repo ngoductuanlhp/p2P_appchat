@@ -1,6 +1,10 @@
 package ui;
 
-import javax.swing.JOptionPane;
+import backend.client.ChatClient;
+import controller.AddFriendController;
+import controller.LoginController;
+
+import javax.swing.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -149,7 +153,7 @@ public class AddFriendUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void user_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_user_labelMouseClicked
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_user_labelMouseClicked
 
     private void name_signup_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_name_signup_labelMouseClicked
@@ -159,7 +163,7 @@ public class AddFriendUI extends javax.swing.JFrame {
     private void add_butMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_butMouseClicked
         int check = JOptionPane.showConfirmDialog(this, "Are you sure?", "Add friend", JOptionPane.YES_NO_OPTION);
         if (check == 0) {
-            System.out.println("Add friend");
+
         }
 
     }//GEN-LAST:event_add_butMouseClicked
@@ -201,6 +205,14 @@ public class AddFriendUI extends javax.swing.JFrame {
                 new AddFriendUI().setVisible(true);
             }
         });
+    }
+
+    public String getUserInput() {
+        return user_signup_input.getText();
+    }
+
+    public JButton getAdd_but() {
+        return add_but;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

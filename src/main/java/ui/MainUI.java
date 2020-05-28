@@ -120,11 +120,7 @@ public class MainUI extends javax.swing.JFrame {
         add_user_but.setBackground(new java.awt.Color(0, 102, 102));
         add_user_but.setIcon(new javax.swing.ImageIcon(dir + "icons8_add_user_male_48px_1.png")); // NOI18N
         add_user_but.setBorder(null);
-        add_user_but.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add_user_butActionPerformed(evt);
-            }
-        });
+
         user_status_pane.add(add_user_but, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 50, -1));
 
         main_UI_pane.add(user_status_pane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 80));
@@ -303,11 +299,6 @@ public class MainUI extends javax.swing.JFrame {
 //        }
 //    }//GEN-LAST:event_logout_butActionPerformed
 
-    private void add_user_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_user_butActionPerformed
-        AddFriendUI addFriendUI = new AddFriendUI();
-        addFriendUI.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        addFriendUI.setVisible(true);
-    }//GEN-LAST:event_add_user_butActionPerformed
 
                                           
 
@@ -401,6 +392,8 @@ public class MainUI extends javax.swing.JFrame {
     public JMenuItem getLogout_but() {
         return this.logout_but;
     }
+
+    public JButton getAdd_user_but() {return this.add_user_but;}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_user_but;
