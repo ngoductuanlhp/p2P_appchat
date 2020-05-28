@@ -149,9 +149,21 @@ public class ClientHandler implements Runnable{
         notifyOffline();
     }
 
+    private void notifyNewFriend(String target) throws IOException {
+        ClientHandler c = server.getClientHandler(target);
+        if (c != null) {
+            c.sendNotifyNewFriend(this.getClientInfo().getClientName());
+        }
+    }
+
+    public void sendNotifyNewFriend(String target) throws IOException {
+        this.writer.writeUTF("addfriendpassive-" + target);
+    }
+
     private void handleAddFriend(String req, String friendName) throws IOException {
         if (server.findUsername(friendName)) {
             server.addFriend(clientInfo.getClientName(), friendName);
+            notifyNewFriend(friendName);
             sendSuccessRes(req, friendName);
         } else {
             sendFailedRes(req);
@@ -221,10 +233,10 @@ public class ClientHandler implements Runnable{
                 writer.writeUTF("login-" + "failed");
                 break;
             case "addfriend":
-                writer.writeUTF("addfriend-" + "failed");
+                writer.writeUTF("addfriend-" + "failed"+ "-null" + "-null");
                 break;
             case "connectfriendto":
-                writer.writeUTF("connectfriendto-" + "failed");
+                writer.writeUTF("connectfriendto-" + "failed-" + "null-");
                 break;
         }
     }

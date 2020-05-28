@@ -215,6 +215,10 @@ public class MainController implements Observer {
                     this.mainUI.getChat_section().removeAll();
                     this.currentPeer = null;
                 }
+                this.mainUI.updateFriendList(s[1], "off");
+            }
+            else if (s[0].equals("newfriend")) {
+                this.mainUI.addFriendList(s[1], s[2]);
             }
 
         }

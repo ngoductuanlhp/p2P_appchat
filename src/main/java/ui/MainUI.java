@@ -9,6 +9,7 @@ package ui;/*
  */
 
 import backend.client.ChatClient;
+import com.application.chatboxp2p.staticdata.Friend;
 import com.application.chatboxp2p.staticdata.ListFriends;
 
 import java.util.HashMap;
@@ -351,6 +352,12 @@ public class MainUI extends javax.swing.JFrame {
         else {
             this.lf.updateStatus(username, 2);
         }
+        System.out.println("Feature");
+        this.list_user.updateUI();
+    }
+
+    public void addFriendList(String username, String status) {
+        this.lf.addUser(new Friend(username, status));
         System.out.println("Feature");
         this.list_user.updateUI();
     }
