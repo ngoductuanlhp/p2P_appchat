@@ -24,6 +24,7 @@ public class ChatClient extends Observable {
     private final String serverAddress;
     private final int serverPort;
     private Socket socket;
+    
 
     private InputStream is;
     private OutputStream os;
@@ -157,7 +158,11 @@ public class ChatClient extends Observable {
 
     public void checkAddFriend(String check, String friendName, String status) {
         if (check.equals("success")) {
+            System.out.println("CHECKED");
             this.clientInfo.friendList.add(new PeerInfo(friendName, status));
+            this.responseMessage = "addfriend-success";
+        }else {
+            this.responseMessage = "addfriend-failed";
         }
     }
 
@@ -211,7 +216,6 @@ public class ChatClient extends Observable {
             // backend
             Socket socket = new Socket();
             socket.connect(new InetSocketAddress(IP, port), 5000);
-
             PeerHandler peerHandler = new PeerHandler(socket, nameTo, this);
 
             // JTextPane
@@ -248,5 +252,5 @@ public class ChatClient extends Observable {
         setChanged();
         notifyObservers(s);
     }
-
+    
 }

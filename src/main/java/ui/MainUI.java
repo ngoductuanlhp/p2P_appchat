@@ -108,7 +108,7 @@ public class MainUI extends javax.swing.JFrame {
         user_status_pane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         profile_icon.setBackground(new java.awt.Color(0, 102, 102));
-        profile_icon.setIcon(new javax.swing.ImageIcon(dir + "images\\profile_icon.png")); // NOI18N
+        profile_icon.setIcon(new javax.swing.ImageIcon(dir + "profile_icon.png")); // NOI18N
         user_status_pane.add(profile_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 80));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -278,11 +278,6 @@ public class MainUI extends javax.swing.JFrame {
 
         logout_but.setIcon(new javax.swing.ImageIcon(dir + "logout_icon.png")); // NOI18N
         logout_but.setText("Log Out");
-//        logout_but.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                logout_butActionPerformed(evt);
-//            }
-//        });
         file_but.add(logout_but);
 
         jMenuBar1.add(file_but);
@@ -299,6 +294,11 @@ public class MainUI extends javax.swing.JFrame {
 //        }
 //    }//GEN-LAST:event_logout_butActionPerformed
 
+    private void add_user_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_user_butActionPerformed
+        AddFriendUI addFriendUI = new AddFriendUI();
+        addFriendUI.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        addFriendUI.setVisible(true);
+    }//GEN-LAST:event_add_user_butActionPerformed
 
                                           
 
@@ -392,6 +392,8 @@ public class MainUI extends javax.swing.JFrame {
     public JMenuItem getLogout_but() {
         return this.logout_but;
     }
+    
+    public JButton getAttacButton() {return this.attach_file_but;}
 
     public JButton getAdd_user_but() {return this.add_user_but;}
 

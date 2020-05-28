@@ -19,6 +19,8 @@ public class AddFriendController {
     }
 
     public void initController() {
+        addFriendUI.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        addFriendUI.setVisible(true);
         this.addFriendUI.getAdd_but().addActionListener(e -> addFriend());
 
     }
@@ -37,13 +39,11 @@ public class AddFriendController {
             }
         } while (resMess == null);
         if (resMess.equals("addfriend-success")) {
+            // add later
             this.addFriendUI.setVisible(false);
-            MainUI mainUI = new MainUI();
-            MainController mainController = new MainController(mainUI, this.chatClient);
-            this.chatClient.addObserver(mainController);
-            mainController.initController();
         }
         this.chatClient.setResponseMessage(null);
+
     }
 }
 

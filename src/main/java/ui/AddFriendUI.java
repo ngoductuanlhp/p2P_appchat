@@ -58,7 +58,7 @@ public class AddFriendUI extends javax.swing.JFrame {
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Add Firend");
+        setTitle("Add Friend");
         setResizable(false);
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -93,11 +93,6 @@ public class AddFriendUI extends javax.swing.JFrame {
         add_but.setIcon(new javax.swing.ImageIcon(dir + "add_user_icon_40.png")); // NOI18N
         add_but.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         add_but.setBorderPainted(false);
-        add_but.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                add_butMouseClicked(evt);
-            }
-        });
         jPanel1.add(add_but, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 50, 50));
 
         find_but.setBackground(new java.awt.Color(153, 204, 255));
@@ -160,13 +155,13 @@ public class AddFriendUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_name_signup_labelMouseClicked
 
-    private void add_butMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_butMouseClicked
-        int check = JOptionPane.showConfirmDialog(this, "Are you sure?", "Add friend", JOptionPane.YES_NO_OPTION);
-        if (check == 0) {
-
-        }
-
-    }//GEN-LAST:event_add_butMouseClicked
+//    private void add_butMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_butMouseClicked
+//        int check = JOptionPane.showConfirmDialog(this, "Are you sure?", "Add friend", JOptionPane.YES_NO_OPTION);
+//        if (check == 0) {
+//
+//        }
+//
+//    }//GEN-LAST:event_add_butMouseClicked
 
     private void find_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find_butActionPerformed
         System.out.println("Add friend User");

@@ -10,13 +10,15 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.io.*;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PeerHandler implements Runnable{
 //    ClientInfo hostClient;
 //    ClientInfo targetClient;
     private String targetClientName;
     ChatClient client;
-
+    
     private Socket socket;
 
     private InputStream is;
@@ -26,6 +28,8 @@ public class PeerHandler implements Runnable{
     private MessageReceiver messageReceiver;
     private Thread messageSenderThread;
     private Thread messageReceiverThread;
+    private SendFile sendFileThread;
+    private ReceiveFile receiveFile;
 
     private JTextPane textPane;
 
@@ -56,7 +60,6 @@ public class PeerHandler implements Runnable{
             this.messageSenderThread = new Thread(this.messageSender);
             this.messageReceiver = new MessageReceiver(new DataInputStream(this.is), this.getClient().getClientInfo(), this);
             this.messageReceiverThread = new Thread(this.messageReceiver);
-
             this.messageSenderThread.start();
             this.messageReceiverThread.start();
         } catch (IOException e) {
@@ -100,6 +103,28 @@ public class PeerHandler implements Runnable{
     }
 
     public void sendFile(String path, String filename) {
-
+        this.sendFileThread = new SendFile(messageSender , filename , path);
+        this.sendFileThread.setDaemon(true);
+        this.sendFileThread.start();
+    }
+    
+    public void receiveFile(){
+        this.receiveFile = new ReceiveFile(messageSender);
+        this.receiveFile.setDaemon(true);
+        this.receiveFile.start();
+    }
+    
+    public void allowSending()
+    {
+        sendFileThread.allowSending(this.socket.getInetAddress().getHostAddress());
+    }
+    public void rejectSending()
+    {
+        if (!sendFileThread.equals(null))
+            sendFileThread.rejectSending();
+    }
+    
+    public void timeOutReceiveFile(){
+        this.receiveFile.timeOut();
     }
 }

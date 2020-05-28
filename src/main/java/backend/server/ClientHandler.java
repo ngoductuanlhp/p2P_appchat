@@ -152,7 +152,6 @@ public class ClientHandler implements Runnable{
     private void handleAddFriend(String req, String friendName) throws IOException {
         if (server.findUsername(friendName)) {
             server.addFriend(clientInfo.getClientName(), friendName);
-            notifyOnline();
             sendSuccessRes(req, friendName);
         } else {
             sendFailedRes(req);
@@ -207,7 +206,8 @@ public class ClientHandler implements Runnable{
                 writer.writeUTF("logout-" + "success");
                 break;
             case "addfriend":
-                writer.writeUTF("addfriend-" + "success");
+                writer.writeUTF("addfriend-" + "success-" + username + "-" + server.getClientStatus(username));
+                System.out.println("addfriend-" + "success-" + username + "-" + server.getClientStatus(username));
                 break;
         }
     }
