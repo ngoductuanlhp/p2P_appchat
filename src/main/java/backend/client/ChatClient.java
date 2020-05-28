@@ -117,6 +117,11 @@ public class ChatClient extends Observable {
         return false;
     }
 
+    public void addFriendPassive(String friendname) {
+        String[] s = {"newfriend", friendname, "on"};
+        setChanged();
+        notifyObservers(s);
+    }
 
     public void checkSignUp(String check, String name) {
         if (check.equals("success")) {
