@@ -105,7 +105,17 @@ public class ReceiveFile extends Thread{
                     }
                 }
             }
-            FileOutputStream os = new FileOutputStream(System.getProperty("user.dir") + "/" + fileName);
+            String home = System.getProperty("user.home");
+            String name_os = System.getProperty("os.name").toLowerCase();
+            String dir = home;
+            if (name_os.equals("windows 10"))
+            {
+                dir += "\\Downloads\\";
+            }
+            else{
+                dir = dir + "/Downloads/";
+            }
+            FileOutputStream os = new FileOutputStream(dir + "/" + fileName);
             os.write(Base64.getDecoder().decode(fileStringBuilder.toString()));
             os.close();
                   

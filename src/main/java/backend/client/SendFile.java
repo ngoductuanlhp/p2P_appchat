@@ -38,7 +38,7 @@ public class SendFile extends Thread{
     private int portReceiveFile = 56789;
     private String send_address;
     private int time_out;
-    
+    private InputStream in;
     public SendFile(MessageSender send_mess , String filename , String path){
         this.sender = send_mess;
         this.filename = filename;
@@ -78,10 +78,8 @@ public class SendFile extends Thread{
             System.out.println("Conect to client "+ send_address +" "+ portReceiveFile);
             Socket server = new Socket();
             server.connect(new InetSocketAddress(send_address, portReceiveFile));
-            System.out.println("Sending File to friend...");
-
+            System.out.println("Start send file to friend...");
             sendingFile(server);
-
             server.close();
             System.out.println("Finish sending file to friend...");
         }
@@ -99,70 +97,31 @@ public class SendFile extends Thread{
         allowSending = 2;
     }
     
-    private void sendingFile(Socket server){
+    private void sendingFile(Socket server) throws IOException {
         try {
 //            FileInfo fileInfo = getFileInfo(filepath);
 //            oos = new ObjectOutputStream(server.getOutputStream());
 //            oos.writeObject(fileInfo);
-            InputStream in = new BufferedInputStream(new FileInputStream(filepath));
+            in = new BufferedInputStream(new FileInputStream(filepath));
             int len;
             byte[] temp = new byte[12345];
             DataOutputStream os = new DataOutputStream(server.getOutputStream());
-            String fileName = "default";
             while (((len = in.read(temp)) > 0)) {
                 if (len < 12345) {
                     byte[] extra;
                     extra = Arrays.copyOf(temp, len);
-                    os.writeUTF("endfile," + fileName + "," + Base64.getEncoder().encodeToString(extra));
+                    System.out.println("[CLIENT] Finish send file");
+                    os.writeUTF("endfile," + this.filename + "," + Base64.getEncoder().encodeToString(extra));
                 } else {
+                    System.out.println("Sending file");
                     os.writeUTF("file," + Base64.getEncoder().encodeToString(temp));
                 }
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            closeStream(oos);
-            closeStream(ois);
-        }
-    }
-    
-    private FileInfo getFileInfo(String sourceFilePath) {
-        FileInfo fileInfo = null;
-        BufferedInputStream bis = null;
-        try {
-            File sourceFile = new File(sourceFilePath);
-            bis = new BufferedInputStream(new FileInputStream(sourceFile));
-            fileInfo = new FileInfo();
-            byte[] fileBytes = new byte[(int) sourceFile.length()];
-            // get file info
-            bis.read(fileBytes, 0, fileBytes.length);
-            fileInfo.setFilename(sourceFile.getName());
-            fileInfo.setDataBytes(fileBytes);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            closeStream(bis);
-        }
-        return fileInfo;
-    }
 
-    public void closeStream(InputStream inputStream) {
-        try {
-            if (inputStream != null) {
-                inputStream.close();
             }
         } catch (IOException ex) {
             ex.printStackTrace();
-        }
-    }
-    
-    public void closeStream(OutputStream outputStream) {
-        try {
-            if (outputStream != null) {
-                outputStream.close();
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        } finally {
+            this.in.close();
         }
     }
 }

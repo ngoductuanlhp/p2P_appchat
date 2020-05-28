@@ -147,6 +147,10 @@ public class MainController implements Observer {
 //                    this.mainUI.getList_chat_section().put(index , temp);
                 this.mainUI.getLf().updateStatus(index, 1);
                 this.mainUI.getList_user().updateUI();
+                if (this.first_time){
+                    this.mainUI.getChat_box().setVisible(true);
+                    this.first_time = false;
+                }
             }
             else {
                 String req = "connectfriendto-" + this.chatClient.getClientInfo().getClientName() + "-" + username;
@@ -202,6 +206,10 @@ public class MainController implements Observer {
                     this.mainUI.getChat_section().removeAll();
                     this.currentPeer = null;
                 }
+                this.mainUI.updateFriendList(s[1], "off");
+            }
+            else if (s[0].equals("newfriend")) {
+                this.mainUI.addFriendList(s[1], s[2]);
             }
 
         }

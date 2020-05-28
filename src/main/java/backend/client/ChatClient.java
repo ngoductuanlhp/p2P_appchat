@@ -158,7 +158,14 @@ public class ChatClient extends Observable {
 
     public void checkAddFriend(String check, String friendName, String status) {
         if (check.equals("success")) {
+            System.out.println("CHECKED");
             this.clientInfo.friendList.add(new PeerInfo(friendName, status));
+            this.responseMessage = "addfriend-success";
+            String[] s = {"newfriend", friendName, status};
+            setChanged();
+            notifyObservers(s);
+        }else {
+            this.responseMessage = "addfriend-failed";
         }
     }
 
