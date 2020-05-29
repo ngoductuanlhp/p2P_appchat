@@ -74,6 +74,13 @@ public class MainController implements Observer {
                 addFriendController.initController();
             }
         });
+
+        this.mainUI.getDel_user_but().addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_user_butActionPerformed
+                int index = mainUI.getList_user().getSelectedIndex();
+                System.out.println("Delete User " + mainUI.getLf().getUserByIndex(index).getUser_name());
+            }
+        });
         
         this.mainUI.getAttacButton().addActionListener(new java.awt.event.ActionListener(){
             public void actionPerformed(java.awt.event.ActionEvent evt) {

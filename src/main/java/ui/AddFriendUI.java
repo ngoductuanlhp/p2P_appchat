@@ -52,13 +52,10 @@ public class AddFriendUI extends javax.swing.JFrame {
         user_label = new javax.swing.JLabel();
         user_logo = new javax.swing.JLabel();
         add_but = new javax.swing.JButton();
-        name_signup_label = new javax.swing.JLabel();
-        name_signup_input = new javax.swing.JTextField();
-        Separator_name_signup = new javax.swing.JSeparator();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Add Friend");
+        setTitle("Add Firend");
         setResizable(false);
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -83,8 +80,6 @@ public class AddFriendUI extends javax.swing.JFrame {
             }
         });
         jPanel1.add(user_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 200, 30));
-
-        user_logo.setIcon(new javax.swing.ImageIcon(dir + "user_icon_40.png")); // NOI18N
         jPanel1.add(user_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, 50));
 
         add_but.setBackground(new java.awt.Color(0, 51, 51));
@@ -93,43 +88,29 @@ public class AddFriendUI extends javax.swing.JFrame {
         add_but.setIcon(new javax.swing.ImageIcon(dir + "add_user_icon_40.png")); // NOI18N
         add_but.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         add_but.setBorderPainted(false);
-        jPanel1.add(add_but, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 50, 50));
 
-        name_signup_label.setBackground(new java.awt.Color(0, 51, 51));
-        name_signup_label.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        name_signup_label.setForeground(new java.awt.Color(153, 204, 255));
-        name_signup_label.setText("Name");
-        name_signup_label.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                name_signup_labelMouseClicked(evt);
+        add_but.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_butActionPerformed(evt);
             }
         });
-        jPanel1.add(name_signup_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 200, 30));
-
-        name_signup_input.setEditable(false);
-        name_signup_input.setBackground(new java.awt.Color(0, 51, 51));
-        name_signup_input.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        name_signup_input.setForeground(new java.awt.Color(255, 255, 255));
-        name_signup_input.setBorder(null);
-        name_signup_input.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        jPanel1.add(name_signup_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 200, 30));
-        jPanel1.add(Separator_name_signup, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 200, 10));
+        jPanel1.add(add_but, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 130, 60));
 
         jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 280, 420));
 
         bg.setBackground(new java.awt.Color(0, 51, 51));
-        bg.setIcon(new javax.swing.ImageIcon(dir + "addfriend_bg.jpg")); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon(dir + "addfriend_bg.jpg"));
         jPanel3.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -139,21 +120,9 @@ public class AddFriendUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_user_labelMouseClicked
 
-    private void name_signup_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_name_signup_labelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_name_signup_labelMouseClicked
-
-//    private void add_butMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_butMouseClicked
-//        int check = JOptionPane.showConfirmDialog(this, "Are you sure?", "Add friend", JOptionPane.YES_NO_OPTION);
-//        if (check == 0) {
-//
-//        }
-//
-//    }//GEN-LAST:event_add_butMouseClicked
-
-    private void find_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find_butActionPerformed
+    private void add_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_butActionPerformed
         System.out.println("Add friend User");
-    }//GEN-LAST:event_find_butActionPerformed
+    }//GEN-LAST:event_add_butActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,14 +168,11 @@ public class AddFriendUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSeparator Separator_name_signup;
     private javax.swing.JButton add_but;
     private javax.swing.JLabel bg;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator_user_signup;
-    private javax.swing.JTextField name_signup_input;
-    private javax.swing.JLabel name_signup_label;
     private javax.swing.JLabel user_label;
     private javax.swing.JLabel user_logo;
     private javax.swing.JTextField user_signup_input;
