@@ -57,7 +57,9 @@ public class ReceiveFile extends Thread{
             this.sender.sendMessage("RejectSendFile");
         else if (accept == 0 && time_out){
             ServerSocket serverSocket = new ServerSocket(portReceiveFile);
-            this.sender.sendMessage("AcceptSendFile");
+
+            this.sender.sendMessage("AcceptSendFile-" + String.valueOf(portReceiveFile));
+            portReceiveFile++;
 
             System.out.println("Waiting for connect");
             Socket client = serverSocket.accept();
@@ -109,7 +111,7 @@ public class ReceiveFile extends Thread{
                         case "endfile": {
                             String content = message.substring(message.indexOf(",") + 1);
                             String finalcontent = content.substring(content.indexOf(",") + 1);
-//                            System.out.println(finalcontent);
+                            System.out.println(finalcontent);
 //                            fileStringBuilder.append(finalcontent);
                             out.write(Base64.getDecoder().decode(finalcontent));
                             fileName = segments[1];

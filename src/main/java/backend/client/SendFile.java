@@ -75,7 +75,7 @@ public class SendFile extends Thread{
             JOptionPane.showMessageDialog(null, "Friend reject send file." , "Send file", JOptionPane.OK_OPTION);
         }
         else {
-            System.out.println("Conect to client "+ send_address +" "+ portReceiveFile);
+            System.out.println("Connect to client "+ send_address +" "+ portReceiveFile);
             Socket server = new Socket();
             server.connect(new InetSocketAddress(send_address, portReceiveFile));
             System.out.println("Start send file to friend...");
@@ -86,10 +86,11 @@ public class SendFile extends Thread{
     }
      
     
-    public void allowSending(String add){
-        System.out.println("[Send file]: Accept seding");
+    public void allowSending(String add, int port){
+        System.out.println("[Send file]: Accept sending");
         allowSending = 1;
         send_address = add;
+        portReceiveFile = port;
     }
     
     public void rejectSending(){

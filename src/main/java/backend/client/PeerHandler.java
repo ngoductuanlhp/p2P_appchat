@@ -100,7 +100,6 @@ public class PeerHandler implements Runnable{
             doc.insertString(doc.getLength(), " ", style1);
             doc.insertString(doc.getLength(), "\n", style2);
         }
-        if (this.client.ge != )
     }
 
     public void sendFile(String path, String filename) {
@@ -115,9 +114,9 @@ public class PeerHandler implements Runnable{
         this.receiveFile.start();
     }
     
-    public void allowSending()
+    public void allowSending(String port)
     {
-        sendFileThread.allowSending(this.socket.getInetAddress().getHostAddress());
+        sendFileThread.allowSending(this.socket.getInetAddress().getHostAddress(), Integer.parseInt(port));
     }
     public void rejectSending()
     {

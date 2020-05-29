@@ -273,11 +273,13 @@ public class ClientHandler implements Runnable{
 
     public void sendRequestConnectFriend(String nameFrom, String nameTo) throws IOException {
         this.sendResponse("connectfriendto-" + nameFrom + "-" + nameTo);
+        System.out.println("connectfriendto-" + nameFrom + "-" + nameTo);
     }
 
     public void sendReponseConnectFriend(String nameFrom, String nameTo, String ip, String port) throws IOException{
 //        System.out.println(client.getInetAddress().toString().substring(1));
         this.sendResponse("acceptconnectfriend-" + nameFrom + "-" + nameTo + "-" + ip + "-" +port);
+        System.out.println("acceptconnectfriend-" + nameFrom + "-" + nameTo + "-" + ip + "-" +port);
     }
 
     public void sendResponse(String mess) throws IOException {
