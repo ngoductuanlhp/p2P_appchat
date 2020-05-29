@@ -113,7 +113,7 @@ public class SendFile extends Thread{
                     System.out.println("[CLIENT] Finish send file");
                     os.writeUTF("endfile," + this.filename + "," + Base64.getEncoder().encodeToString(extra));
                 } else {
-                    System.out.println("[CLIENT] Sending file");
+//                    System.out.println("[CLIENT] Sending file");
                     os.writeUTF("file," + Base64.getEncoder().encodeToString(temp));
                 }
 
@@ -121,6 +121,7 @@ public class SendFile extends Thread{
         } catch (IOException ex) {
             ex.printStackTrace();
         } finally {
+            server.close();
             this.in.close();
         }
     }

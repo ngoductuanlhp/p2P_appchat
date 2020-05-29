@@ -94,6 +94,11 @@ public class MainController implements Observer {
                     System.out.println("Delete User " + user_name);
                     chatClient.sendReq("removefriend-" + user_name);
                     mainUI.removeFriendList(user_name);
+                    PeerHandler p = chatClient.getPeerList().get(user_name);
+                    if (p != null) {
+                        chatClient.disconnectPane("disconnect", user_name);
+                        p.disconnect();
+                    }
                 }
 
             }

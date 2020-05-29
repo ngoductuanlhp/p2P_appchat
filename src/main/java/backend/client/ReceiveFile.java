@@ -91,7 +91,7 @@ public class ReceiveFile extends Thread{
             String message      = null;
             String[] segments   = null;
             String fileName     = null;
-            OutputStream out = new BufferedOutputStream(new FileOutputStream(dir +"/" + "Unconfirmed"));
+            OutputStream out = new BufferedOutputStream(new FileOutputStream(dir + "Unconfirmed"));
             while(this.isSending) {
                 message = is.readUTF();
                 segments = StringUtils.split(message, ',');
@@ -99,22 +99,23 @@ public class ReceiveFile extends Thread{
                     String type = segments[0];
                     switch (type) {
                         case "file": {
-                            System.out.println("RECEIVING FILE");
+//                            System.out.println("RECEIVING FILE");
                             String content = message.substring(message.indexOf(",") + 1);
                             out.write(Base64.getDecoder().decode(content));
-                            this.fileStringBuilder = new StringBuilder();
+//                            this.fileStringBuilder = new StringBuilder();
 //                            this.fileStringBuilder.append(content);
                             break;
                         }
                         case "endfile": {
                             String content = message.substring(message.indexOf(",") + 1);
                             String finalcontent = content.substring(content.indexOf(",") + 1);
-                            System.out.println(finalcontent);
+//                            System.out.println(finalcontent);
 //                            fileStringBuilder.append(finalcontent);
                             out.write(Base64.getDecoder().decode(finalcontent));
                             fileName = segments[1];
-                            File file = new File(dir +"/" + "Unconfirmed");
-                            File newFile = new File(dir + "/" + fileName);
+                            System.out.println(fileName);
+                            File file = new File(dir+ "Unconfirmed");
+                            File newFile = new File(dir + fileName);
                             if(file.renameTo(newFile)){
                                 System.out.println("File received success");;
                             }else{
@@ -127,16 +128,13 @@ public class ReceiveFile extends Thread{
                     }
                 }
             }
-
-//            FileOutputStream os = new FileOutputStream(dir + "/" + fileName);
-//            os.write(Base64.getDecoder().decode(fileStringBuilder.toString()));
-//            os.close();
                   
         } catch (IOException e) {
             e.printStackTrace();
 //        } catch (ClassNotFoundException e) {
 //            e.printStackTrace();
         } finally {
+            client.close();
             closeStream(ois);
             closeStream(oos);
         }
