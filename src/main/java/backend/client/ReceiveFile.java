@@ -78,33 +78,6 @@ public class ReceiveFile extends Thread{
                 // receive file info
 //                ois = new ObjectInputStream(client.getInputStream());
 //                FileInfo fileInfo = (FileInfo) ois.readObject();
-            String message      = null;
-            String[] segments   = null;
-            String fileName     = null;
-            while(this.isSending) {
-                message = is.readUTF();
-                segments = StringUtils.split(message, ',');
-                if (segments != null && segments.length > 0) {
-                    String type = segments[0];
-                    switch (type) {
-                        case "file": {
-                            System.out.println("RECEIVING FILE");
-                            String content = message.substring(message.indexOf(",") + 1);
-                            this.fileStringBuilder.append(content);
-                            break;
-                        }
-                        case "endfile": {
-                            String content = message.substring(message.indexOf(",") + 1);
-                            String finalcontent = content.substring(content.indexOf(",") + 1);
-                            System.out.println(finalcontent);
-                            fileStringBuilder.append(finalcontent);
-                            fileName = segments[1];
-                            this.isSending = false;
-                            break;
-                        }
-                    }
-                }
-            }
             String home = System.getProperty("user.home");
             String name_os = System.getProperty("os.name").toLowerCase();
             String dir = home;
@@ -115,9 +88,49 @@ public class ReceiveFile extends Thread{
             else{
                 dir = dir + "/Downloads/";
             }
-            FileOutputStream os = new FileOutputStream(dir + "/" + fileName);
-            os.write(Base64.getDecoder().decode(fileStringBuilder.toString()));
-            os.close();
+            String message      = null;
+            String[] segments   = null;
+            String fileName     = null;
+            OutputStream out = new BufferedOutputStream(new FileOutputStream(dir +"/" + "Unconfirmed"));
+            while(this.isSending) {
+                message = is.readUTF();
+                segments = StringUtils.split(message, ',');
+                if (segments != null && segments.length > 0) {
+                    String type = segments[0];
+                    switch (type) {
+                        case "file": {
+                            System.out.println("RECEIVING FILE");
+                            String content = message.substring(message.indexOf(",") + 1);
+                            out.write(Base64.getDecoder().decode(content));
+                            this.fileStringBuilder = new StringBuilder();
+//                            this.fileStringBuilder.append(content);
+                            break;
+                        }
+                        case "endfile": {
+                            String content = message.substring(message.indexOf(",") + 1);
+                            String finalcontent = content.substring(content.indexOf(",") + 1);
+                            System.out.println(finalcontent);
+//                            fileStringBuilder.append(finalcontent);
+                            out.write(Base64.getDecoder().decode(finalcontent));
+                            fileName = segments[1];
+                            File file = new File(dir +"/" + "Unconfirmed");
+                            File newFile = new File(dir + "/" + fileName);
+                            if(file.renameTo(newFile)){
+                                System.out.println("File received success");;
+                            }else{
+                                System.out.println("File received failed");
+                            }
+                            out.close();
+                            this.isSending = false;
+                            break;
+                        }
+                    }
+                }
+            }
+
+//            FileOutputStream os = new FileOutputStream(dir + "/" + fileName);
+//            os.write(Base64.getDecoder().decode(fileStringBuilder.toString()));
+//            os.close();
                   
         } catch (IOException e) {
             e.printStackTrace();
