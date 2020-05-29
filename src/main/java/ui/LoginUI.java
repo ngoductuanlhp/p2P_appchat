@@ -50,8 +50,6 @@ public class LoginUI extends javax.swing.JFrame {
         login_choice = new javax.swing.JButton();
         signup_pane = new javax.swing.JPanel();
         sigup_label = new javax.swing.JLabel();
-        name_signup_label = new javax.swing.JLabel();
-        name_signup_input = new javax.swing.JTextField();
         Separator_name_signup = new javax.swing.JSeparator();
         user_signup_label = new javax.swing.JLabel();
         user_signup_input = new javax.swing.JTextField();
@@ -117,34 +115,15 @@ public class LoginUI extends javax.swing.JFrame {
         sigup_label.setText("Sign Up");
         signup_pane.add(sigup_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 360, 72));
 
-        name_signup_label.setBackground(new java.awt.Color(0, 51, 51));
-        name_signup_label.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        name_signup_label.setForeground(new java.awt.Color(0, 153, 153));
-        name_signup_label.setText("Name");
-        name_signup_label.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                name_signup_labelMouseClicked(evt);
-            }
-        });
-        signup_pane.add(name_signup_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 260, 30));
-
-        name_signup_input.setBackground(new java.awt.Color(0, 51, 51));
-        name_signup_input.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        name_signup_input.setForeground(new java.awt.Color(255, 255, 255));
-        name_signup_input.setBorder(null);
-        name_signup_input.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        signup_pane.add(name_signup_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 260, 30));
-        signup_pane.add(Separator_name_signup, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 260, 10));
-
         user_signup_label.setBackground(new java.awt.Color(0, 51, 51));
         user_signup_label.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         user_signup_label.setForeground(new java.awt.Color(0, 153, 153));
         user_signup_label.setText("Username");
-        user_signup_label.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                user_signup_labelMouseClicked(evt);
-            }
-        });
+//        user_signup_label.addMouseListener(new java.awt.event.MouseAdapter() {
+//            public void mouseClicked(java.awt.event.MouseEvent evt) {
+//                user_signup_labelMouseClicked(evt);
+//            }
+//        });
         signup_pane.add(user_signup_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 260, 30));
 
         user_signup_input.setBackground(new java.awt.Color(0, 51, 51));
@@ -158,11 +137,11 @@ public class LoginUI extends javax.swing.JFrame {
         pass_signup_label.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         pass_signup_label.setForeground(new java.awt.Color(0, 153, 153));
         pass_signup_label.setText("Password");
-        pass_signup_label.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pass_signup_labelMouseClicked(evt);
-            }
-        });
+//        pass_signup_label.addMouseListener(new java.awt.event.MouseAdapter() {
+//            public void mouseClicked(java.awt.event.MouseEvent evt) {
+//                pass_signup_labelMouseClicked(evt);
+//            }
+//        });
         signup_pane.add(pass_signup_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 260, 30));
         signup_pane.add(Separator_pass_signup, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 260, 10));
 
@@ -172,9 +151,6 @@ public class LoginUI extends javax.swing.JFrame {
         pass_signup_input.setBorder(null);
         signup_pane.add(pass_signup_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 260, 30));
 
-        name_logo.setIcon(new javax.swing.ImageIcon(dir + "icons8_name_48px_1.png")); // NOI18N
-        signup_pane.add(name_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, -1, -1));
-
         user_signup_logo.setIcon(new javax.swing.ImageIcon(dir + "icons8_user_48px_1.png")); // NOI18N
         signup_pane.add(user_signup_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
 
@@ -182,15 +158,15 @@ public class LoginUI extends javax.swing.JFrame {
         signup_pane.add(pass_signup_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
 
         signup_but.setBackground(new java.awt.Color(0, 102, 102));
-        signup_but.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        signup_but.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         signup_but.setForeground(new java.awt.Color(255, 255, 255));
         signup_but.setText("Sign Up");
         signup_but.setBorderPainted(false);
-        signup_but.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signup_butActionPerformed(evt);
-            }
-        });
+//        signup_but.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                signup_butActionPerformed(evt);
+//            }
+//        });
         signup_pane.add(signup_but, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 130, 40));
 
         jPanel1.add(signup_pane, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 360, 510));
@@ -208,22 +184,22 @@ public class LoginUI extends javax.swing.JFrame {
         user_label.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         user_label.setForeground(new java.awt.Color(0, 153, 153));
         user_label.setText("Username");
-        user_label.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                user_labelMouseClicked(evt);
-            }
-        });
+//        user_label.addMouseListener(new java.awt.event.MouseAdapter() {
+//            public void mouseClicked(java.awt.event.MouseEvent evt) {
+//                user_labelMouseClicked(evt);
+//            }
+//        });
         signin_pane.add(user_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 260, 30));
 
         pass_label.setBackground(new java.awt.Color(0, 51, 51));
         pass_label.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         pass_label.setForeground(new java.awt.Color(0, 153, 153));
         pass_label.setText("Password");
-        pass_label.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pass_labelMouseClicked(evt);
-            }
-        });
+//        pass_label.addMouseListener(new java.awt.event.MouseAdapter() {
+//            public void mouseClicked(java.awt.event.MouseEvent evt) {
+//                pass_labelMouseClicked(evt);
+//            }
+//        });
         signin_pane.add(pass_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 260, 30));
         signin_pane.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 260, -1));
         signin_pane.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 260, 10));
@@ -247,7 +223,7 @@ public class LoginUI extends javax.swing.JFrame {
         signin_pane.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, -1, -1));
 
         login_but.setBackground(new java.awt.Color(0, 102, 102));
-        login_but.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        login_but.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         login_but.setForeground(new java.awt.Color(255, 255, 255));
         login_but.setText("Sign In");
         login_but.setBorderPainted(false);
@@ -293,28 +269,20 @@ public class LoginUI extends javax.swing.JFrame {
         signin_pane.setVisible(true);
     }//GEN-LAST:event_login_choiceMouseClicked
 
-    private void name_signup_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_name_signup_labelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_name_signup_labelMouseClicked
-
-    private void user_signup_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_user_signup_labelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_user_signup_labelMouseClicked
 
     private void pass_signup_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pass_signup_labelMouseClicked
         pass_input.setVisible(true);
         pass_label.setVisible(false);
     }//GEN-LAST:event_pass_signup_labelMouseClicked
-
-    private void signup_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signup_butActionPerformed
-        int option = JOptionPane.showConfirmDialog(this, "Are you sure?", "Sign Up", JOptionPane.YES_NO_OPTION);
-        if (option == 0) {
-            String name_user = name_signup_input.getText();
-            String user = user_signup_input.getText();
-            String pass = new String(pass_signup_input.getPassword());
-            System.out.println(name_user + " " + user + " " + pass);
-        }
-    }//GEN-LAST:event_signup_butActionPerformed
+//
+//    private void signup_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signup_butActionPerformed
+//        int option = JOptionPane.showConfirmDialog(this, "Are you sure?", "Sign Up", JOptionPane.YES_NO_OPTION);
+//        if (option == 0) {
+//            String user = user_signup_input.getText();
+//            String pass = new String(pass_signup_input.getPassword());
+////            System.out.println(name_user + " " + user + " " + pass);
+//        }
+//    }//GEN-LAST:event_signup_butActionPerformed
 
     
 
@@ -362,13 +330,18 @@ public class LoginUI extends javax.swing.JFrame {
         return this.pass_input;
     }
 
-    public String getUser_input() {
-        return this.user_input.getText();
+    public JTextField getUser_input() {
+        return this.user_input;
     }
 
-    public String getPass_input() {
-        return new String(this.pass_input.getPassword());
+    public JPasswordField getPass_input() {
+        return this.pass_input;
     }
+
+    public JButton getSignup_but(){ return this.signup_but;}
+
+    public JTextField getUser_signup_input(){return this.user_signup_input;}
+    public JPasswordField getPass_signup_input(){return this.pass_signup_input;}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator Separator_name_signup;
@@ -384,8 +357,6 @@ public class LoginUI extends javax.swing.JFrame {
     private javax.swing.JButton login_choice;
     private javax.swing.JLabel login_label;
     private javax.swing.JLabel name_logo;
-    private javax.swing.JTextField name_signup_input;
-    private javax.swing.JLabel name_signup_label;
     private javax.swing.JPasswordField pass_input;
     private javax.swing.JLabel pass_label;
     private javax.swing.JPasswordField pass_signup_input;

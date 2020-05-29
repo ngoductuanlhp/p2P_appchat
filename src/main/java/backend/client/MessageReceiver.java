@@ -61,7 +61,7 @@ public class MessageReceiver implements Runnable {
                 }
             }
         } catch (IOException | BadLocationException e) {
-        e.printStackTrace();
+            e.printStackTrace();
         }
     }
 

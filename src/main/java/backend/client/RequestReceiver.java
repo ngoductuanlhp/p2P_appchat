@@ -43,6 +43,9 @@ public class RequestReceiver implements Runnable {
                         case "addfriendpassive":
                             this.chatClient.addFriendPassive(segments[1]);
                             break;
+                        case "removefriendpassive":
+                            this.chatClient.removeFriendPassive(segments[1]);
+                            break;
                         case "connectfriendto":
                             this.chatClient.peerConnectListener(segments[1], segments[2]);;
                             break;
