@@ -133,6 +133,11 @@ public class ChatClient extends Observable {
         String[] s = {"removefriend", friendname};
         setChanged();
         notifyObservers(s);
+        PeerHandler p = getPeerList().get(friendname);
+        if (p != null) {
+            disconnectPane("disconnect", friendname);
+            p.disconnect();
+        }
     }
 
     public void checkSignUp(String check, String name) {
@@ -199,6 +204,7 @@ public class ChatClient extends Observable {
         boolean isExist = false;
         if (peerList.containsKey(nameFrom)) {
             isExist = true;
+            System.out.println("Is exist");
         }
 //        for(PeerHandler peer:this.peerList) {
 //            if(nameFrom.equals(peer.getTargetClientName())) {
