@@ -365,6 +365,13 @@ public class MainUI extends javax.swing.JFrame {
         this.list_user.updateUI();
     }
 
+    public void removeFriendList(String username) {
+//        this.lf.addUser(new Friend(username, status));
+        this.lf.removeUser(username);
+        System.out.println("Feature");
+        this.list_user.updateUI();
+    }
+
     public JList<String> getList_user() {
         return list_user;
     }

@@ -7,6 +7,8 @@ package com.application.chatboxp2p.staticdata;
 
 import java.awt.List;
 import javax.swing.DefaultListModel;
+
+import backend.client.FileSender;
 import org.w3c.dom.ls.LSInput;
 
 /**
@@ -18,6 +20,13 @@ public class ListFriends {
     
     public void addUser(Friend user){
         list_friends.addElement(user);
+    }
+    public void removeUser(String name) {
+        for (int i = 0 ; i < list_friends.getSize(); i ++) {
+            if (list_friends.elementAt(i).getUser_name().equals(name)) {
+                list_friends.remove(i);
+            }
+        }
     }
 
     public DefaultListModel getListModel()

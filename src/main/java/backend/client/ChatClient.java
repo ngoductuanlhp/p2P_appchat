@@ -53,6 +53,12 @@ public class ChatClient extends Observable {
 //        this.mainUI         = mainUI;
     }
 
+    public void turnOff() throws InterruptedException, IOException {
+        this.clientSenderThread.join();
+        this.clientReceiverThread.join();
+        this.socket.close();
+    }
+
     public ClientInfo getClientInfo() {
         return this.clientInfo;
     }
@@ -123,13 +129,25 @@ public class ChatClient extends Observable {
         notifyObservers(s);
     }
 
+    public void removeFriendPassive(String friendname) {
+        String[] s = {"removefriend", friendname};
+        setChanged();
+        notifyObservers(s);
+    }
+
     public void checkSignUp(String check, String name) {
         if (check.equals("success")) {
             System.out.println("[CLIENT] Sign-up successful");
             this.clientInfo = new ClientInfo(name);
+            synchronized (this) {
+                this.responseMessage = check + "-" + "signup";
+            }
         }
         else {
-            System.out.println("[CLIENT] Sign-up failed");
+            System.out.println("[CLIENT] Signup failed");
+            synchronized (this) {
+                this.responseMessage = check + "-" + "signup";
+            }
         }
     }
 
@@ -150,7 +168,10 @@ public class ChatClient extends Observable {
 
         }
         else {
-            System.out.println("[CLIENT] Log-in failed");
+            System.out.print(String.format("[CLIENT] Log-in failed %s", segments[1]));
+            synchronized (this) {
+                this.responseMessage = segments[1] + "-" + "login";
+            }
         }
     }
 

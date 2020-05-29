@@ -5,6 +5,8 @@ import backend.client.PeerHandler;
 import com.application.chatboxp2p.staticdata.Friend;
 import ui.AddFriendUI;
 import java.io.File;
+
+import ui.LoginUI;
 import ui.MainUI;
 import utils.PeerInfo;
 
@@ -13,6 +15,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import java.io.IOException;
 import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
@@ -62,7 +65,13 @@ public class MainController implements Observer {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 if (JOptionPane.showConfirmDialog(null, "Are you sure?", "Log out", JOptionPane.YES_NO_OPTION) == 0) {
 //            loginUI.setVisible(true);
-                    uiDispose();
+                    try {
+                        uiDispose();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -78,7 +87,10 @@ public class MainController implements Observer {
         this.mainUI.getDel_user_but().addActionListener(new java.awt.event.ActionListener(){
             public void actionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_user_butActionPerformed
                 int index = mainUI.getList_user().getSelectedIndex();
-                System.out.println("Delete User " + mainUI.getLf().getUserByIndex(index).getUser_name());
+                String user_name =  mainUI.getLf().getUserByIndex(index).getUser_name();
+                System.out.println("Delete User " + user_name);
+                chatClient.sendReq("removefriend-" + user_name);
+                
             }
         });
         
@@ -93,10 +105,13 @@ public class MainController implements Observer {
         this.mainUI.setVisible(true);
     }
 
-    private void uiDispose() {
+    private void uiDispose() throws IOException, InterruptedException {
         this.chatClient.sendReq("disconnect");
         System.out.println("Feature");
         this.mainUI.dispose();
+        LoginUI loginUI = new LoginUI();
+        LoginController loginController = new LoginController(loginUI, this.chatClient);
+        loginController.initController();
     }
 
     private void sendText() {
@@ -232,6 +247,9 @@ public class MainController implements Observer {
             }
             else if (s[0].equals("newfriend")) {
                 this.mainUI.addFriendList(s[1], s[2]);
+            }
+            else if (s[0].equals("removefriend")) {
+                this.mainUI.removeFriendList(s[1]);
             }
 
         }
