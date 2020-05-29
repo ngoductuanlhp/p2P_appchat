@@ -149,11 +149,10 @@ public class LoginUI extends javax.swing.JFrame {
         pass_signup_input.setForeground(new java.awt.Color(255, 255, 255));
         pass_signup_input.setBorder(null);
         signup_pane.add(pass_signup_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 260, 30));
+        signup_pane.add(name_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, -1, -1));
 
         user_signup_logo.setIcon(new javax.swing.ImageIcon(dir + "icons8_user_48px_1.png")); // NOI18N
         signup_pane.add(user_signup_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
-
-        pass_signup_logo.setIcon(new javax.swing.ImageIcon(dir + "icons8_password_48px_1.png")); // NOI18N
         signup_pane.add(pass_signup_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
 
         signup_but.setBackground(new java.awt.Color(0, 102, 102));
@@ -214,11 +213,7 @@ public class LoginUI extends javax.swing.JFrame {
         user_input.setForeground(new java.awt.Color(255, 255, 255));
         user_input.setBorder(null);
         signin_pane.add(user_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 260, 30));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(dir + "icons8_user_48px_1.png")); // NOI18N
         signin_pane.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(dir + "icons8_password_48px_1.png")); // NOI18N
         signin_pane.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, -1, -1));
 
         login_but.setBackground(new java.awt.Color(0, 102, 102));
@@ -231,7 +226,7 @@ public class LoginUI extends javax.swing.JFrame {
         jPanel1.add(signin_pane, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 360, 510));
 
         backgeound_label.setBackground(new Color(0,0,0,125));
-        backgeound_label.setIcon(new javax.swing.ImageIcon(dir + "background.jpg")); // NOI18N
+        backgeound_label.setIcon(new javax.swing.ImageIcon(dir + "background.jpg"));
         jPanel1.add(backgeound_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(-290, 0, 800, 510));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -247,16 +242,6 @@ public class LoginUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void user_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_user_labelMouseClicked
-        user_input.setVisible(true);
-        user_label.setVisible(false);
-    }//GEN-LAST:event_user_labelMouseClicked
-
-    private void pass_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pass_labelMouseClicked
-        pass_input.setVisible(true);
-        pass_label.setVisible(false);
-    }//GEN-LAST:event_pass_labelMouseClicked
 
     private void signup_choiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signup_choiceMouseClicked
         signup_pane.setVisible(true);

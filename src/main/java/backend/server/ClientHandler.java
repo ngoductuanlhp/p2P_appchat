@@ -214,7 +214,7 @@ public class ClientHandler implements Runnable{
 
     private void handleRemoveFriend(String req, String friendName) throws IOException {
         this.server.removeFriend(this.clientInfo.getClientName(), friendName);
-        this.sendResponse("removefriend-success");
+//        this.sendResponse("removefriend-success");
         ClientHandler c = server.getClientHandler(friendName);
         if (c != null) {
             c.sendResponse("removefriendpassive-" + this.getClientInfo().getClientName());
