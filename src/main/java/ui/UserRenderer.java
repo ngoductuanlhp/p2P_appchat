@@ -18,16 +18,17 @@ import javax.swing.ListCellRenderer;
  * @author Khoa
  */
 public class UserRenderer extends DefaultListCellRenderer implements ListCellRenderer<Object> {
-    final String path_ubuntu = "/src/main/java/images/";
+    final String another_path = "/src/main/java/images/";
     final String path_win = "\\src\\main\\java\\images\\";
     String os = System.getProperty("os.name").toLowerCase();
     final private String dir;
 
     public UserRenderer() {
-        if (os.equals("linux")) {
-            dir = System.getProperty("user.dir") + path_ubuntu;
-        } else {
+        if (os.equals("windows 10")){
             dir = System.getProperty("user.dir") + path_win;
+        }
+        else{
+            dir = System.getProperty("user.dir") + another_path;
         }
     }
 
