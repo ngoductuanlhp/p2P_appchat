@@ -11,6 +11,8 @@ package ui;/*
 import backend.client.ChatClient;
 import com.application.chatboxp2p.staticdata.Friend;
 import com.application.chatboxp2p.staticdata.ListFriends;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -18,10 +20,10 @@ import java.util.logging.Logger;
 import javax.swing.*;
 
 public class MainUI extends javax.swing.JFrame {
-    final String path_ubuntu = "/src/main/java/images/";
-    final String path_win = "\\src\\main\\java\\images\\";
-    String os = System.getProperty("os.name").toLowerCase();
-    final private String dir;
+    private String another_path = "/src/main/java/images/";
+    private String path_win = "\\src\\main\\java\\images\\";
+    private String os = System.getProperty("os.name").toLowerCase();
+    private String dir;
 
     private HashMap<Integer, JTextPane> list_chat_section = new HashMap<>(); // TEST
     private ListFriends lf = new ListFriends();
@@ -40,10 +42,11 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     public MainUI() {
-        if (os.equals("linux")) {
-            dir = System.getProperty("user.dir") + path_ubuntu;
-        } else {
+        if (os.equals("windows 10")){
             dir = System.getProperty("user.dir") + path_win;
+        }
+        else{
+            dir = System.getProperty("user.dir") + another_path;
         }
         System.out.println("CREATE MAINUI");
         initComponents();

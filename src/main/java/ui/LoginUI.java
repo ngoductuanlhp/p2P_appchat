@@ -13,7 +13,7 @@ import javax.swing.*;
  * @author Khoa
  */
 public class LoginUI extends javax.swing.JFrame {
-    final String path_ubuntu = "/src/main/java/images/";
+    final String another_path = "/src/main/java/images/";
     final String path_win = "\\src\\main\\java\\images\\";
     String os = System.getProperty("os.name").toLowerCase();
     final private String dir;
@@ -24,12 +24,11 @@ public class LoginUI extends javax.swing.JFrame {
      * Creates new form ui.LoginUI
      */
     public LoginUI() {
-
-        if (os.equals("linux")) {
-            dir = System.getProperty("user.dir") + path_ubuntu;
-            System.out.println(dir);
-        } else {
+        if (os.equals("windows 10")){
             dir = System.getProperty("user.dir") + path_win;
+        }
+        else{
+            dir = System.getProperty("user.dir") + another_path;
         }
         initComponents();
         this.signin_pane.setVisible(true);

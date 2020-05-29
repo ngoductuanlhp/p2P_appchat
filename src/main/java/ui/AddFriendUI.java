@@ -20,16 +20,17 @@ public class AddFriendUI extends javax.swing.JFrame {
     /**
      * Creates new form ui.AddFriendUI
      */
-    final String path_ubuntu = "/src/main/java/images/";
+    final String another_path = "/src/main/java/images/";
     final String path_win = "\\src\\main\\java\\images\\";
     String os = System.getProperty("os.name").toLowerCase();
     final private String dir;
 
     public AddFriendUI() {
-        if (os.equals("linux")) {
-            dir = System.getProperty("user.dir") + path_ubuntu;
-        } else {
+        if (os.equals("windows 10")){
             dir = System.getProperty("user.dir") + path_win;
+        }
+        else{
+            dir = System.getProperty("user.dir") + another_path;
         }
         System.out.println("CREATE ADDFRIEND UI");
         initComponents();
@@ -51,7 +52,6 @@ public class AddFriendUI extends javax.swing.JFrame {
         user_label = new javax.swing.JLabel();
         user_logo = new javax.swing.JLabel();
         add_but = new javax.swing.JButton();
-        find_but = new javax.swing.JButton();
         name_signup_label = new javax.swing.JLabel();
         name_signup_input = new javax.swing.JTextField();
         Separator_name_signup = new javax.swing.JSeparator();
@@ -94,18 +94,6 @@ public class AddFriendUI extends javax.swing.JFrame {
         add_but.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         add_but.setBorderPainted(false);
         jPanel1.add(add_but, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 50, 50));
-
-        find_but.setBackground(new java.awt.Color(153, 204, 255));
-        find_but.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        find_but.setForeground(new java.awt.Color(255, 255, 255));
-        find_but.setIcon(new javax.swing.ImageIcon(dir + "find_user_icon_40px.png")); // NOI18N
-        find_but.setBorderPainted(false);
-        find_but.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                find_butActionPerformed(evt);
-            }
-        });
-        jPanel1.add(find_but, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 130, 60));
 
         name_signup_label.setBackground(new java.awt.Color(0, 51, 51));
         name_signup_label.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -214,7 +202,6 @@ public class AddFriendUI extends javax.swing.JFrame {
     private javax.swing.JSeparator Separator_name_signup;
     private javax.swing.JButton add_but;
     private javax.swing.JLabel bg;
-    private javax.swing.JButton find_but;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator_user_signup;
