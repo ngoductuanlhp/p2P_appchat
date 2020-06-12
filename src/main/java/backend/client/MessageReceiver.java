@@ -46,7 +46,7 @@ public class MessageReceiver implements Runnable {
                             this.peerHandler.receiveFile();
                             break;
                         case "AcceptSendFile":
-                            this.peerHandler.allowSending();
+                            this.peerHandler.allowSending(segments[1]);
                             break;
                         case "RejectSendFile":
                             this.peerHandler.rejectSending();
@@ -63,7 +63,7 @@ public class MessageReceiver implements Runnable {
                 }
             }
         } catch (IOException | BadLocationException e) {
-        e.printStackTrace();
+            e.printStackTrace();
         }
     }
 

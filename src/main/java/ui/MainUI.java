@@ -73,7 +73,7 @@ public class MainUI extends javax.swing.JFrame {
         add_user_but = new javax.swing.JButton();
         list_user_pane = new javax.swing.JPanel();
         find_user_field = new javax.swing.JTextField();
-        find_user_but = new javax.swing.JButton();
+        del_user_but = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         list_user = new javax.swing.JList<>();
         chat_box = new javax.swing.JPanel();
@@ -137,9 +137,9 @@ public class MainUI extends javax.swing.JFrame {
         find_user_field.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         find_user_field.setOpaque(false);
 
-        find_user_but.setBackground(new java.awt.Color(0, 102, 102));
-        find_user_but.setIcon(new javax.swing.ImageIcon(dir + "find_user_icon_30.png")); // NOI18N
-        find_user_but.setBorderPainted(false);
+        del_user_but.setBackground(new java.awt.Color(0, 102, 102));
+        del_user_but.setIcon(new javax.swing.ImageIcon(dir + "find_user_icon_30.png")); // NOI18N
+        del_user_but.setBorderPainted(false);
 
         list_user.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         list_user.setModel(new javax.swing.AbstractListModel<String>() {
@@ -160,7 +160,7 @@ public class MainUI extends javax.swing.JFrame {
                     .addGroup(list_user_paneLayout.createSequentialGroup()
                         .addComponent(find_user_field, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(find_user_but, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(del_user_but, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         list_user_paneLayout.setVerticalGroup(
@@ -169,7 +169,7 @@ public class MainUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(find_user_field, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(find_user_but, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(del_user_but, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))
         );
@@ -365,6 +365,13 @@ public class MainUI extends javax.swing.JFrame {
         this.list_user.updateUI();
     }
 
+    public void removeFriendList(String username) {
+//        this.lf.addUser(new Friend(username, status));
+        this.lf.removeUser(username);
+        System.out.println("Feature");
+        this.list_user.updateUI();
+    }
+
     public JList<String> getList_user() {
         return list_user;
     }
@@ -406,6 +413,7 @@ public class MainUI extends javax.swing.JFrame {
     public JButton getAttacButton() {return this.attach_file_but;}
 
     public JButton getAdd_user_but() {return this.add_user_but;}
+    public JButton getDel_user_but() {return this.del_user_but;}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_user_but;
@@ -415,7 +423,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JPanel chat_section;
     private javax.swing.JButton close_conversation;
     private javax.swing.JMenu file_but;
-    private javax.swing.JButton find_user_but;
+    private javax.swing.JButton del_user_but;
     private javax.swing.JTextField find_user_field;
     private javax.swing.JTextArea input_text;
     private javax.swing.JLabel jLabel1;
