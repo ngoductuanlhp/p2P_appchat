@@ -8,7 +8,7 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 import ui.LoginUI;
 
-public class TestClient {
+public class TestClient1 {
     public static void main(String[] args) throws UnknownHostException{
         LoginUI loginUI = new LoginUI();
         ChatClient chatClient = new ChatClient("192.168.0.106", 11111);

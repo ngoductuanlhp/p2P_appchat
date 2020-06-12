@@ -14,12 +14,12 @@ public class Friend {
     private int status;
     private String name;
     private String user_name;
-    
+
     public Friend(String name ,String user_name , int status ){
         this.name = name;
         this.status = status;
         this.user_name = user_name;
-        
+
     }
 
     public Friend(String username, String stt) {
@@ -27,8 +27,10 @@ public class Friend {
         this.user_name = username;
         if (stt.equals("on")) {
             this.status = 1;
-        } else {
+        } else if (stt.equals( "off" )){
             this.status = 0;
+        } else if (stt.equals("notify")){
+            this.status = 2;
         }
     }
 

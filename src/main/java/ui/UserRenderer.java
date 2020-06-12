@@ -35,10 +35,13 @@ public class UserRenderer extends DefaultListCellRenderer implements ListCellRen
     public Component getListCellRendererComponent(JList<?> list, Object friend, int index, boolean isSelected, boolean hasFocus) {
         Friend f = (Friend) friend;
         setText(f.getName());
-        if (f.getStatus() == 1)
+        if (f.getStatus() == 1) {
             setIcon(new javax.swing.ImageIcon(dir + "online_icon.png"));
-        else if (f.getStatus() == 0) setIcon(new javax.swing.ImageIcon(dir + "offline_icon.png"));
-        else setIcon(new javax.swing.ImageIcon(dir + "notification_icon.png"));
+        }else if (f.getStatus() == 0) {
+            setIcon(new javax.swing.ImageIcon(dir + "offline_icon.png"));
+        }else if (f.getStatus() == 2) {
+            setIcon(new javax.swing.ImageIcon(dir + "notification_icon.png"));
+        }
         setIconTextGap(10);
         if (isSelected) {
             setBackground(list.getSelectionBackground());

@@ -3,6 +3,7 @@ package controller;
 import backend.client.ChatClient;
 import backend.client.PeerHandler;
 import com.application.chatboxp2p.staticdata.Friend;
+import org.apache.commons.lang3.ObjectUtils;
 import ui.AddFriendUI;
 import java.io.File;
 import ui.MainUI;
@@ -147,8 +148,16 @@ public class MainController implements Observer {
 //            }
             if (this.chatClient.getPeerList().containsKey(username)) {
                 System.out.println("Open chat box " + index);
+
+                if ( this.currentPeer != null )
+                    this.currentPeer.setStatusWindow(false);
+
                 this.mainUI.getChat_section().removeAll();
                 this.currentPeer = this.chatClient.getPeerList().get(username);
+
+                if ( this.currentPeer != null )
+                    this.currentPeer.setStatusWindow(true);
+
                 this.mainUI.getChat_section().add(this.currentPeer.getTextPane());
 //                this.mainUI.setCurrent_text_pane(textPane);
                 this.mainUI.getUser_name_label().setText(username);
