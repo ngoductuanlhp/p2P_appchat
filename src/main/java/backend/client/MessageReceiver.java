@@ -63,6 +63,14 @@ public class MessageReceiver implements Runnable {
                 }
             }
         } catch (IOException | BadLocationException e) {
+            System.out.println("Disconnected");
+            String user = this.peerHandler.getTargetClientName();
+            this.peerHandler.client.changeFriendStatus("friendstatus", user, "off");
+            PeerHandler p = this.peerHandler.client.getPeerList().get(user);
+            if (p != null) {
+                this.peerHandler.client.disconnectPane("disconnect", user);
+                p.disconnect();
+            }
             e.printStackTrace();
         }
     }
