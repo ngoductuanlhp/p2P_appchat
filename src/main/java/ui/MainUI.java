@@ -110,7 +110,7 @@ public class MainUI extends javax.swing.JFrame {
         user_status_pane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         profile_icon.setBackground(new java.awt.Color(0, 102, 102));
-        profile_icon.setIcon(new javax.swing.ImageIcon(dir + "profile_icon.png")); // NOI18N
+        profile_icon.setIcon(new javax.swing.ImageIcon(dir +"profile_icon.png")); // NOI18N
         user_status_pane.add(profile_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 80));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -122,13 +122,16 @@ public class MainUI extends javax.swing.JFrame {
         add_user_but.setBackground(new java.awt.Color(0, 102, 102));
         add_user_but.setIcon(new javax.swing.ImageIcon(dir + "icons8_add_user_male_48px_1.png")); // NOI18N
         add_user_but.setBorder(null);
-
+        add_user_but.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_user_butActionPerformed(evt);
+            }
+        });
         user_status_pane.add(add_user_but, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 50, -1));
 
         main_UI_pane.add(user_status_pane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 80));
 
         list_user_pane.setOpaque(false);
-
         find_user_field.setBackground(new java.awt.Color(204, 204, 204));
         find_user_field.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         find_user_field.setForeground(new java.awt.Color(255, 255, 255));
@@ -150,26 +153,26 @@ public class MainUI extends javax.swing.JFrame {
         javax.swing.GroupLayout list_user_paneLayout = new javax.swing.GroupLayout(list_user_pane);
         list_user_pane.setLayout(list_user_paneLayout);
         list_user_paneLayout.setHorizontalGroup(
-            list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(list_user_paneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4)
-                    .addGroup(list_user_paneLayout.createSequentialGroup()
-                        .addComponent(find_user_field, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(del_user_but, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(list_user_paneLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane4)
+                                        .addGroup(list_user_paneLayout.createSequentialGroup()
+                                                .addComponent(find_user_field, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(del_user_but, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap())
         );
         list_user_paneLayout.setVerticalGroup(
-            list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(list_user_paneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(find_user_field, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(del_user_but, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))
+                list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(list_user_paneLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(find_user_field, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                                        .addComponent(del_user_but, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))
         );
 
         main_UI_pane.add(list_user_pane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 230, 370));
@@ -216,12 +219,12 @@ public class MainUI extends javax.swing.JFrame {
         input_text.setRows(5);
         jScrollPane5.setViewportView(input_text);
 
-        send_mess_but.setIcon(new javax.swing.ImageIcon(dir + "send_mess_icon.png")); // NOI18N
+        send_mess_but.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\send_mess_icon.png")); // NOI18N
         send_mess_but.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         send_mess_but.setBorderPainted(false);
         send_mess_but.setContentAreaFilled(false);
 
-        attach_file_but.setIcon(new javax.swing.ImageIcon(dir + "attach_icon.png")); // NOI18N
+        attach_file_but.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\attach_icon.png")); // NOI18N
         attach_file_but.setBorderPainted(false);
         attach_file_but.setContentAreaFilled(false);
 
@@ -256,12 +259,12 @@ public class MainUI extends javax.swing.JFrame {
 
         getContentPane().add(chat_box, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 610, 460));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(dir + "bg_mainUI.jpg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\bg_mainUI.jpg")); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 460));
 
         file_but.setText("File");
 
-        logout_but.setIcon(new javax.swing.ImageIcon(dir + "logout_icon.png")); // NOI18N
+        logout_but.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\logout_icon.png")); // NOI18N
         logout_but.setText("Log Out");
         file_but.add(logout_but);
 
@@ -285,7 +288,7 @@ public class MainUI extends javax.swing.JFrame {
         addFriendUI.setVisible(true);
     }//GEN-LAST:event_add_user_butActionPerformed
 
-                                          
+
 
     private void close_conversationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_close_conversationActionPerformed
 
@@ -347,7 +350,6 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     public void removeFriendList(String username) {
-//        this.lf.addUser(new Friend(username, status));
         this.lf.removeUser(username);
         System.out.println("Feature");
         this.list_user.updateUI();
@@ -390,7 +392,7 @@ public class MainUI extends javax.swing.JFrame {
     public JMenuItem getLogout_but() {
         return this.logout_but;
     }
-    
+
     public JButton getAttacButton() {return this.attach_file_but;}
 
     public JButton getAdd_user_but() {return this.add_user_but;}
