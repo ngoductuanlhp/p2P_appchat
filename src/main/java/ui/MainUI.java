@@ -139,7 +139,7 @@ public class MainUI extends javax.swing.JFrame {
         find_user_field.setOpaque(false);
 
         del_user_but.setBackground(new java.awt.Color(0, 102, 102));
-        del_user_but.setIcon(new javax.swing.ImageIcon(dir + "delete-user.png")); // NOI18N
+        del_user_but.setIcon(new javax.swing.ImageIcon(dir + "delete_user.png")); // NOI18N
         del_user_but.setBorderPainted(false);
 
         list_user.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
