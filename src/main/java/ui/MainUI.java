@@ -72,14 +72,17 @@ public class MainUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         add_user_but = new javax.swing.JButton();
         list_user_pane = new javax.swing.JPanel();
+<<<<<<< HEAD
         find_user_but = new javax.swing.JButton();
+=======
+        find_user_field = new javax.swing.JTextField();
+        del_user_but = new javax.swing.JButton();
+>>>>>>> e75195f0d2f81f6c5e6f3d4e5e617737c7362544
         jScrollPane4 = new javax.swing.JScrollPane();
         list_user = new javax.swing.JList<>();
         chat_box = new javax.swing.JPanel();
         chat_pane = new javax.swing.JPanel();
         user_name_label = new javax.swing.JLabel();
-        video_but = new javax.swing.JButton();
-        close_conversation = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         chat_section = new javax.swing.JPanel();
         text_pane = new javax.swing.JPanel();
@@ -134,9 +137,21 @@ public class MainUI extends javax.swing.JFrame {
 
         list_user_pane.setOpaque(false);
 
+<<<<<<< HEAD
         find_user_but.setBackground(new java.awt.Color(0, 102, 102));
         find_user_but.setIcon(new javax.swing.ImageIcon("D:\\study\\Semester-192\\Computer Network\\AS1\\p2p_appchat\\src\\main\\java\\images\\delete_user.png")); // NOI18N
         find_user_but.setBorderPainted(false);
+=======
+        find_user_field.setBackground(new java.awt.Color(204, 204, 204));
+        find_user_field.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        find_user_field.setForeground(new java.awt.Color(255, 255, 255));
+        find_user_field.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        find_user_field.setOpaque(false);
+
+        del_user_but.setBackground(new java.awt.Color(0, 102, 102));
+        del_user_but.setIcon(new javax.swing.ImageIcon(dir + "delete-user.png")); // NOI18N
+        del_user_but.setBorderPainted(false);
+>>>>>>> e75195f0d2f81f6c5e6f3d4e5e617737c7362544
 
         list_user.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         list_user.setModel(new javax.swing.AbstractListModel<String>() {
@@ -155,15 +170,27 @@ public class MainUI extends javax.swing.JFrame {
                 .addGroup(list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                     .addGroup(list_user_paneLayout.createSequentialGroup()
+<<<<<<< HEAD
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(find_user_but, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+=======
+                        .addComponent(find_user_field, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(del_user_but, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+>>>>>>> e75195f0d2f81f6c5e6f3d4e5e617737c7362544
                 .addContainerGap())
         );
         list_user_paneLayout.setVerticalGroup(
             list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(list_user_paneLayout.createSequentialGroup()
                 .addContainerGap()
+<<<<<<< HEAD
                 .addComponent(find_user_but, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                .addGroup(list_user_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(find_user_field, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(del_user_but, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+>>>>>>> e75195f0d2f81f6c5e6f3d4e5e617737c7362544
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))
         );
@@ -187,6 +214,7 @@ public class MainUI extends javax.swing.JFrame {
         user_name_label.setOpaque(true);
         chat_pane.add(user_name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 39));
 
+<<<<<<< HEAD
         video_but.setBackground(new java.awt.Color(0, 102, 102));
         video_but.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\video_icon.png")); // NOI18N
         video_but.setContentAreaFilled(false);
@@ -204,6 +232,8 @@ public class MainUI extends javax.swing.JFrame {
         });
         chat_pane.add(close_conversation, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 50, -1));
 
+=======
+>>>>>>> e75195f0d2f81f6c5e6f3d4e5e617737c7362544
         javax.swing.GroupLayout chat_sectionLayout = new javax.swing.GroupLayout(chat_section);
         chat_section.setLayout(chat_sectionLayout);
         chat_sectionLayout.setHorizontalGroup(
@@ -359,6 +389,13 @@ public class MainUI extends javax.swing.JFrame {
         this.list_user.updateUI();
     }
 
+    public void removeFriendList(String username) {
+//        this.lf.addUser(new Friend(username, status));
+        this.lf.removeUser(username);
+        System.out.println("Feature");
+        this.list_user.updateUI();
+    }
+
     public JList<String> getList_user() {
         return list_user;
     }
@@ -400,6 +437,7 @@ public class MainUI extends javax.swing.JFrame {
     public JButton getAttacButton() {return this.attach_file_but;}
 
     public JButton getAdd_user_but() {return this.add_user_but;}
+    public JButton getDel_user_but() {return this.del_user_but;}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_user_but;
@@ -407,9 +445,13 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JPanel chat_box;
     private javax.swing.JPanel chat_pane;
     private javax.swing.JPanel chat_section;
-    private javax.swing.JButton close_conversation;
     private javax.swing.JMenu file_but;
+<<<<<<< HEAD
     private javax.swing.JButton find_user_but;
+=======
+    private javax.swing.JButton del_user_but;
+    private javax.swing.JTextField find_user_field;
+>>>>>>> e75195f0d2f81f6c5e6f3d4e5e617737c7362544
     private javax.swing.JTextArea input_text;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -427,6 +469,5 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JPanel text_pane;
     private javax.swing.JLabel user_name_label;
     private javax.swing.JPanel user_status_pane;
-    private javax.swing.JButton video_but;
     // End of variables declaration//GEN-END:variables
 }

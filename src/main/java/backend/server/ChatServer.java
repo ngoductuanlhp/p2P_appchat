@@ -143,9 +143,18 @@ public class ChatServer {
         }
     }
 
-    public boolean checkPassword(String username, String password) {
+    public int checkPassword(String username, String password) {
         ClientInfoServer value = clientList.get(username);
-        return password.equals(value.getClientPassword());
+        if (value == null) {
+            return 1;
+        }
+        if (!password.equals(value.getClientPassword())) {
+            return 2;
+        }
+        if (value.getClientStatus().equals("on")) {
+            return 3;
+        }
+        return 0;
     }
 
     public boolean findUsername(String username) {

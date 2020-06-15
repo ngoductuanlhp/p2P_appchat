@@ -53,6 +53,12 @@ public class ChatClient extends Observable {
 //        this.mainUI         = mainUI;
     }
 
+    public void turnOff() throws InterruptedException, IOException {
+        this.clientSenderThread.join();
+        this.clientReceiverThread.join();
+        this.socket.close();
+    }
+
     public ClientInfo getClientInfo() {
         return this.clientInfo;
     }
@@ -123,13 +129,30 @@ public class ChatClient extends Observable {
         notifyObservers(s);
     }
 
+    public void removeFriendPassive(String friendname) {
+        String[] s = {"removefriend", friendname};
+        setChanged();
+        notifyObservers(s);
+        PeerHandler p = getPeerList().get(friendname);
+        if (p != null) {
+            disconnectPane("disconnect", friendname);
+            p.disconnect();
+        }
+    }
+
     public void checkSignUp(String check, String name) {
         if (check.equals("success")) {
             System.out.println("[CLIENT] Sign-up successful");
             this.clientInfo = new ClientInfo(name);
+            synchronized (this) {
+                this.responseMessage = check + "-" + "signup";
+            }
         }
         else {
-            System.out.println("[CLIENT] Sign-up failed");
+            System.out.println("[CLIENT] Signup failed");
+            synchronized (this) {
+                this.responseMessage = check + "-" + "signup";
+            }
         }
     }
 
@@ -150,7 +173,10 @@ public class ChatClient extends Observable {
 
         }
         else {
-            System.out.println("[CLIENT] Log-in failed");
+            System.out.print(String.format("[CLIENT] Log-in failed %s", segments[1]));
+            synchronized (this) {
+                this.responseMessage = segments[1] + "-" + "login";
+            }
         }
     }
 
@@ -178,6 +204,7 @@ public class ChatClient extends Observable {
         boolean isExist = false;
         if (peerList.containsKey(nameFrom)) {
             isExist = true;
+            System.out.println("Is exist");
         }
 //        for(PeerHandler peer:this.peerList) {
 //            if(nameFrom.equals(peer.getTargetClientName())) {
@@ -195,7 +222,7 @@ public class ChatClient extends Observable {
             this.requestSender.sendRequest(mess);
             peerPort++;
             Socket socket = serverSocket.accept();
-            PeerHandler peerHandler = new PeerHandler(socket, nameFrom, this);
+            PeerHandler peerHandler = new PeerHandler(socket, nameFrom, this , false);
 //            this.peerList.add(peerHandler);
             this.peerList.put(nameFrom, peerHandler);
             Thread peerThread = new Thread(peerHandler);
@@ -224,7 +251,7 @@ public class ChatClient extends Observable {
             // backend
             Socket socket = new Socket();
             socket.connect(new InetSocketAddress(IP, port), 5000);
-            PeerHandler peerHandler = new PeerHandler(socket, nameTo, this);
+            PeerHandler peerHandler = new PeerHandler(socket, nameTo, this , true);
 
             // JTextPane
 

@@ -95,7 +95,8 @@ public class ClientHandler implements Runnable{
             ClientHandler c = server.getClientHandler(friend);
             if (c != null) {
 //                System.out.println("Notify");
-                c.sendOnlineNotify(clientInfo.getClientName());
+                c.sendResponse("notifyonline" + "-" + clientInfo.getClientName());
+//                c.sendOnlineNotify(clientInfo.getClientName());
             }
         }
     }
@@ -105,20 +106,19 @@ public class ClientHandler implements Runnable{
     }
 
     private void notifyOffline() throws IOException {
-        server.markOffline(clientInfo.getClientName());
-//        LinkedList<String> listOfOnlineFriend = server.findOnlineFriend(clientInfo.getClientName());
         for (String friend : server.getFriendList(clientInfo.getClientName())) {
             ClientHandler c = server.getClientHandler(friend);
             if (c != null) {
-                c.sendOfflineNotify(clientInfo.getClientName());
+//                c.sendOfflineNotify(clientInfo.getClientName());
+                c.sendResponse("notifyoffline" + "-" + clientInfo.getClientName());
             }
         }
         this.server.removeClientHandler(this);
     }
 
-    public void sendOfflineNotify(String target) throws IOException {
-        this.writer.writeUTF("notifyoffline" + "-" + target);
-    }
+//    public void sendOfflineNotify(String target) throws IOException {
+//        this.writer.writeUTF("notifyoffline" + "-" + target);
+//    }
 
     private void handleSignup(String[] segments) throws IOException {
         System.out.println(String.format("[SERVER] Sign-up with username %s, password %s", segments[1], segments[2]));
@@ -126,22 +126,41 @@ public class ClientHandler implements Runnable{
             server.createAccount(segments[1], segments[2]);
             this.clientInfo = new ClientInfo(segments[1]);
             server.markOnline(clientInfo.getClientName());
-            sendSuccessRes(segments[0], segments[1]);
+            this.sendResponse("signup-" + "success-" + segments[1] + '-' + "0");
+//            sendSuccessRes(segments[0], segments[1]);
         } else {
-            sendFailedRes(segments[0]);
+            this.sendResponse("signup-" + "failed");
         }
     }
 
     private void handleLogin(String[] segments) throws IOException {
-        if (server.checkPassword(segments[1], segments[2])) {
+        int checkLogin = server.checkPassword(segments[1], segments[2]);
+        if (checkLogin == 0) {
 //            clientInfo.setClientName(segments[1]);
             this.clientInfo = new ClientInfo(segments[1]);
             server.markOnline(clientInfo.getClientName());
-            sendSuccessRes(segments[0], segments[1]);
+            LinkedList<String> friend = server.getFriendList(clientInfo.getClientName());
+            String res = "login-" + "success-" + segments[1] + "-" + String.valueOf(friend.size());
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(res);
+            for (String n:friend) {
+                stringBuilder.append("-").append(n);
+                stringBuilder.append("-").append(server.getClientStatus(n));
+            }
+            this.sendResponse(stringBuilder.toString());
+//            writer.writeUTF(stringBuilder.toString());
+//            sendSuccessRes(segments[0], segments[1]);
             notifyOnline();
-        } else {
-            sendFailedRes(segments[0]);
-        };
+        }
+        else if (checkLogin == 1){
+            this.sendResponse("login-" + "notexist");
+        }
+        else if (checkLogin == 2) {
+            this.sendResponse("login-" + "wrongpass");
+        }
+        else if (checkLogin == 3) {
+            this.sendResponse("login-" + "alreadylogin");
+        }
     }
 
     private void handleLogout() throws IOException {
@@ -152,7 +171,7 @@ public class ClientHandler implements Runnable{
     private void notifyNewFriend(String target) throws IOException {
         ClientHandler c = server.getClientHandler(target);
         if (c != null) {
-            c.sendNotifyNewFriend(this.getClientInfo().getClientName());
+            c.sendResponse("addfriendpassive-" + this.getClientInfo().getClientName());
         }
     }
 
@@ -163,10 +182,14 @@ public class ClientHandler implements Runnable{
     private void handleAddFriend(String req, String friendName) throws IOException {
         if (server.findUsername(friendName)) {
             server.addFriend(clientInfo.getClientName(), friendName);
-            notifyNewFriend(friendName);
-            sendSuccessRes(req, friendName);
+            ClientHandler c = server.getClientHandler(friendName);
+            if (c != null) {
+                c.sendResponse("addfriendpassive-" + this.getClientInfo().getClientName());
+            }
+            this.sendResponse("addfriend-" + "success-" + friendName + "-" + server.getClientStatus(friendName));
+//            sendSuccessRes(req, friendName);
         } else {
-            sendFailedRes(req);
+            this.sendResponse("addfriend-" + "failed"+ "-null" + "-null");
         }
     }
 
@@ -175,7 +198,8 @@ public class ClientHandler implements Runnable{
         if (c != null) {
             c.sendRequestConnectFriend(nameFrom, nameTo);
         } else {
-            sendFailedRes("connecfriendto");
+            this.sendResponse("connectfriendto-" + "failed-" + "null-");
+//            sendFailedRes("connecfriendto");
         }
     }
 
@@ -189,13 +213,19 @@ public class ClientHandler implements Runnable{
     }
 
     private void handleRemoveFriend(String req, String friendName) throws IOException {
-        if (server.findUsername(friendName)) {
-            server.addFriend(clientInfo.getClientName(), friendName);
-            notifyOnline();
-            sendSuccessRes(req, friendName);
-        } else {
-            sendFailedRes(req);
+        this.server.removeFriend(this.clientInfo.getClientName(), friendName);
+//        this.sendResponse("removefriend-success");
+        ClientHandler c = server.getClientHandler(friendName);
+        if (c != null) {
+            c.sendResponse("removefriendpassive-" + this.getClientInfo().getClientName());
         }
+//        if (server.findUsername(friendName)) {
+//            server.addFriend(clientInfo.getClientName(), friendName);
+//            notifyOnline();
+//            sendSuccessRes(req, friendName);
+//        } else {
+//            sendFailedRes(req);
+//        }
     }
 
     private void sendSuccessRes(String req, String username) throws IOException {
@@ -242,12 +272,20 @@ public class ClientHandler implements Runnable{
     }
 
     public void sendRequestConnectFriend(String nameFrom, String nameTo) throws IOException {
-        this.writer.writeUTF("connectfriendto-" + nameFrom + "-" + nameTo);
+        this.sendResponse("connectfriendto-" + nameFrom + "-" + nameTo);
+        System.out.println("connectfriendto-" + nameFrom + "-" + nameTo);
     }
 
     public void sendReponseConnectFriend(String nameFrom, String nameTo, String ip, String port) throws IOException{
 //        System.out.println(client.getInetAddress().toString().substring(1));
-        this.writer.writeUTF("acceptconnectfriend-" + nameFrom + "-" + nameTo + "-" + ip + "-" +port);
+        this.sendResponse("acceptconnectfriend-" + nameFrom + "-" + nameTo + "-" + ip + "-" +port);
+        System.out.println("acceptconnectfriend-" + nameFrom + "-" + nameTo + "-" + ip + "-" +port);
+    }
+
+    public void sendResponse(String mess) throws IOException {
+        synchronized (this) {
+            this.writer.writeUTF(mess);
+        }
     }
 
     public ClientInfo getClientInfo() {
