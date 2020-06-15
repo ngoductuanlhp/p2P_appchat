@@ -219,12 +219,12 @@ public class MainUI extends javax.swing.JFrame {
         input_text.setRows(5);
         jScrollPane5.setViewportView(input_text);
 
-        send_mess_but.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\send_mess_icon.png")); // NOI18N
+        send_mess_but.setIcon(new javax.swing.ImageIcon(dir +"send_mess_icon.png")); // NOI18N
         send_mess_but.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         send_mess_but.setBorderPainted(false);
         send_mess_but.setContentAreaFilled(false);
 
-        attach_file_but.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\attach_icon.png")); // NOI18N
+        attach_file_but.setIcon(new javax.swing.ImageIcon(dir +"attach_icon.png")); // NOI18N
         attach_file_but.setBorderPainted(false);
         attach_file_but.setContentAreaFilled(false);
 
@@ -259,12 +259,12 @@ public class MainUI extends javax.swing.JFrame {
 
         getContentPane().add(chat_box, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 610, 460));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\bg_mainUI.jpg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(dir +"bg_mainUI.jpg")); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 460));
 
         file_but.setText("File");
 
-        logout_but.setIcon(new javax.swing.ImageIcon("C:\\Users\\Khoa\\OneDrive\\Documents\\NetBeansProjects\\ChatBoxP2P\\src\\main\\java\\images\\logout_icon.png")); // NOI18N
+        logout_but.setIcon(new javax.swing.ImageIcon(dir +"logout_icon.png")); // NOI18N
         logout_but.setText("Log Out");
         file_but.add(logout_but);
 
