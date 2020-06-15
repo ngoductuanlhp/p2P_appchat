@@ -152,6 +152,10 @@ public class LoginUI extends javax.swing.JFrame {
         signup_pane.add(name_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, -1, -1));
 
         user_signup_logo.setIcon(new javax.swing.ImageIcon(dir + "icons8_user_48px_1.png")); // NOI18N
+        pass_signup_logo.setIcon(new javax.swing.ImageIcon(dir + "icons8_password_48px_1.png"));
+        jLabel1.setIcon(new javax.swing.ImageIcon(dir + "icons8_password_48px_1.png"));
+        jLabel2.setIcon(new javax.swing.ImageIcon(dir + "icons8_user_48px_1.png"));
+
         signup_pane.add(user_signup_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
         signup_pane.add(pass_signup_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
 
