@@ -224,6 +224,7 @@ public class MainController implements Observer {
                     System.out.println("Create new Chat box");
 //                    JTextPane temp = new JTextPane();
 //                    temp.setSize(this.mainUI.getChat_section().getSize());
+                    this.currentPeer.setStatusWindow(false);
                     this.mainUI.getChat_section().removeAll();
                     this.currentPeer = this.chatClient.getPeerList().get(username);
                     this.mainUI.getChat_section().add(this.currentPeer.getTextPane());
