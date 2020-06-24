@@ -8,7 +8,7 @@ import ui.LoginUI;
 public class TestClient {
     public static void main(String[] args) throws UnknownHostException{
         LoginUI loginUI = new LoginUI();
-        ChatClient chatClient = new ChatClient("192.168.0.106", 11111);
+        ChatClient chatClient = new ChatClient("192.168.0.102", 11111);
         LoginController loginController = new LoginController(loginUI, chatClient);
         loginController.initController();
     }

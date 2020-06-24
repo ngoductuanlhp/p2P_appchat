@@ -148,6 +148,7 @@ public class MainController implements Observer {
 
                 JTextArea textArea = new JTextArea(mess);
                 textArea.setLineWrap(true);
+                textArea.setEditable(false);
                 textArea.setFont(new java.awt.Font("Times New Roman", 1, 14));
 
                 StyleConstants.setComponent(style, textArea);
