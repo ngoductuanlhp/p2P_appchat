@@ -21,21 +21,36 @@ public class MessageSender implements Runnable{
 
     @Override
     public void run() {
-        try{
-            while (isChatting) {
-                synchronized (this) {
-                    while(!this.messageQueue.isEmpty()) {
-                        String request = messageQueue.remove();
-                        System.out.print(String.format("[CLIENT] Send message: %s", request));
+        while (isChatting) {
+            synchronized (this) {
+                while(!this.messageQueue.isEmpty()) {
+                    String request = messageQueue.remove();
+                    System.out.print(String.format("[CLIENT] Send message: %s", request));
+                    try {
                         sender.writeUTF(request);
                         sender.flush();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        System.out.println("Client is disconnected, cannot send mess");
                     }
                 }
             }
-            System.out.print("[CLIENT] Disconnect to peer\n");
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+//        try{
+//            while (isChatting) {
+//                synchronized (this) {
+//                    while(!this.messageQueue.isEmpty()) {
+//                        String request = messageQueue.remove();
+//                        System.out.print(String.format("[CLIENT] Send message: %s", request));
+//                        sender.writeUTF(request);
+//                        sender.flush();
+//                    }
+//                }
+//            }
+//            System.out.print("[CLIENT] Disconnect to peer\n");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void sendMessage(String cnt) {

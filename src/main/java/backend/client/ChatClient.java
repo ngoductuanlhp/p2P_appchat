@@ -222,6 +222,7 @@ public class ChatClient extends Observable {
             this.requestSender.sendRequest(mess);
             peerPort++;
             Socket socket = serverSocket.accept();
+//            socket.setSoTimeout(60000);
             PeerHandler peerHandler = new PeerHandler(socket, nameFrom, this , false);
 //            this.peerList.add(peerHandler);
             this.peerList.put(nameFrom, peerHandler);
@@ -251,6 +252,7 @@ public class ChatClient extends Observable {
             // backend
             Socket socket = new Socket();
             socket.connect(new InetSocketAddress(IP, port), 5000);
+//            socket.setSoTimeout(60000);
             PeerHandler peerHandler = new PeerHandler(socket, nameTo, this , true);
 
             // JTextPane
