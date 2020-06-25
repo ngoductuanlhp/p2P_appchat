@@ -118,10 +118,10 @@ public class MainController implements Observer {
     }
 
     private void uiDispose() throws IOException, InterruptedException {
-//        this.chatClient.sendReq("disconnect");
+        this.chatClient.sendReq("disconnect");
         for(Map.Entry<String, PeerHandler> temp : this.chatClient.getPeerList().entrySet()) {
             PeerHandler p = temp.getValue();
-            p.sendMessage("frienddisconnect");
+            p.sendDisconnect();
         }
         System.out.println("Feature");
         this.mainUI.dispose();

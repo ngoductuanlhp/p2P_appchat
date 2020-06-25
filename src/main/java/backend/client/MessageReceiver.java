@@ -55,11 +55,14 @@ public class MessageReceiver implements Runnable {
                             this.peerHandler.timeOutReceiveFile();
                             break;
                         case "disconnect":
+                            System.out.println("Friend is disconnect");
+                            this.peerHandler.getClient().changeFriendStatus("friendstatus", segments[1], "off");
+                            this.peerHandler.getClient().disconnectPane("disconnect", segments[1]);
                             this.peerHandler.disconnect();
                             break;
-                        case "frienddisconnect":
-                            System.out.println("Friend is disconnect");
-                            this.peerHandler.disconnect();
+//                        case "frienddisconnect":
+//                            System.out.println("Friend is disconnect");
+//                            this.peerHandler.disconnect();
                         default:
                             System.out.println("[CLIENT] Received unknown message.");
                             break;

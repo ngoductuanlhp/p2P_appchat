@@ -82,6 +82,7 @@ public class PeerHandler implements Runnable{
     }
 
     public void sendDisconnect() {
+        System.out.println("Send disconnect to friend");
         this.messageSender.sendMessage("disconnect");
     }
 
