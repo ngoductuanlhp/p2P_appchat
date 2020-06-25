@@ -103,6 +103,7 @@ public class PeerHandler implements Runnable{
         JTextArea textArea = new JTextArea(mess);
         textArea.setLineWrap(true);
         textArea.setFont(new java.awt.Font("Times New Roman", 1, 14));
+        textArea.setEditable(false);
 
         StyleConstants.setComponent(style2, textArea);
         synchronized (this) {

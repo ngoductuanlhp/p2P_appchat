@@ -24,7 +24,6 @@ public class RequestSender implements Runnable{
                         System.out.println(String.format("[CLIENT] Send request: %s", request));
                         sender.writeUTF(request);
                         sender.flush();
-
                     }
                 }
             }

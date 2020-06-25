@@ -56,6 +56,10 @@ public class MessageReceiver implements Runnable {
                             break;
                         case "disconnect":
                             this.peerHandler.disconnect();
+                            break;
+                        case "frienddisconnect":
+                            System.out.println("Friend is disconnect");
+                            this.peerHandler.disconnect();
                         default:
                             System.out.println("[CLIENT] Received unknown message.");
                             break;

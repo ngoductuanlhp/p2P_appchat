@@ -66,12 +66,12 @@ public class ChatClient extends Observable {
     public RequestSender getRequestSender() { return requestSender; }
     public HashMap<String, PeerHandler>  getPeerList() {return this.peerList;}
 
-    public void start() {
+    public Boolean start() {
         System.out.println("[CLIENT] Start client.");
         boolean checkConnected = this.connectToServer();
         if (!checkConnected) {
             System.out.println("[CLIENT] Cannot connect to server. Quit.");
-            return;
+            return false;
         }
         this.peerList = new HashMap<>();
         this.requestSender = new RequestSender(this, new DataOutputStream((this.os)));
@@ -81,7 +81,7 @@ public class ChatClient extends Observable {
 
         this.clientReceiverThread.start();
         this.clientSenderThread.start();
-
+        return true;
         // DEBUG
 //        try{
 //            BufferedReader keyboardReader = new BufferedReader(new InputStreamReader(System.in));

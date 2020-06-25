@@ -22,6 +22,8 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainController implements Observer {
     private MainUI mainUI;
@@ -116,7 +118,11 @@ public class MainController implements Observer {
     }
 
     private void uiDispose() throws IOException, InterruptedException {
-        this.chatClient.sendReq("disconnect");
+//        this.chatClient.sendReq("disconnect");
+        for(Map.Entry<String, PeerHandler> temp : this.chatClient.getPeerList().entrySet()) {
+            PeerHandler p = temp.getValue();
+            p.sendMessage("frienddisconnect");
+        }
         System.out.println("Feature");
         this.mainUI.dispose();
         LoginUI loginUI = new LoginUI();
@@ -148,6 +154,7 @@ public class MainController implements Observer {
 
                 JTextArea textArea = new JTextArea(mess);
                 textArea.setLineWrap(true);
+                textArea.setEditable(false);
                 textArea.setFont(new java.awt.Font("Times New Roman", 1, 14));
 
                 StyleConstants.setComponent(style, textArea);
@@ -223,6 +230,7 @@ public class MainController implements Observer {
                     System.out.println("Create new Chat box");
 //                    JTextPane temp = new JTextPane();
 //                    temp.setSize(this.mainUI.getChat_section().getSize());
+                    this.currentPeer.setStatusWindow(false);
                     this.mainUI.getChat_section().removeAll();
                     this.currentPeer = this.chatClient.getPeerList().get(username);
                     this.mainUI.getChat_section().add(this.currentPeer.getTextPane());

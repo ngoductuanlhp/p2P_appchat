@@ -16,17 +16,22 @@ public class LoginController {
     }
 
     public void initController() {
-        this.chatClient.start();
-        this.loginUI.getLogin_but().addActionListener(e->login());
-        this.loginUI.getPasswordField().addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                pass_inputKeyPressed(evt);
-            }
-        });
+        boolean checked = this.chatClient.start();
+        if (checked) {
+            this.loginUI.getLogin_but().addActionListener(e->login());
+            this.loginUI.getPasswordField().addKeyListener(new java.awt.event.KeyAdapter() {
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    pass_inputKeyPressed(evt);
+                }
+            });
 
-        this.loginUI.getSignup_but().addActionListener(e->signup());
-        
-        this.loginUI.setVisible(true);
+            this.loginUI.getSignup_but().addActionListener(e->signup());
+
+            this.loginUI.setVisible(true);
+        }
+        else {
+            this.loginUI.dispose();
+        }
     }
     
     private void pass_inputKeyPressed(java.awt.event.KeyEvent evt) {                                      
