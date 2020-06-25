@@ -31,15 +31,24 @@ public class PeerHandler implements Runnable{
     private SendFile sendFileThread;
     private ReceiveFile receiveFile;
 
+    private boolean isOpening = false;
+
     private JTextPane textPane;
 
-    public PeerHandler(Socket socket, String targetClientName, ChatClient client) {
+    public PeerHandler(Socket socket, String targetClientName, ChatClient client , boolean stt) {
         this.socket = socket;
+        this.isOpening = stt;
         this.targetClientName = targetClientName;
         this.client = client;
         this.textPane = new JTextPane();
         textPane.setSize(610, 370);
     }
+
+    public void setStatusWindow(boolean stt){
+        this.isOpening = stt;
+    }
+
+    public boolean getStatusWindow(){return this.isOpening;}
 
     public JTextPane getTextPane() {return this.textPane;}
 

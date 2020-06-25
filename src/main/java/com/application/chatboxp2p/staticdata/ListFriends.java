@@ -22,9 +22,11 @@ public class ListFriends {
         list_friends.addElement(user);
     }
     public void removeUser(String name) {
+        System.out.println(name);
         for (int i = 0 ; i < list_friends.getSize(); i ++) {
             if (list_friends.elementAt(i).getUser_name().equals(name)) {
                 list_friends.remove(i);
+                break;
             }
         }
     }
