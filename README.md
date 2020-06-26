@@ -2,7 +2,7 @@
 
 A peer-to-peer chat application designed and developed by group **TKK** from _Ho Chi Minh City University of Technology (HCMUT)_
 
-![Demo-intro](https://github.com/ngoductuanlhp/p2p_appchat/demo_images/login_screen.png)
+![Demo-intro](https://github.com/ngoductuanlhp/p2p_appchat/blob/khoa/demo_images/login_screen.png)
 
 This is a product for _Assignment 1_ of _Computer Network - CO3003 (semester 192)_
 
