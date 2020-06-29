@@ -2,7 +2,7 @@
 
 A peer-to-peer chat application designed and developed by group **TKK** from _Ho Chi Minh City University of Technology (HCMUT)_
 
-![Demo-intro](https://github.com/ngoductuanlhp/p2p_appchat/demo_images/login_screen.png)
+![Demo-intro](https://github.com/ngoductuanlhp/p2p_appchat/blob/master/demo_images/login_screen.png)
 
 This is a product for _Assignment 1_ of _Computer Network - CO3003 (semester 192)_
 
@@ -32,7 +32,7 @@ Follow these steps to compile and run the application correctly:
     * Find the correct IP address on the server computer.
 
 2. Run Client:
-    * Adjust the _serverIPAddress_ to the corresponding address in the above step.
+    * Adjust the _serverIPAddress_ in [./src/main/java/examples/TestClient.java] to the corresponding IP address in the above step.
     * Compile and run file [./src/main/java/examples/TestClient.java](https://github.com/ngoductuanlhp/p2p_appchat/blob/master/src/main/java/examples/TestClient.java) and enjoy!
 
 ## Known issues
