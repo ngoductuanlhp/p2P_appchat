@@ -5,6 +5,7 @@
       <element id="module-output" name="p2p_appchat" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/unknown/binary/AbsoluteLayout/SNAPSHOT/AbsoluteLayout-SNAPSHOT.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar" path-in-jar="/" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/java/examples/TestClient.java" />
     </root>
   </artifact>
 </component>
